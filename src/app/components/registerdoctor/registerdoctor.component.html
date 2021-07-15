@@ -20,12 +20,12 @@
 
 											<div class="form-group pos_rel">
 				                                <input type="text" id="name" name="name" placeholder="Nombre" [(ngModel)]="dentist.name"  formControlName="name"
-				                              [ngClass]="{ 'is-invalid': submitted && fval2.name.errors }"
+				                              [ngClass]="{ 'is-invalid': dentistSubmitted && fval2.name.errors }"
 				                              class="form-control"
 				                              required>
 				                                <i class="uil uil-envelope lgn_icon"></i>
 				                                <span class="required"></span>
-				                                <div *ngIf="submitted && fval2.name.errors" class="invalid-feedback">
+				                                <div *ngIf="dentistSubmitted && fval2.name.errors" class="invalid-feedback">
 				                                    <div *ngIf="fval2.name.errors.required" class="errorLabel">
 				                                 
 				                                    </div>
@@ -38,12 +38,12 @@
 											</div> -->
 											<div class="form-group pos_rel">
 				                                <input type="email" id="email" name="email" placeholder="Email" [(ngModel)]="dentist.email"  formControlName="email"
-				                              [ngClass]="{ 'is-invalid': submitted && fval2.email.errors }"
+				                              [ngClass]="{ 'is-invalid': dentistSubmitted && fval2.email.errors }"
 				                              class="form-control"
 				                              required>
 				                                <i class="uil uil-envelope lgn_icon"></i>
 				                                <span class="required"></span>
-				                                <div *ngIf="submitted && fval2.email.errors" class="invalid-feedback">
+				                                <div *ngIf="dentistSubmitted && fval2.email.errors" class="invalid-feedback">
 				                                    <div *ngIf="fval2.email.errors.required" class="errorLabel">
 				                                 
 				                                    </div>
@@ -56,12 +56,12 @@
 
 											<div class="form-group pos_rel">
 				                                <input type="password" id="password" name="password" placeholder="Contraseña" [(ngModel)]="dentist.password"  formControlName="password"
-				                              [ngClass]="{ 'is-invalid': submitted && fval2.password.errors }"
+				                              [ngClass]="{ 'is-invalid': dentistSubmitted && fval2.password.errors }"
 				                              class="form-control"
 				                              required>
 				                                <i class="uil uil-envelope lgn_icon"></i>
 				                                <span class="required"></span>
-				                                <div *ngIf="submitted && fval2.password.errors" class="invalid-feedback">
+				                                <div *ngIf="dentistSubmitted && fval2.password.errors" class="invalid-feedback">
 				                                    <div *ngIf="fval2.password.errors.required" class="errorLabel">
 				                                 
 				                                    </div>
