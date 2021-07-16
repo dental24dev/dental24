@@ -4,6 +4,9 @@ import { DataApiService } from '../../services/data-api.service';
 import { ScrollTopService }  from '../../services/scroll-top.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+      
+       
 
 @Component({
   selector: 'app-lateralmenu',
@@ -13,12 +16,29 @@ import { Router } from '@angular/router';
 export class LateralmenuComponent implements OnInit {
 
   constructor(
+    private authService: AuthService,
     public scrollTopService:ScrollTopService,
     public _uw:UserWService,
     private dataApi: DataApiService,
     public router: Router,
     ) { }
  loadAPI = null;  
+   onCheckUser(): void {
+    if (this.authService.getCurrentUser() === null) {
+      //this.isLogged = false;
+      this._uw.isLogged=false;
+    } else {
+      //this.isLogged = true;
+      this._uw.isLogged=true;
+    }
+  }
+
+  onlogoutUser():void{
+    this.authService.logoutUser();
+    //this.isLogged = false;
+    this._uw.isLogged=false;
+    this.router.navigate(['/login']);
+  }
 
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";
