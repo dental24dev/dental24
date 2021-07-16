@@ -76,7 +76,7 @@ export class UserWService {
 	user:any={};
 	userd:string;
 	usersPending:boolean;
-	userW:any[]=[];
+	userW:any={};
 	validation:any={};
 	validationEmail:any={};
 	validationToDelete:any={};
