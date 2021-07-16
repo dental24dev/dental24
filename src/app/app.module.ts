@@ -48,6 +48,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { RegisterdoctorComponent } from './components/registerdoctor/registerdoctor.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterformComponent } from './components/registerform/registerform.component';
+import { LateralmenuComponent } from './components/lateralmenu/lateralmenu.component';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
+import { AccountComponent } from './components/account/account.component';
+import { DentistsComponent } from './components/dentists/dentists.component';
+import { PatientsComponent } from './components/patients/patients.component';
 
 
 @NgModule({
@@ -60,6 +65,11 @@ import { RegisterformComponent } from './components/registerform/registerform.co
     RegisterdoctorComponent,
     LoginComponent,
     RegisterformComponent,
+    LateralmenuComponent,
+    WrapperComponent,
+    AccountComponent,
+    DentistsComponent,
+    PatientsComponent,
     // FruitbannerboxComponent,
   ],
   imports: [

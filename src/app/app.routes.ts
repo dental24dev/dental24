@@ -6,6 +6,10 @@ import {
 	RegisterComponent,
 	RegisterformComponent,
 	LoginComponent,
+	LateralmenuComponent,
+	AccountComponent,
+	DentistsComponent,
+	PatientsComponent,
 	RegisterdoctorComponent
 	// FruitbannerboxComponent
 	}from "./components/index.paginas";
@@ -20,6 +24,10 @@ const app_routes: Routes = [
 	{path:'register',component:RegisterComponent},
 	{path:'registerform',component:RegisterformComponent},
 	{path:'login',component:LoginComponent},
+	{path:'lateralmenu',component:LateralmenuComponent},
+	{path:'account',component:AccountComponent, canActivate:[AuthGuard]},
+	{path:'dentists',component:DentistsComponent},
+	{path:'patients',component:PatientsComponent},
 	{path:'registerdoctor',component:RegisterdoctorComponent},
 	{path:'**',pathMatch:'full',redirectTo:''}
 	];

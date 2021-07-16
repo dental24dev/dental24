@@ -1,0 +1,134 @@
+		<div >
+			<div class="profile-sidebar" *ngIf="_uw.usertype=='dentist'">
+				<div class="profile-sidebar">
+					<div class="widget-profile pro-widget-content">
+						<div class="profile-info-widget">
+							<a href="#" class="booking-doc-img">
+								<img src="{{_uw.userW.images[0]}}" alt="User Image">
+							</a>
+							<div class="profile-det-info">
+						      Welcome<br> 
+								<h3 [hidden]="_uw.userW.gender=='female'">Dr. {{_uw.userW.username}} {{_uw.userW.surname}}</h3>
+								<h3 [hidden]="_uw.userW.gender=='male'">Dra. {{_uw.userW.username}} {{_uw.userW.surname}}</h3>
+								
+
+								<div class="patient-details">
+									<h5 class="mb-0">{{_uw.userW.jobtitle}}</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+	
+				</div>
+				<div class="dashboard-widget">
+					<nav class="dashboard-menu">
+						<ul>
+							<li >
+								<a >
+									<i class="fas fa-columns"></i>
+									<span>Panel de Control</span>
+								</a>
+							</li>
+							<li >
+								<a >
+									<i class="fas fa-users"></i>
+									<span>Patients</span>
+								</a>
+							</li>
+							<li>
+								<a >
+									<i class="fas fa-bookmark"></i>
+									<span>Citas</span>
+								</a>
+							</li>
+							<li>
+								<a >
+									<i class="fas fa-comments"></i>
+									<span>Mensajes</span>
+									<!-- <small class="unread-msg">23</small> -->
+								</a>
+							</li>
+						<li>
+								<a href="profile-settings.php">
+									<i class="fas fa-user-cog"></i>
+									<span>Mi cuenta</span>
+								</a>
+							</li>
+						
+							<li>
+								<a >
+									<i class="fas fa-sign-out-alt"></i>
+									<span>Cerrar Sesión</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+			<div class="profile-sidebar" *ngIf="_uw.usertype=='patient'">
+				<div class="widget-profile pro-widget-content">
+					<div class="profile-info-widget">
+						<a href="#" class="booking-doc-img">
+							<img src="{{_uw.userW.images[0]}}" alt="User Image">
+						</a>
+						<div class="profile-det-info">
+							<h3>{{_uw.userW.username}} {{_uw.userW.surname}}</h3>
+							<div class="patient-details">
+								<h5><i class="fas fa-birthday-cake"></i> {{_uw.userW.birthday}} {{_uw.userW.age}}</h5>
+								<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> {{_uw.userW.address}}</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		
+
+
+				<div class="dashboard-widget">
+					<nav class="dashboard-menu">
+						<ul>
+							<li >
+								<a >
+									<i class="fas fa-columns"></i>
+									<span>Panel de Control</span>
+								</a>
+							</li>
+							<li >
+								<a routerLink="../dentists">
+									<i class="fas fa-search"></i>
+									<span>Dentistas</span>
+								</a>
+							</li>
+							<li>
+								<a >
+									<i class="fas fa-bookmark"></i>
+									<span>Citas</span>
+								</a>
+							</li>
+							<li>
+								<a >
+									<i class="fas fa-comments"></i>
+									<span>Mensajes</span>
+									<!-- <small class="unread-msg">23</small> -->
+								</a>
+							</li>
+						<li>
+								<a href="profile-settings.php">
+									<i class="fas fa-user-cog"></i>
+									<span>Mi cuenta</span>
+								</a>
+							</li>
+						
+							<li>
+								<a >
+									<i class="fas fa-sign-out-alt"></i>
+									<span>Cerrar Sesión</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+		</div>

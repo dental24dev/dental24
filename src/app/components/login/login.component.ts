@@ -4,19 +4,34 @@ import { DataApiService } from '../../services/data-api.service';
 import { ScrollTopService }  from '../../services/scroll-top.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { UserInterface } from '../../models/user-interface'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+   ngFormLogin: FormGroup;
+  submitted = false;
   constructor(
-  public scrollTopService:ScrollTopService,
-   public _uw:UserWService,
-  private dataApi: DataApiService,
-     public router: Router,
+      public scrollTopService:ScrollTopService,
+      public _uw:UserWService,
+      private formBuilder: FormBuilder, 
+      private dataApi: DataApiService,
+      private authService: AuthService, 
+      public router: Router,
     ) { }
+
+  public user : UserInterface ={
+    name:"",
+    email:"",
+    password:""
+  };
+  public isError = false;
+  public isLogged =false;
+
  loadAPI = null;  
 
   url = "assets/assetsdental/js/jquery.min.js";
@@ -66,7 +81,58 @@ export class LoginComponent implements OnInit {
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
+    get fval() {
+  return this.ngFormLogin.controls;
+  }
+    onIsError(): void {
+    this.isError = true;
+    setTimeout(() => {
+      this.isError = false;
+    }, 4000);
+  }
+     onCheckUser(): void {
+    if (this.authService.getCurrentUser() === null) {
+         this.isLogged = false;
+      this._uw.isLogged=false;
+    } else {
+      this.isLogged = true;
+      this._uw.isLogged = true;
+      this.router.navigate(['']);
+    }
+  }
+     onLogin(){
+     this.submitted = true;
+      if (this.ngFormLogin.invalid) {
+      return;
+        } 
+//      alert('form fields are validated successfully!');
+      return this.authService.loginUser(
+        this.user.email, 
+        this.user.password
+        )
+      .subscribe( 
+        data => {
+          //console.log(data);
+              this.authService.setUser(data.user);
+              const token = data.id;
+              this.authService.setToken(token);
+              this._uw.userd=data.id;
+              this._uw.name=data.name;
+              this._uw.usertype=data.user.usertype;
+              this._uw.userW=data.user;
+              console.log("User type:" +this._uw.usertype);
+              this.router.navigate(['/account']);
+              this.isError = false;
+        },
+         error => this.onIsError()
+        ); 
+  }   
   ngOnInit() {
+     this.ngFormLogin = this.formBuilder.group({
+      email: ['', [Validators.required,Validators.email]],
+      password: ['', [Validators.required]]
+      });
+
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();
