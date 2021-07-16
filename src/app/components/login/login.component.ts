@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
               this._uw.userW=data.user;
               this._uw.isLogged=true;
               console.log("User type:" +this._uw.usertype);
-              this.router.navigate(['/account']);
+              this.router.navigate(['/dashboard']);
               this.isError = false;
         },
          error => this.onIsError()

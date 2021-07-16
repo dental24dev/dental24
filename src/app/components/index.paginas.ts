@@ -8,6 +8,7 @@ export { LateralmenuComponent } from "./lateralmenu/lateralmenu.component";
 export { AccountComponent } from "./account/account.component";
 export { DentistsComponent } from "./dentists/dentists.component";
 export { PatientsComponent } from "./patients/patients.component";
+export { DashboardComponent } from "./dashboard/dashboard.component";
 export { RegisterdoctorComponent } from "./registerdoctor/registerdoctor.component";
 
 // export { FruitbannerboxComponent } from "./fruitbannerbox/fruitbannerbox.component";

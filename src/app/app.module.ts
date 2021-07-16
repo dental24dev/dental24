@@ -53,6 +53,7 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { AccountComponent } from './components/account/account.component';
 import { DentistsComponent } from './components/dentists/dentists.component';
 import { PatientsComponent } from './components/patients/patients.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { PatientsComponent } from './components/patients/patients.component';
     AccountComponent,
     DentistsComponent,
     PatientsComponent,
+    DashboardComponent,
     // FruitbannerboxComponent,
   ],
   imports: [

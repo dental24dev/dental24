@@ -8,7 +8,7 @@
 			</div>
 			<!-- /Profile Sidebar -->
 
-			<div class="col-md-7 col-lg-8 col-xl-9">
+			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='patient'">
 				<div class="card">
 					<div class="card-body">
 
@@ -118,6 +118,386 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='dentist'">
+
+							<!-- Basic Information -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Información Básica</h4>
+									<div class="row form-row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="change-avatar">
+													<div class="profile-img">
+														<img src="assets/assetsdental/img/doctors/doctor2.png" alt="User Image">
+													</div>
+													<div class="upload-img">
+														<div class="change-photo-btn">
+															<span><i class="fa fa-upload"></i> Subir Foto</span>
+															<input type="file" class="upload">
+														</div>
+														<small class="form-text text-muted">Se permiten JPG, GIF o PNG. Tamaño máximo de 2 MB</small>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Usuario <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" readonly>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Email <span class="text-danger">*</span></label>
+												<input type="email" class="form-control" readonly>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Nombre <span class="text-danger">*</span></label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Apellidos <span class="text-danger">*</span></label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Número de teléfono</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Género</label>
+												<select class="form-control select">
+													<option>Seleccionar</option>
+													<option>Varón</option>
+													<option>Mujer</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group mb-0">
+												<label>Fecha de Nacimiento</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Basic Information -->
+
+							<!-- About Me -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Sobre Mi</h4>
+									<div class="form-group mb-0">
+										<label>Biografía</label>
+										<textarea class="form-control" rows="5"></textarea>
+									</div>
+								</div>
+							</div>
+							<!-- /About Me -->
+
+							<!-- Clinic Info -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Información de la Clínica</h4>
+									<div class="row form-row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Nombre de la Clínica</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Domicilio de la Clínica</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Imágenes de La Clínica</label>
+												<form action="#" class="dropzone"></form>
+											</div>
+											<div class="upload-wrap">
+												<div class="upload-images">
+													<img src="assets/assetsdental/img/features/feature-01.jpg" alt="Subir Imágen">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+												<div class="upload-images">
+													<img src="assets/assetsdental/img/features/feature-02.jpg" alt="Subir Imágen">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Clinic Info -->
+
+							<!-- Contact Details -->
+							<div class="card contact-card">
+								<div class="card-body">
+									<h4 class="card-title">Datos de contacto</h4>
+									<div class="row form-row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Domicilio</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Escalera, Piso, Puerta, etc..</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Ciudad</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Provincia</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">País</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Código Postal</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Contact Details -->
+
+							<!-- Pricing -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Precio</h4>
+
+									<div class="form-group mb-0">
+										<div id="pricing_select">
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="price_free" name="rating_option" class="custom-control-input" value="price_free" checked>
+												<label class="custom-control-label" for="price_free">No indicado</label>
+											</div>
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="price_custom" name="rating_option" value="custom_price" class="custom-control-input">
+												<label class="custom-control-label" for="price_custom">Personalizar precio (por hora)</label>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="row custom_price_cont" id="custom_price_cont" style="display: none;">
+										<div class="col-md-4">
+											<input type="text" class="form-control" id="custom_rating_input" name="custom_rating_count" value="" placeholder="20">
+											<small class="form-text text-muted">Precio personalizado que puedes agregar</small>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- /Pricing -->
+
+							<!-- Services and Specialization -->
+							<div class="card services-card">
+								<div class="card-body">
+									<h4 class="card-title">Servicios y especialización</h4>
+									<div class="form-group">
+										<label>Servicios</label>
+										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Escriba aquí" name="services" value="Limpieza dental " id="services">
+										<small class="form-text text-muted">Nota : Escriba y presione Enter para agregar nuevo servicio</small>
+									</div>
+									<div class="form-group mb-0">
+										<label>Especialización </label>
+										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Escriba aquí" name="specialist" value="Odontopediatría, Ortodoncia" id="specialist">
+										<small class="form-text text-muted">Nota : Escriba y presione Enter para agregar nueva especialización</small>
+									</div>
+								</div>
+							</div>
+							<!-- /Services and Specialization -->
+
+							<!-- Education -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Educación</h4>
+									<div class="education-info">
+										<div class="row form-row education-cont">
+											<div class="col-12 col-md-10 col-lg-11">
+												<div class="row form-row">
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Titulación</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Institución</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Año de finalización</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-education"><i class="fa fa-plus-circle"></i> Añadir más</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Education -->
+
+							<!-- Experience -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Experiencia</h4>
+									<div class="experience-info">
+										<div class="row form-row experience-cont">
+											<div class="col-12 col-md-10 col-lg-11">
+												<div class="row form-row">
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Nombre de la Clínica</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Desde</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Hasta</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Cargo</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Añadir más</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Experience -->
+
+							<!-- Awards -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Reconocimientos</h4>
+									<div class="awards-info">
+										<div class="row form-row awards-cont">
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Reconocimientos</label>
+													<input type="text" class="form-control">
+												</div>
+											</div>
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Año</label>
+													<input type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-award"><i class="fa fa-plus-circle"></i> Añadir más</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Awards -->
+
+							<!-- Memberships -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Nº de Colegiado</h4>
+									<div class="membership-info">
+										<div class="row form-row membership-cont">
+											<div class="col-12 col-md-10 col-lg-5">
+												<div class="form-group">
+													<label>Nº de Colegiado</label>
+													<input type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-membership"><i class="fa fa-plus-circle"></i> Añadir más</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Memberships -->
+
+							<!-- Registrations -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Inscripciones</h4>
+									<div class="registrations-info">
+										<div class="row form-row reg-cont">
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Inscripciones</label>
+													<input type="text" class="form-control">
+												</div>
+											</div>
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Año</label>
+													<input type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Añadir más</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Registrations -->
+
+							<div class="submit-section submit-btn-bottom">
+								<button type="submit" class="btn btn-primary submit-btn">Guardar Cambios</button>
+							</div>
+
+						</div>
 		</div>
 	</div>
 </div>

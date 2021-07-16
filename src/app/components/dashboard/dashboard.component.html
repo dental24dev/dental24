@@ -1,0 +1,899 @@
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+
+			<!-- Profile Sidebar -->
+			<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+				<app-lateralmenu ></app-lateralmenu>
+			</div>
+			<!-- /Profile Sidebar -->
+
+			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='dentist'">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card dash-card">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12 col-lg-4">
+										<div class="dash-widget dct-border-rht">
+											<div class="circle-bar circle-bar1">
+												<div class="circle-graph1" data-percent="75">
+													<img src="assets/assetsdental/img/icon-01.png" class="img-fluid" alt="patient">
+												</div>
+											</div>
+											<div class="dash-widget-info">
+												<h6>Total de Pacientes</h6>
+												<h3>328</h3>
+												<p class="text-muted">Hasta hoy</p>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12 col-lg-4">
+										<div class="dash-widget dct-border-rht">
+											<div class="circle-bar circle-bar2">
+												<div class="circle-graph2" data-percent="65">
+													<img src="assets/assetsdental/img/icon-02.png" class="img-fluid" alt="Patient">
+												</div>
+											</div>
+											<div class="dash-widget-info">
+												<h6>Pacientes Hoy</h6>
+												<h3>9</h3>
+												<p class="text-muted">06 de mayo 2020</p>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12 col-lg-4">
+										<div class="dash-widget">
+											<div class="circle-bar circle-bar3">
+												<div class="circle-graph3" data-percent="50">
+													<img src="assets/assetsdental/img/icon-03.png" class="img-fluid" alt="Patient">
+												</div>
+											</div>
+											<div class="dash-widget-info">
+												<h6>Citas</h6>
+												<h3>28</h3>
+												<p class="text-muted">06 de mayo 2020</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h4 class="mb-4">Cita del Paciente</h4>
+						<div class="appointment-tab">
+
+							<!-- Appointment Tab -->
+							<ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+								<li class="nav-item">
+									<a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Próxima</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#today-appointments" data-toggle="tab">Hoy</a>
+								</li>
+							</ul>
+							<!-- /Appointment Tab -->
+
+							<div class="tab-content">
+
+								<!-- Upcoming Appointment Tab -->
+								<div class="tab-pane show active" id="upcoming-appointments">
+									<div class="card card-table mb-0">
+										<div class="card-body">
+											<div class="table-responsive">
+												<table class="table table-hover table-center mb-0">
+													<thead>
+														<tr>
+															<th>Nombre del Paciente</th>
+															<th>Día de Cita</th>
+															<th>Motivo</th>
+															<th>Tipo</th>
+															<th class="text-center">Honorarios</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<h2 class="table-avatar">
+																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile.png" alt="User Image"></a>
+																	<a href="patient-profile.php">Juan Quintana Padial <span>#PT0016</span></a>
+																</h2>
+															</td>
+															<td>06 de mayo de 2020 <span class="d-block text-info">10.00 AM</span></td>
+															<td>General</td>
+															<td>Nuevo paciente</td>
+															<td class="text-center">150€</td>
+															<td class="text-right">
+																<div class="table-action">
+																	<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																		<i class="far fa-eye"></i> Ver
+																	</a>
+
+																	<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+																		<i class="fas fa-check"></i> Aceptar
+																	</a>
+																	<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																		<i class="fas fa-times"></i> Cancelar
+																	</a>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<h2 class="table-avatar">
+																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile1.png" alt="User Image"></a>
+																	<a href="patient-profile.php">Nuria Robles <span>#PT0017</span></a>
+																</h2>
+															</td>
+															<td>06 de mayo de 2020 <span class="d-block text-info">12.00 AM</span></td>
+															<td>General</td>
+															<td>Paciente habitual</td>
+															<td class="text-center">170€</td>
+															<td class="text-right">
+																<div class="table-action">
+																	<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																		<i class="far fa-eye"></i> Ver
+																	</a>
+
+																	<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+																		<i class="fas fa-check"></i> Aceptar
+																	</a>
+																	<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																		<i class="fas fa-times"></i> Cancelar
+																	</a>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Upcoming Appointment Tab -->
+
+								<!-- Today Appointment Tab -->
+								<div class="tab-pane" id="today-appointments">
+									<div class="card card-table mb-0">
+										<div class="card-body">
+											<div class="table-responsive">
+												<table class="table table-hover table-center mb-0">
+													<thead>
+														<tr>
+															<th>Nombre del Paciente</th>
+															<th>Día de Cita</th>
+															<th>Motivo</th>
+															<th>Tipo</th>
+															<th class="text-center">Honorarios</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<h2 class="table-avatar">
+																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile.png" alt="User Image"></a>
+																	<a href="patient-profile.php">Damian Robles <span>#PT0018</span></a>
+																</h2>
+															</td>
+															<td>07 de mayo de 2020 <span class="d-block text-info">10.00 AM</span></td>
+															<td>General</td>
+															<td>Paciente habitual</td>
+															<td class="text-center">150€</td>
+															<td class="text-right">
+																<div class="table-action">
+																	<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																		<i class="far fa-eye"></i> Ver
+																	</a>
+
+																	<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+																		<i class="fas fa-check"></i> Aceptar
+																	</a>
+																	<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																		<i class="fas fa-times"></i> Cancelar
+																	</a>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<h2 class="table-avatar">
+																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile1.png" alt="User Image"></a>
+																	<a href="patient-profile.php">María Yuste <span>#PT0019</span></a>
+																</h2>
+															</td>
+															<td>07 de mayo de 2020 <span class="d-block text-info">12.00 AM</span></td>
+															<td>General</td>
+															<td>Paciente habitual</td>
+															<td class="text-center">170€</td>
+															<td class="text-right">
+																<div class="table-action">
+																	<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																		<i class="far fa-eye"></i> Ver
+																	</a>
+
+																	<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+																		<i class="fas fa-check"></i> Aceptar
+																	</a>
+																	<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																		<i class="fas fa-times"></i> Cancelar
+																	</a>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<h2 class="table-avatar">
+																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile.png" alt="User Image"></a>
+																	<a href="patient-profile.php">José Ibañez <span>#PT0020</span></a>
+																</h2>
+															</td>
+															<td>07 de mayo de 2020 <span class="d-block text-info">10.00 AM</span></td>
+															<td>General</td>
+															<td>Nuevo paciente</td>
+															<td class="text-center">150€</td>
+															<td class="text-right">
+																<div class="table-action">
+																	<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																		<i class="far fa-eye"></i> Ver
+																	</a>
+
+																	<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+																		<i class="fas fa-check"></i> Aceptar
+																	</a>
+																	<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																		<i class="fas fa-times"></i> Cancelar
+																	</a>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<h2 class="table-avatar">
+																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile1.png" alt="User Image"></a>
+																	<a href="patient-profile.php">Dolores Fortun <span>#PT0021</span></a>
+																</h2>
+															</td>
+															<td>07 de mayo de 2020 <span class="d-block text-info">12.00 AM</span></td>
+															<td>General</td>
+															<td>Antiguo paciente</td>
+															<td class="text-center">200€</td>
+															<td class="text-right">
+																<div class="table-action">
+																	<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																		<i class="far fa-eye"></i> Ver
+																	</a>
+
+																	<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+																		<i class="fas fa-check"></i> Aceptar
+																	</a>
+																	<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																		<i class="fas fa-times"></i> Cancelar
+																	</a>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<h2 class="table-avatar">
+																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile.png" alt="User Image"></a>
+																	<a href="patient-profile.php">Sebastián Recio <span>#PT0022</span></a>
+																</h2>
+															</td>
+															<td>07 de mayo de 2020 <span class="d-block text-info">10.00 AM</span></td>
+															<td>General</td>
+															<td>Nuevo paciente</td>
+															<td class="text-center">150€</td>
+															<td class="text-right">
+																<div class="table-action">
+																	<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																		<i class="far fa-eye"></i> Ver
+																	</a>
+
+																	<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+																		<i class="fas fa-check"></i> Aceptar
+																	</a>
+																	<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																		<i class="fas fa-times"></i> Cancelar
+																	</a>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<h2 class="table-avatar">
+																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile1.png" alt="User Image"></a>
+																	<a href="patient-profile.php">Nuria Robles <span>#PT0023</span></a>
+																</h2>
+															</td>
+															<td>07 de mayo de 2020 <span class="d-block text-info">12.00 AM</span></td>
+															<td>General</td>
+															<td>Antiguo paciente</td>
+															<td class="text-center">170€</td>
+															<td class="text-right">
+																<div class="table-action">
+																	<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																		<i class="far fa-eye"></i> Ver
+																	</a>
+
+																	<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
+																		<i class="fas fa-check"></i> Aceptar
+																	</a>
+																	<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																		<i class="fas fa-times"></i> Cancelar
+																	</a>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Today Appointment Tab -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+				<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='patient'"> 
+							<div class="card">
+								<div class="card-body pt-0">
+
+									
+
+									<!-- Tab Content -->
+									<div class="tab-content pt-0">
+
+										<!-- cafeteria Tab -->
+										<div id="cafeteria" class="tab-pane fade show active">
+											<div class="card card-table mb-0">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table table-hover table-center mb-0">
+															<thead>
+																<tr>
+																	<th>Bebidas Calientes</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/cafe_expresso.jpg" alt="User Image">
+																			</a>
+																			<a>Café Expresso <span>clásico.</span></a>
+																		</h2>
+																	</td>
+																	<td>1,40€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/cafe_con_leche.jpg" alt="User Image">
+																			</a>
+																			<a>Café con Leche <span>Doble.</span></a>
+																		</h2>
+																	</td>
+																	<td>1,60€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/capuccino.jpg" alt="User Image">
+																			</a>
+																			<a>Capuccino XXL  <span>SuperGrande</span></a>
+																		</h2>
+																	</td>
+																	<td>3,00€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+															<thead>
+																<tr>
+																	<th>Bebidas Frías</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/cafe_expresso.jpg" alt="User Image">
+																			</a>
+																			<a>Té de Limón<span>Frío en verano.</span></a>
+																		</h2>
+																	</td>
+																	<td>3,00€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/cafe_con_leche.jpg" alt="User Image">
+																			</a>
+																			<a>Batidos <span>Chocolate, vainilla o fresa</span></a>
+																		</h2>
+																	</td>
+																	<td>4,90€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/capuccino.jpg" alt="User Image">
+																			</a>
+																			<a>Zumos Natural de Naranja  <span>33 cl.</span></a>
+																		</h2>
+																	</td>
+																	<td>3,80€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /cafeteria Tab -->
+
+										<!-- Desayunos Tab -->
+										<div id="desayunos" class="tab-pane fade">
+											<div class="card card-table mb-0">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table table-hover table-center mb-0">
+															<thead>
+																<tr>
+																	<th>Tostadas</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/carrot_cake.jpg" alt="User Image">
+																			</a>
+																			<a>Mantequilla <span>mollete.</span></a>
+																		</h2>
+																	</td>
+																	<td>1,40€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/carrot_cake.jpg" alt="User Image">
+																			</a>
+																			<a>Pechuga de Pavo Asado  <span>Pitufo.</span></a>
+																		</h2>
+																	</td>
+																	<td>1,80€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/carrot_cake.jpg" alt="User Image">
+																			</a>
+																			<a>Jamón Ibérico<span>Chapata</span></a>
+																		</h2>
+																	</td>
+																	<td>2,00€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+															<thead>
+																<tr>
+																	<th>Tartas</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/carrot_cake.jpg" alt="User Image">
+																			</a>
+																			<a>Carrot Cake <span></span></a>
+																		</h2>
+																	</td>
+																	<td>3,50€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/carrot_cake.jpg" alt="User Image">
+																			</a>
+																			<a>Milhojas<span>de dulce de leche.</span></a>
+																		</h2>
+																	</td>
+																	<td>3,80€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/carrot_cake.jpg" alt="User Image">
+																			</a>
+																			<a>Tarta de chocolate<span></span></a>
+																		</h2>
+																	</td>
+																	<td>3,80€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /Desayunos Tab -->
+
+										<!--Cocina Tab -->
+										<div id="cocina" class="tab-pane fade">
+											<div class="card card-table mb-0">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table table-hover table-center mb-0">
+															<thead>
+																<tr>
+																	<th>Aperitivos</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/burger.jpg" alt="User Image">
+																			</a>
+																			<a>Champiñones crujientes <span>rebozados en panko y <br>parmesano, rellenos de <br>jamón y setas, acompañados <br>de salsa tártara. </span></a>
+																		</h2>
+																	</td>
+																	<td>6,50€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/burger.jpg" alt="User Image">
+																			</a>
+																			<a>Empanadillas Ponzu <span>gyozas japonesas de pollo <br>con salsa ponzu.</span></a>
+																		</h2>
+																	</td>
+																	<td>6,00€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/burger.jpg" alt="User Image">
+																			</a>
+																			<a>Croquetas de pollo <span> bechamel con pollo y jamón. </span></a>
+																		</h2>
+																	</td>
+																	<td>6,00€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+															<thead>
+																<tr>
+																	<th>Bebidas Frías</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/burger.jpg" alt="User Image">
+																			</a>
+																			<a>Té de Limón<span>Frío en verano.</span></a>
+																		</h2>
+																	</td>
+																	<td>3,00€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/burger.jpg" alt="User Image">
+																			</a>
+																			<a>Batidos <span>Chocolate, vainilla o fresa</span></a>
+																		</h2>
+																	</td>
+																	<td>4,90€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/burger.jpg" alt="User Image">
+																			</a>
+																			<a>Zumos Natural de Naranja  <span>33 cl.</span></a>
+																		</h2>
+																	</td>
+																	<td>3,80€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /Medical Records Tab -->
+
+										<!-- Bebidas Tab -->
+										<div id="bebidas" class="tab-pane fade">
+											<div class="card card-table mb-0">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table table-hover table-center mb-0">
+															<thead>
+																<tr>
+																	<th>Bebidas Calientes</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/cafe_expresso.jpg" alt="User Image">
+																			</a>
+																			<a>Café Expresso <span>clásico.</span></a>
+																		</h2>
+																	</td>
+																	<td>1,40€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/cafe_con_leche.jpg" alt="User Image">
+																			</a>
+																			<a>Café con Leche <span>Doble.</span></a>
+																		</h2>
+																	</td>
+																	<td>1,60€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/capuccino.jpg" alt="User Image">
+																			</a>
+																			<a>Capuccino XXL  <span>SuperGrande</span></a>
+																		</h2>
+																	</td>
+																	<td>3,00€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+															<thead>
+																<tr>
+																	<th>Bebidas Frías</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/cafe_expresso.jpg" alt="User Image">
+																			</a>
+																			<a>Té de Limón<span>Frío en verano.</span></a>
+																		</h2>
+																	</td>
+																	<td>3,00€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/cafe_con_leche.jpg" alt="User Image">
+																			</a>
+																			<a>Batidos <span>Chocolate, vainilla o fresa</span></a>
+																		</h2>
+																	</td>
+																	<td>4,90€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h2 class="table-avatar">
+																			<a class="avatar avatar-sm mr-2">
+																				<img class="avatar-img rounded-circle" src="assets/assetsdental/img/menu/capuccino.jpg" alt="User Image">
+																			</a>
+																			<a>Zumos Natural de Naranja  <span>33 cl.</span></a>
+																		</h2>
+																	</td>
+																	<td>3,80€</td>
+																	<td class="text-right">
+																		<div class="table-action">
+																			<a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+																				<i class="fas fa-plus"></i> Agregar</a>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /Bebidas Tab -->
+
+									</div>
+									<!-- Tab Content -->
+
+
+
+								</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>

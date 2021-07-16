@@ -10,6 +10,7 @@ import {
 	AccountComponent,
 	DentistsComponent,
 	PatientsComponent,
+	DashboardComponent,
 	RegisterdoctorComponent
 	// FruitbannerboxComponent
 	}from "./components/index.paginas";
@@ -28,6 +29,7 @@ const app_routes: Routes = [
 	{path:'account',component:AccountComponent, canActivate:[AuthGuard]},
 	{path:'dentists',component:DentistsComponent},
 	{path:'patients',component:PatientsComponent},
+	{path:'dashboard',component:DashboardComponent},
 	{path:'registerdoctor',component:RegisterdoctorComponent},
 	{path:'**',pathMatch:'full',redirectTo:''}
 	];
