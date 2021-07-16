@@ -132,7 +132,7 @@
                 </li>
             </ul>
         </div>
-        <ul class="nav header-navbar-rht right-menu">
+        <ul class="nav header-navbar-rht right-menu" [hidden]="_uw.isLogged">
             <li class="nav-item">
             <a class="nav-link header-login white-bg" routerLink="/login" [hidden]="!router.url.includes('/register') && !router.url.includes('/registerdoctor')">login </a>
           <!--   <a class="nav-link header-login white-bg" routerLink="/register"  [hidden]="router.url.includes('/register') || router.url.includes('/registerdoctor')  || router.url.includes('/login')"  >login / Signup</a> -->
