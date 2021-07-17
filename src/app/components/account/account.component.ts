@@ -52,6 +52,7 @@ export class AccountComponent implements OnInit {
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
+  public ok(){}
 
   public loadScript1() {
     let node = document.createElement("script");
