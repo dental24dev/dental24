@@ -81,6 +81,7 @@ export class UserWService {
 	validationEmail:any={};
 	validationToDelete:any={};
 	zapatos:boolean=false;
+	patient:any={};
 	// book:any[]=[];
   constructor() { }
 }

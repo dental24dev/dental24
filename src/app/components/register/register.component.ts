@@ -105,6 +105,7 @@ onRegister(){
           const token = user.id;
           this._uw.userd=token;  
           this.authService.setToken(token);
+          this._uw.patient=user;
           this.router.navigate(['/dashboard']);
         },
         res => {
