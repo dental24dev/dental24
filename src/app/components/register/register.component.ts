@@ -100,14 +100,17 @@ onRegister(){
     if (this.ngFormSignup.valid){
       this.user.usertype='patient';
       this.user.status='new';
+      this.patientSubmit.name=this.user.name;
+      this.patientSubmit.username=this.user.email;
       this.authService
         .registerUser(this.user.name, this.user.email, this.user.password, this.user.usertype, this.user.status)
         .subscribe(user => {
+          this._uw.patient=user;
           this.authService.setUser(user);
           const token = user.id;
+          this.patientSubmit.userd=token;
           this._uw.userd=token;  
           this.authService.setToken(token);
-          this._uw.patient=user;
           //this.router.navigate(['/dashboard']);
         },
         res => {
@@ -116,15 +119,14 @@ onRegister(){
         });
     
 
-
-      this.patientSubmit.name=this._uw.patient.name;
+      
       this.patientSubmit.usertype='patient';
       this.patientSubmit.status='new';
-      this.patientSubmit.userd=this._uw.userd;
-      return this.dataApi.savePatient(this.patientSubmit)
-        .subscribe(
-             patientSubmit => this.router.navigate(['/successpatientregister'])
-        );
+      setTimeout(() => {
+      this.isError = false;
+      this.saveDentist(this.patientSubmit);
+    }, 5000);
+   
 
     } else {
       this.onIsError();
@@ -133,7 +135,10 @@ onRegister(){
 
 
 public saveDentist(dentist){
-  this.dataApi.saveDentist(dentist);
+     return this.dataApi.savePatient(this.patientSubmit)
+        .subscribe(
+             patientSubmit => this.router.navigate(['/successpatientregister'])
+        );
 }
 
 
