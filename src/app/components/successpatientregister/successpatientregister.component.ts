@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserWService } from "../../services/user-w.service";
-import { DentistInterface } from '../../models/dentist-interface';
+import { PatientInterface } from '../../models/patient-interface';
 import { DataApiService } from '../../services/data-api.service';
 import { ScrollTopService }  from '../../services/scroll-top.service';
 
