@@ -3,6 +3,7 @@ import { UserWService } from "../../services/user-w.service";
 import { DentistInterface } from '../../models/dentist-interface';
 import { DataApiService } from '../../services/data-api.service';
 import { ScrollTopService }  from '../../services/scroll-top.service';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -26,6 +27,7 @@ export class RegisterdoctorComponent implements OnInit {
     public router: Router,
     private location: Location,
     private http: HttpClient,
+    private authService: AuthService,
     private formBuilder: FormBuilder
     ) { }
    loadAPI = null;  
@@ -35,13 +37,17 @@ export class RegisterdoctorComponent implements OnInit {
   url2= "assets/assetsdental/js/slick.js";
   url3 = "assets/assetsdental/plugins/swiper/js/swiper.min.js";
   url4 = "assets/assetsdental/js/script.js";
+ public isError = false;
+  submitted = false;
 
+     public msgError = '';
 
   ngFormNewDentist: FormGroup;
   dentistSubmitted = false;
     public dentist : DentistInterface ={
     email:"",
     name:"",
+    usertype:"",
     password:""
   };
 
@@ -89,6 +95,33 @@ public loadScript() {
  public aleatorio(a,b) {
     return Math.round(Math.random()*(b-a)+parseInt(a));
   }
+
+
+     onRegister(): void {
+    if (this.ngFormNewDentist.valid){
+      this.dentist.usertype='dentist';
+      this.authService
+        .registerUser(this.dentist.name, this.dentist.email, this.dentist.password, this.dentist.usertype)
+        .subscribe(dentist => {
+          this.authService.setUser(dentist);
+          const token = dentist.id;
+          this._uw.userd=token;
+          this.authService.setToken(token);
+          this._uw.dentist=dentist;
+          this._uw.dentist.userd=dentist.id;
+         this.router.navigate(['/registerform']);
+          //location.reload();
+        },
+        res => {
+          this.msgError = res.error.error.details.messages.email;
+          this.onIsError();
+        });
+    } else {
+      this.onIsError();
+    }
+
+  }
+
   public ok(){
       this.dentistSubmitted = true;
         if (this.ngFormNewDentist.invalid) {
@@ -107,14 +140,14 @@ public loadScript() {
           this._uw.dentist.email=this.dentist.email;
           this._uw.dentist.password=this.dentist.address;
 
-          this._uw.dentist.subject="You have a new appointment request";
-          this._uw.dentist.subjectA2U="The result of your appointment is";
+        // this._uw.dentist.subject="You have a new appointment request";
+         // this._uw.dentist.subjectA2U="The result of your appointment is";
           this._uw.dentist.dentistId=this.dentist.dentistId;
-          this._uw.dentist.adminName="Jessica",
-          this._uw.dentist.clientEmail=this._uw.dentist.email,
+          //this._uw.dentist.adminName="Jessica",
+         // this._uw.dentist.clientEmail=this._uw.dentist.email,
 
           // ACTIVAR EN PRODUCCION
-          this._uw.dentist.email="penguinscleaningservice@gmail.com",
+         // this._uw.dentist.email="penguinscleaningservice@gmail.com",
         
           // DESACTIVAR EN PRODUCCION
           // this._uw.dentist.email="frutmeteam@protonmail.com",
@@ -145,7 +178,12 @@ public loadScript() {
       password:['',[Validators.required]]
          });
   }
-
+   onIsError(): void {
+    this.isError = true;
+    setTimeout(() => {
+      this.isError = false;
+    }, 4000);
+  }
 
   get fval2() {
     return this.ngFormNewDentist.controls;

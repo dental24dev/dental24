@@ -1,119 +1,190 @@
 <div class="content">
-				<div class="container-fluid">
-					<div class="row">
+	<div class="container-fluid">
+		<div class="row">
 
+			<form  [formGroup]="ngFormNewDentistData" (ngSubmit) ="ok()" >		
+				<div class="col-md-12 col-lg-12 col-xl-12">
 
-						<div class="col-md-12 col-lg-12 col-xl-12">
-							<div class="card">
-								<div class="card-body">
-
-									<!-- Profile Settings Form -->
-									<form>
-										<div class="row form-row">
-											<div class="col-12 col-md-12">
-												<div class="form-group">
-													<div class="change-avatar">
-														<div class="profile-img">
-															<img src="assets/assetsdental/img/patients/profile.png" alt="User Image">
-														</div>
-														<div class="upload-img">
-															<div class="change-photo-btn">
-																<span><i class="fa fa-upload"></i> Subir foto</span>
-																<input type="file" class="upload">
-															</div>
-															<small class="form-text text-muted">Formato permitido JPG, GIF o PNG. Tamaño máx. 2MB</small>
-														</div>
-													</div>
-												</div>
+					<!-- Basic Information -->
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Información Básica</h4>
+							<div class="row form-row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="change-avatar">
+											<div class="profile-img">
+												<img src="assets/assetsdental/img/patients/profile.png" alt="User Image">
 											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Nombre</label>
-													<input type="text" class="form-control" value="Richard">
+											<div class="upload-img">
+												<div class="change-photo-btn">
+													<span><i class="fa fa-upload"></i> Subir Foto</span>
+													<input type="file" class="upload">
 												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Apellidos</label>
-													<input type="text" class="form-control" value="Wilson">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Fecha de Nacimiento</label>
-													<div class="cal-icon">
-														<input type="text" class="form-control datetimepicker" value="24-07-1983">
-													</div>
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Grupo Sanguineo</label>
-													<select class="form-control select">
-														<option>A-</option>
-														<option>A+</option>
-														<option>B-</option>
-														<option>B+</option>
-														<option>AB-</option>
-														<option>AB+</option>
-														<option>O-</option>
-														<option>O+</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Email ID</label>
-													<input type="email" class="form-control" value="nombre@ejemplo.com">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Móvil</label>
-													<input type="text" value="+34 123 45 67 89" class="form-control">
-												</div>
-											</div>
-											<div class="col-12">
-												<div class="form-group">
-												<label>Domicilio</label>
-													<input type="text" class="form-control" value="Calle, plaza, avenida">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Ciudad</label>
-													<input type="text" class="form-control" value="Ciudad">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Provincia</label>
-													<input type="text" class="form-control" value="Provincia">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Código Postal</label>
-													<input type="text" class="form-control" value="12345">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>País</label>
-													<input type="text" class="form-control" value="País">
-												</div>
+												<small class="form-text text-muted">Se permiten JPG, GIF o PNG. Tamaño máximo de 2 MB</small>
 											</div>
 										</div>
-										<div class="submit-section">
-											<button type="submit" class="btn btn-primary submit-btn">Guardar cambios</button>
-										</div>
-									</form>
-									<!-- /Profile Settings Form -->
+									</div>
+								</div>
+								
+								<div class="col-md-6">
+									
+										<div class="form-group ">
+										<!-- 	<input type="text" class="form-control floating"> -->
+										<label>Nombre de usuario</label>
+											<input type="text" class="form-control floating" id="username" formControlName="username" placeholder="Nombre de usuario" [(ngModel)]="dentistSubmit.username" [ngClass]="{'is-invalid': dentistSubmitted && fval.username.errors }"required disabled="disabled">
 
+											<div *ngIf="dentistSubmitted && fval.username.errors" class="invalid-feedback">
+												<div *ngIf="fval.username.errors.required">
+												Por favor proporcione un nombre de usuario valido
+												</div>
+											 
+											</div>
+										</div>
+									
+								</div>
+								
+								
+								<div class="col-md-6">
+									<div class="form-group ">
+										<!-- 	<input type="text" class="form-control floating"> -->
+										<label>Nombres</label>
+											<input type="text" class="form-control floating" id="name" formControlName="name" placeholder="Telefono" [(ngModel)]="dentistSubmit.name" [ngClass]="{'is-invalid': dentistSubmitted && fval.name.errors }" disabled="disabled" required>
+
+											<div *ngIf="dentistSubmitted && fval.name.errors" class="invalid-feedback">
+												<div *ngIf="fval.name.errors.required">
+												Por favor proporcione un nombre valido
+												</div>
+											 
+											</div>
+										</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group ">
+										<!-- 	<input type="text" class="form-control floating"> -->
+										<label>Apellidos</label>
+											<input type="text" class="form-control floating" id="surname" formControlName="surname" placeholder="Telefono" [(ngModel)]="dentistSubmit.surname" [ngClass]="{'is-invalid': dentistSubmitted && fval.surname.errors }"required>
+
+											<div *ngIf="dentistSubmitted && fval.surname.errors" class="invalid-feedback">
+												<div *ngIf="fval.surname.errors.required">
+												Por favor proporcione un numero apellido valido
+												</div>
+											 
+											</div>
+										</div>
+								</div>
+								<div class="col-md-6">
+										<div class="form-group ">
+										<!-- 	<input type="text" class="form-control floating"> -->
+										<label>Telefono</label>
+											<input type="text" class="form-control floating" id="phone" formControlName="phone" placeholder="Telefono" [(ngModel)]="dentistSubmit.phone" [ngClass]="{'is-invalid': dentistSubmitted && fval.phone.errors }"required>
+
+											<div *ngIf="dentistSubmitted && fval.phone.errors" class="invalid-feedback">
+												<div *ngIf="fval.phone.errors.required">
+												Por favor proporcione un numero de telefono valido
+												</div>
+											 
+											</div>
+										</div>
+									
+								</div>
+							
+							</div>
+						</div>
+					</div>
+					<!-- /Basic Information -->
+
+					<!-- About Me -->
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Sobre Mi</h4>
+							<div class="form-group mb-0 ">
+							
+								<label>Biografía</label>
+								<textarea class="form-control floating" id="about" formControlName="about" placeholder="Breve descripcion" [(ngModel)]="dentistSubmit.about" [ngClass]="{'is-invalid': dentistSubmitted && fval.about.errors }"required rows="5"></textarea>
+								<div *ngIf="dentistSubmitted && fval.about.errors" class="invalid-feedback">
+												<div *ngIf="fval.about.errors.required">
+												Por favor proporcione informacion sobre usted
+												</div>
+											 
+											</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /About Me -->
+
+					<!-- Clinic Info -->
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Información de la Clínica</h4>
+							<div class="row form-row">
+								<div class="col-md-6">
+									
+										<div class="form-group ">
+										<!-- 	<input type="text" class="form-control floating"> -->
+										<label>Especialidad</label>
+											<input type="text" class="form-control floating" id="specialty" formControlName="specialty" placeholder="Especialidad" [(ngModel)]="dentistSubmit.specialty" [ngClass]="{'is-invalid': dentistSubmitted && fval.specialty.errors }"required >
+
+											<div *ngIf="dentistSubmitted && fval.specialty.errors" class="invalid-feedback">
+												<div *ngIf="fval.specialty.errors.required">
+												Por favor indique su especialidad
+												</div>
+											 
+											</div>
+										</div>
+									
+								</div>
+								<div class="col-md-6">
+
+										<div class="form-group ">
+										<label>Nombre de la Clínica</label>
+										<!-- 	<input type="text" class="form-control floating"> -->
+
+											<input type="text" class="form-control floating" id="clinicName" formControlName="clinicName" placeholder="Nombre de la clinica" [(ngModel)]="dentistSubmit.clinicName" [ngClass]="{'is-invalid': dentistSubmitted && fval.clinicName.errors }"required>
+
+											<div *ngIf="dentistSubmitted && fval.clinicName.errors" class="invalid-feedback">
+												<div *ngIf="fval.clinicName.errors.required">
+												Por favor proporcione un nombre de clínica válido
+												</div>
+											 
+											</div>
+										
+										</div>
+									
+								</div>
+								<div class="col-md-6">
+
+									<div class="form-group ">
+										<!-- 	<input type="text" class="form-control floating"> -->
+										<label>Domicilio de la Clínica</label>
+
+											<input type="text" class="form-control floating" id="address" formControlName="address" placeholder="Direccion de clinica" [(ngModel)]="dentistSubmit.address" [ngClass]="{'is-invalid': dentistSubmitted && fval.address.errors }"required>
+
+											<div *ngIf="dentistSubmitted && fval.address.errors" class="invalid-feedback">
+												<div *ngIf="fval.address.errors.required">
+												Por favor proporcione la direccion de la clinica
+												</div>
+											 
+											</div>
+										
+										</div>
+
+									
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					<!-- /Clinic Info -->
 
-			</div>
+
+					<div class="submit-section submit-btn-bottom">
+						
+						<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" >Enviar</button>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

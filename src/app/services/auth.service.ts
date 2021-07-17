@@ -18,10 +18,10 @@ export class AuthService {
 		"Content-Type":"application/json"
 		});
 
-	registerUser(name :string, email: string, password: string){
+	registerUser(name :string, email: string, password: string,usertype:string){
 		const url_api ='https://db.masterdent24.org:3032/api/Users';
 		return this.http
-		.post<UserInterface>(url_api,{name,email,password},{headers:this.headers})
+		.post<UserInterface>(url_api,{name,email,password,usertype},{headers:this.headers})
 		.pipe(map(data => data));
 	}
 

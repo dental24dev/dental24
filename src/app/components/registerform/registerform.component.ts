@@ -4,6 +4,7 @@ import { DentistInterface } from '../../models/dentist-interface';
 import { DataApiService } from '../../services/data-api.service';
 import { ScrollTopService }  from '../../services/scroll-top.service';
 
+import { AuthService } from '../../services/auth.service';
 
 
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
@@ -12,6 +13,7 @@ import { HttpClient } from  '@angular/common/http';
 import { isError } from "util";
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { UserInterface } from '../../models/user-interface'; 
 
 @Component({
   selector: 'app-registerform',
@@ -21,6 +23,7 @@ import { Router } from '@angular/router';
 export class RegisterformComponent implements OnInit {
 
    constructor(
+    private authService: AuthService,
     public scrollTopService:ScrollTopService,
     public _uw:UserWService,
     private dataApi: DataApiService,
@@ -30,6 +33,7 @@ export class RegisterformComponent implements OnInit {
     private formBuilder: FormBuilder
     ) { }
    loadAPI = null;  
+
 
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";
@@ -45,13 +49,37 @@ export class RegisterformComponent implements OnInit {
   ngFormNewDentistData: FormGroup;
   dentistSubmitted = false;
     public images:any[]=[];
-    public dentist : DentistInterface ={
-    email:"",
-    name:"",
-    password:"",
-    dentistIdPre:1
-  };
 
+  public dentistSubmit : DentistInterface ={
+    about:"",
+    name:"",
+    username:"",
+    password:"",
+    address:"",
+    surname:"",
+    userd:"",
+    phone:"",
+    clinicName:"",
+    specialty:""
+  }; public dentist : DentistInterface ={
+    about:"",
+    collegeN:"",
+    name:"",
+    username:"",
+    password:"",
+    userd:"",
+    address:"",
+    surname:"",
+    phone:"",
+    clinicName:"",
+    status:"",
+    specialty:"",
+    usertype:""
+  };
+ 
+  submitted = false;
+    public isError = false;
+     public msgError = '';
 public loadScript() {
     let node = document.createElement("script");
     node.src = this.url;
@@ -126,7 +154,7 @@ public loadScript() {
           this._uw.errorFormSendDentist=true;
         return;
             } 
-  
+          console.log("entramos");
           this._uw.dentistSubmitted=true;
           this.dentist = this.ngFormNewDentistData.value;
           this.dentist.status="new";
@@ -136,29 +164,59 @@ public loadScript() {
           this._uw.dentist.dentistId=this.dentist.dentistId;
           this._uw.dentist.name=this.dentist.name;
           this._uw.dentist.email=this.dentist.email;
-          this._uw.dentist.password=this.dentist.address;
-
-          this._uw.dentist.subject="You have a new appointment request";
-          this._uw.dentist.subjectA2U="The result of your appointment is";
+                //    this._uw.dentist.subject="You have a new appointment request";
+    //      this._uw.dentist.subjectA2U="The result of your appointment is";
           this._uw.dentist.dentistId=this.dentist.dentistId;
-          this._uw.dentist.adminName="Jessica",
-          this._uw.dentist.clientEmail=this._uw.dentist.email,
+  //        this._uw.dentist.adminName="Jessica";
+//          this._uw.dentist.clientEmail=this._uw.dentist.email;
 
           // ACTIVAR EN PRODUCCION
-          this._uw.dentist.email="penguinscleaningservice@gmail.com",
+         // this._uw.dentist.email="penguinscleaningservice@gmail.com",
         
+          this.dentistSubmit.name=this.dentist.name;
+      
+          this.dentistSubmit.surname=this.dentist.surname;
+          this.dentistSubmit.usertype='dentist';
+          this.dentistSubmit.status='new';
+          this.dentistSubmit.specialty=this.dentist.specialty;
           // DESACTIVAR EN PRODUCCION
           // this._uw.dentist.email="frutmeteam@protonmail.com",
-          this.router.navigate(['/registerform']);
-      
+         // this.router.navigate(['/registerform']);
+        
+         // this.saveDentist(this.dentistSubmit);
+          return this.dataApi.saveDentist(this.dentistSubmit)
+        .subscribe(
+             dentistSubmit => this.router.navigate(['/successregister'])
+        );
 
       this._uw.errorFormSendDentist=false;
       
      
     }
+public saveDentist(dentist){
+  this.dataApi.saveDentist(dentist);
+}
 
-
+    onIsError(): void {
+    this.isError = true;
+    setTimeout(() => {
+      this.isError = false;
+    }, 4000);
+  }
   ngOnInit() {
+    this.dentistSubmit.name=this._uw.dentist.name;
+    this.dentistSubmit.username=this._uw.dentist.email;
+    this.dentistSubmit.userd="d"+this._uw.dentist.userd
+    this.ngFormNewDentistData = this.formBuilder.group({
+      username: ['', [Validators.required]] ,
+      name: [+this._uw.dentist.name, [Validators.required]] ,
+      specialty:['',[Validators.required]], 
+      clinicName:['',[Validators.required]], 
+      address:['',[Validators.required]], 
+      phone:['',[Validators.required]], 
+      surname:['',[Validators.required]], 
+      about:['',[Validators.required]]
+         });
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();
@@ -173,14 +231,11 @@ public loadScript() {
         });
       }
     this._uw.loaded=true;
-        this.ngFormNewDentistData = this.formBuilder.group({
-      name: ['', [Validators.required]] ,
-      email:['',[Validators.required]], 
-      password:['',[Validators.required]]
-         });
   }
 
-
+ get fval() {
+  return this.ngFormNewDentistData.controls;
+  }
   get fval2() {
     return this.ngFormNewDentistData.controls;
   }

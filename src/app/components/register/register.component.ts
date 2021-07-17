@@ -4,6 +4,11 @@ import { DataApiService } from '../../services/data-api.service';
 import { ScrollTopService }  from '../../services/scroll-top.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { isError } from "util";
+import { UserInterface } from '../../models/user-interface'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+
 //import { ScrollTopService }  from '../../services/scroll-top.service';
 @Component({
   selector: 'app-register',
@@ -11,13 +16,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  public user : UserInterface ={
+    name:"",
+    email:"",
+    usertype:"",
+    password:""
+  };
+    ngFormSignup: FormGroup;
+  submitted = false;
+    public isError = false;
+     public msgError = '';
   constructor(
  // public scrollTopService:ScrollTopService,
+ private formBuilder: FormBuilder,
   public scrollTopService:ScrollTopService,
    public _uw:UserWService,
   private dataApi: DataApiService,
      public router: Router,
+       private authService: AuthService,
     private location: Location
     ) { }
    loadAPI = null;  
@@ -69,6 +85,31 @@ export class RegisterComponent implements OnInit {
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
+
+     onRegister(): void {
+    if (this.ngFormSignup.valid){
+      this.user.usertype='patient';
+      this.authService
+        .registerUser(this.user.name, this.user.email, this.user.password, this.user.usertype)
+        .subscribe(user => {
+          this.authService.setUser(user);
+          const token = user.id;
+          this._uw.userd=token;
+          this.authService.setToken(token);
+         this.router.navigate(['/dashboard']);
+          //location.reload();
+        },
+        res => {
+          this.msgError = res.error.error.details.messages.email;
+          this.onIsError();
+        });
+    } else {
+      this.onIsError();
+    }
+
+  }
+
+
   ngOnInit() {
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
@@ -81,6 +122,21 @@ export class RegisterComponent implements OnInit {
         });
       }
     this._uw.loaded=true;
+        this.ngFormSignup = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required,Validators.email]],
+      password: ['', [Validators.required,Validators.minLength(6)]]
+    });
+  }
+
+  get fval() {
+  return this.ngFormSignup.controls;
+  }
+   onIsError(): void {
+    this.isError = true;
+    setTimeout(() => {
+      this.isError = false;
+    }, 4000);
   }
 
 }

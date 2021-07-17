@@ -8,22 +8,22 @@
 								<div class="row align-items-center justify-content-center">
 									<div class="col-md-12 col-lg-6 login-right">
 							<div class="login-header">
-								<h3>Acceso <span>Dental24</span></h3>
+								<h3>Acceso <span>MasterDent24</span></h3>
 							</div>
 							<form [formGroup]="ngFormLogin" (ngSubmit) ="onLogin()">
 								<div class="form-group form-focus">
 									<input type="email" class="form-control floating" id="email" placeholder="Email" formControlName="email" [(ngModel)]="user.email"required [ngClass]="{ 'is-invalid': submitted && fval.email.errors }">
 									<label class="focus-label">Usuario</label>
 										<div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
-											<div *ngIf="fval.email.errors.required">Email is required</div>
-											<div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+											<div *ngIf="fval.email.errors.required">El email es requerido</div>
+											<div *ngIf="fval.email.errors.email">Ingrese una direccion email valida</div>
 										</div>
 								</div>
 								<div class="form-group form-focus">
 									<input   type="password"id="password" placeholder="*******" formControlName="password" [(ngModel)]="user.password" [ngClass]="{ 'is-invalid': submitted && fval.password.errors}"  required class="form-control floating">
 										<div *ngIf="submitted && fval.password.errors"class="invalid-feedback">
 											<div ngClass="fval.password.errors.required">
-											Password is required.
+											La contraseña es requerida.
 											</div>
 
 										</div>

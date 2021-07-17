@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
   public user : UserInterface ={
     name:"",
     email:"",
-    password:""
+    password:"",
+    usertype:""
   };
   public isError = false;
   public isLogged =false;

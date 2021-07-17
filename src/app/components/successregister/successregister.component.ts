@@ -1,50 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { UserWService } from "../../services/user-w.service";
+import { DentistInterface } from '../../models/dentist-interface';
 import { DataApiService } from '../../services/data-api.service';
 import { ScrollTopService }  from '../../services/scroll-top.service';
+
+import { AuthService } from '../../services/auth.service';
+
+import { ActivatedRoute, Params} from '@angular/router';
+
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { DentistInterface } from '../../models/dentist-interface'
 
-import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
-  
+
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  selector: 'app-successregister',
+  templateUrl: './successregister.component.html',
+  styleUrls: ['./successregister.component.css']
 })
-export class AccountComponent implements OnInit {
+export class SuccessregisterComponent implements OnInit {
 
-  constructor( 
+  constructor(
     public scrollTopService:ScrollTopService,
     public _uw:UserWService,
     private dataApi: DataApiService,
-     private formBuilder: FormBuilder,
     public router: Router,
+    private location: Location
     ) { }
- loadAPI = null;  
-   ngFormNewDentistData: FormGroup;
-     dentistSubmitted = false;
- public dentistSubmit : DentistInterface ={
-    about:"",
-    name:"",
-    username:"",
-    password:"",
-    address:"",
-    surname:"",
-    userd:"",
-    phone:"",
-    clinicName:"",
-    specialty:""
-  };
+     loadAPI = null;  
+
+
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";
   url2= "assets/assetsdental/js/slick.js";
   url3 = "assets/assetsdental/plugins/swiper/js/swiper.min.js";
-  url4 = "assets/assetsdental/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js";
-  url5 = "assets/assetsdental/js/script.js";
+  url4 = "assets/assetsdental/plugins/select2/js/select2.min.js";
 
- public loadScript() {
+  url5 = "assets/assetsdental/js/moment.min.js";
+  url6 = "assets/assetsdental/js/bootstrap-datetimepicker.min.js";
+  url7 = "assets/assetsdental/js/script.js";
+public loadScript() {
     let node = document.createElement("script");
     node.src = this.url;
     node.type = "text/javascript";
@@ -93,33 +87,23 @@ export class AccountComponent implements OnInit {
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
-
-  getDentistByUserd(id: string){
-    this.dataApi.getDentistByUserd2(id).subscribe(dentistSubmit => (this.dentistSubmit = dentistSubmit));
-    console.log("consultado"+this.dentistSubmit.name);
-   
+   public loadScript6() {
+    let node = document.createElement("script");
+    node.src = this.url6;
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
   }
-  
-     
-
+   public loadScript7() {
+    let node = document.createElement("script");
+    node.src = this.url7;
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
+  }
   ngOnInit() {
-
-    if(this._uw.usertype=='dentist'){
-        this.dataApi.getDentistByUserd2(this._uw.userW.id).subscribe((res:any) => {    
-        this.dentistSubmit=(res[0]);        
-        });
-      this.ngFormNewDentistData = this.formBuilder.group({
-      username: ['', [Validators.required]] ,
-      name: ['', [Validators.required]] ,
-      specialty:['',[Validators.required]], 
-      clinicName:['',[Validators.required]], 
-      address:['',[Validators.required]], 
-      phone:['',[Validators.required]], 
-      surname:['',[Validators.required]], 
-      about:['',[Validators.required]]
-         });
-
-    }
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();
@@ -128,9 +112,12 @@ export class AccountComponent implements OnInit {
         this.loadScript3();
         this.loadScript4();
         this.loadScript5();
+        this.loadScript6();
+        this.loadScript7();
         // this.loadScript3();
         });
       }
     this._uw.loaded=true;
   }
+
 }
