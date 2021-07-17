@@ -10,6 +10,7 @@ export interface PatientInterface{
 	usertype?:string;
 	username?:string;
 	userd?:string;
+	password?:string;
 }
 
 

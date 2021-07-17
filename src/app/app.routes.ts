@@ -12,7 +12,7 @@ import {
 	PatientsComponent,
 	DashboardComponent,
 	SuccessregisterComponent,
-	SuccesspatiientregisterComponent,
+	SuccesspatientregisterComponent,
 	RegisterdoctorComponent
 	// FruitbannerboxComponent
 	}from "./components/index.paginas";
@@ -33,7 +33,7 @@ const app_routes: Routes = [
 	{path:'patients',component:PatientsComponent},
 	{path:'dashboard',component:DashboardComponent},
 	{path:'successregister',component:SuccessregisterComponent},
-	{path:'successpatientregister',component:SuccesspatiientregisterComponent},
+	{path:'successpatientregister',component:SuccesspatientregisterComponent},
 	{path:'registerdoctor',component:RegisterdoctorComponent},
 	{path:'**',pathMatch:'full',redirectTo:''}
 	];

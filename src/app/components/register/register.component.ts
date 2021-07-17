@@ -17,28 +17,27 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  public user : UserInterface ={
-    name:"",
-    email:"",
-    usertype:"",
-    password:""
-  };
+    public user : UserInterface ={
+        name:"",
+        email:"",
+        usertype:"",
+        password:""
+      };
     ngFormSignup: FormGroup;
-  submitted = false;
+    submitted = false;
     public isError = false;
-     public msgError = '';
+    public msgError = '';
   constructor(
  // public scrollTopService:ScrollTopService,
- private formBuilder: FormBuilder,
-  public scrollTopService:ScrollTopService,
-   public _uw:UserWService,
-  private dataApi: DataApiService,
-     public router: Router,
-       private authService: AuthService,
+    private formBuilder: FormBuilder,
+    public scrollTopService:ScrollTopService,
+    public _uw:UserWService,
+    public dataApi: DataApiService,
+    public router: Router,
+    private authService: AuthService,
     private location: Location
     ) { }
     public patientSubmit : PatientInterface ={
-   
     name:"",
     username:"",
     address:"",
@@ -46,8 +45,8 @@ export class RegisterComponent implements OnInit {
     userd:"",
     phone:""
   }; 
-   loadAPI = null;  
 
+  loadAPI = null;
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";
   url2= "assets/assetsdental/js/slick.js";
@@ -96,7 +95,7 @@ export class RegisterComponent implements OnInit {
     document.getElementsByTagName("head")[0].appendChild(node);
   }
 
-     onRegister(): void {
+onRegister(){
     if (this.ngFormSignup.valid){
       this.user.usertype='patient';
       this.authService
@@ -104,30 +103,33 @@ export class RegisterComponent implements OnInit {
         .subscribe(user => {
           this.authService.setUser(user);
           const token = user.id;
-          this._uw.userd=token;
-         
+          this._uw.userd=token;  
           this.authService.setToken(token);
-         this.router.navigate(['/dashboard']);
-          //location.reload();
+          this.router.navigate(['/dashboard']);
         },
         res => {
           this.msgError = res.error.error.details.messages.email;
           this.onIsError();
         });
-         this.patientSubmit.usertype='patient';
-          this.patientSubmit.status='new';
-          this.patientSubmit.userd=this._uw.userd;
-          return this.dataApi.savePatient(this.patientSubmit)
+    
+
+
+      return this.dataApi.savePatient(this.patientSubmit)
         .subscribe(
              patientSubmit => this.router.navigate(['/successpatientregister'])
         );
+
+      this.patientSubmit.usertype='patient';
+      this.patientSubmit.status='new';
+      this.patientSubmit.userd=this._uw.userd;
     } else {
       this.onIsError();
     }
-
   }
-  public savePatient(patient){
-  this.dataApi.savePatient(patient);
+
+
+public saveDentist(dentist){
+  this.dataApi.saveDentist(dentist);
 }
 
 
@@ -159,5 +161,4 @@ export class RegisterComponent implements OnInit {
       this.isError = false;
     }, 4000);
   }
-
 }
