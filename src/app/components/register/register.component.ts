@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
         name:"",
         email:"",
         usertype:"",
-        password:""
+        password:"",
+        status:"",
       };
     ngFormSignup: FormGroup;
     submitted = false;
@@ -98,15 +99,16 @@ export class RegisterComponent implements OnInit {
 onRegister(){
     if (this.ngFormSignup.valid){
       this.user.usertype='patient';
+      this.user.status='new';
       this.authService
-        .registerUser(this.user.name, this.user.email, this.user.password, this.user.usertype)
+        .registerUser(this.user.name, this.user.email, this.user.password, this.user.usertype, this.user.status)
         .subscribe(user => {
           this.authService.setUser(user);
           const token = user.id;
           this._uw.userd=token;  
           this.authService.setToken(token);
           this._uw.patient=user;
-          this.router.navigate(['/dashboard']);
+          //this.router.navigate(['/dashboard']);
         },
         res => {
           this.msgError = res.error.error.details.messages.email;
@@ -115,14 +117,15 @@ onRegister(){
     
 
 
+      this.patientSubmit.name=this._uw.patient.name;
+      this.patientSubmit.usertype='patient';
+      this.patientSubmit.status='new';
+      this.patientSubmit.userd=this._uw.userd;
       return this.dataApi.savePatient(this.patientSubmit)
         .subscribe(
              patientSubmit => this.router.navigate(['/successpatientregister'])
         );
 
-      this.patientSubmit.usertype='patient';
-      this.patientSubmit.status='new';
-      this.patientSubmit.userd=this._uw.userd;
     } else {
       this.onIsError();
     }

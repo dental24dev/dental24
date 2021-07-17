@@ -60,7 +60,8 @@ export class RegisterformComponent implements OnInit {
     userd:"",
     phone:"",
     clinicName:"",
-    specialty:""
+    specialty:"",
+    status:""
   }; public dentist : DentistInterface ={
     about:"",
     collegeN:"",

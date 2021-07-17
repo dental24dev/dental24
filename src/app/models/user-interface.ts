@@ -4,5 +4,6 @@ export interface UserInterface{
 	email?:string;
 	password?:string;
 	type?:string;
+	status?:string;
 	usertype?:string;
 }

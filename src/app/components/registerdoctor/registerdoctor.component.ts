@@ -48,7 +48,8 @@ export class RegisterdoctorComponent implements OnInit {
     email:"",
     name:"",
     usertype:"",
-    password:""
+    password:"",
+    status:""
   };
 
 public loadScript() {
@@ -100,8 +101,9 @@ public loadScript() {
      onRegister(): void {
     if (this.ngFormNewDentist.valid){
       this.dentist.usertype='dentist';
+      this.dentist.status='new';
       this.authService
-        .registerUser(this.dentist.name, this.dentist.email, this.dentist.password, this.dentist.usertype)
+        .registerUser(this.dentist.name, this.dentist.email, this.dentist.password, this.dentist.usertype,this.dentist.status)
         .subscribe(dentist => {
           this.authService.setUser(dentist);
           const token = dentist.id;
