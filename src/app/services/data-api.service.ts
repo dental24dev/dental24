@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { TixInterface } from '../models/tix-interface';
 import { SaleInterface } from '../models/sale-interface';
 import { DentistInterface } from '../models/dentist-interface';
+import { PatientInterface } from '../models/patient-interface';
 import { OrderInterface } from '../models/order-interface';
 import { InfoInterface } from '../models/info-interface';
 import { UserWService } from "./user-w.service";
@@ -20,6 +21,7 @@ export class DataApiService {
 	sale: Observable<any>;
 	order: Observable<any>;
 	dentist: Observable<any>;
+	patient: Observable<any>;
   constructor(
   	public _uw:UserWService,
   	private http: HttpClient, 
@@ -65,6 +67,12 @@ export class DataApiService {
 		.post<SaleInterface>(url_api, sale)
 		.pipe(map(data => data));
 	}	
+	savePatient(patient :PatientInterface){
+		const url_api='https://db.masterdent24.org:3032/api/patient';
+		return this.http
+		.post<PatientInterface>(url_api, patient)
+		.pipe(map(data => data));
+	}
 	saveDentist(dentist :DentistInterface){
 		const url_api='https://db.masterdent24.org:3032/api/dentist';
 		return this.http

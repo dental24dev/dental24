@@ -55,6 +55,7 @@ import { DentistsComponent } from './components/dentists/dentists.component';
 import { PatientsComponent } from './components/patients/patients.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SuccessregisterComponent } from './components/successregister/successregister.component';
+import { SuccesspatientregisterComponent } from './components/successpatientregister/successpatientregister.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { SuccessregisterComponent } from './components/successregister/successre
     PatientsComponent,
     DashboardComponent,
     SuccessregisterComponent,
+    SuccesspatientregisterComponent,
     // FruitbannerboxComponent,
   ],
   imports: [

@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { isError } from "util";
 import { UserInterface } from '../../models/user-interface'; 
+import { PatientInterface } from '../../models/patient-interface'; 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
@@ -36,6 +37,15 @@ export class RegisterComponent implements OnInit {
        private authService: AuthService,
     private location: Location
     ) { }
+    public patientSubmit : PatientInterface ={
+   
+    name:"",
+    username:"",
+    address:"",
+    surname:"",
+    userd:"",
+    phone:""
+  }; 
    loadAPI = null;  
 
   url = "assets/assetsdental/js/jquery.min.js";
@@ -95,6 +105,7 @@ export class RegisterComponent implements OnInit {
           this.authService.setUser(user);
           const token = user.id;
           this._uw.userd=token;
+         
           this.authService.setToken(token);
          this.router.navigate(['/dashboard']);
           //location.reload();
@@ -103,11 +114,21 @@ export class RegisterComponent implements OnInit {
           this.msgError = res.error.error.details.messages.email;
           this.onIsError();
         });
+         this.patientSubmit.usertype='patient';
+          this.patientSubmit.status='new';
+          this.patientSubmit.userd=this._uw.userd;
+          return this.dataApi.savePatient(this.patientSubmit)
+        .subscribe(
+             patientSubmit => this.router.navigate(['/successpatientregister'])
+        );
     } else {
       this.onIsError();
     }
 
   }
+  public savePatient(patient){
+  this.dataApi.savePatient(patient);
+}
 
 
   ngOnInit() {
