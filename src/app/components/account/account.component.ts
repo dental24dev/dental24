@@ -100,7 +100,9 @@ export class AccountComponent implements OnInit {
    
   }
   
-     
+      get fval() {
+  return this.ngFormNewDentistData.controls;
+  }
 
   ngOnInit() {
 
