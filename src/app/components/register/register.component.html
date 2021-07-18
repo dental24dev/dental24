@@ -57,7 +57,13 @@
 											<div class="form-group form-focus">
 												<input type="checkbox"> <a class="forgot-link" >He leído y acepto la Política de Privacidad</a>
 											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" >Enviar</button>
+											<div style="text-align: center;"  [hidden]="!waiting">
+												
+											<img src="assets/assetsdental/img/tenor.gif"	 style="max-height: 32px;max-width: 32px; text-align: center;	">
+											<p></p>
+											</div>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" disabled="disabled" [hidden]="!waiting">Enviar</button>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" [hidden]="waiting" >Enviar</button>
 											<div class="login-or">
 												<span class="or-line"></span>
 												<span class="span-or">o</span>

@@ -5,6 +5,7 @@ import { ScrollTopService }  from '../../services/scroll-top.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { DentistInterface } from '../../models/dentist-interface'
+import { PatientInterface } from '../../models/patient-interface'
 
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
   
@@ -24,7 +25,9 @@ export class AccountComponent implements OnInit {
     ) { }
  loadAPI = null;  
    ngFormNewDentistData: FormGroup;
+   ngFormNewPatientData: FormGroup;
      dentistSubmitted = false;
+     patientSubmitted = false;
  public dentistSubmit : DentistInterface ={
     about:"",
     name:"",
@@ -36,6 +39,13 @@ export class AccountComponent implements OnInit {
     phone:"",
     clinicName:"",
     specialty:""
+  }; 
+  public patientSubmit : PatientInterface ={
+    name:"",
+    username:"",
+    address:"",
+    surname:"",
+    phone:""
   };
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";
@@ -100,9 +110,18 @@ export class AccountComponent implements OnInit {
     console.log("consultado"+this.dentistSubmit.name);
    
   }
+  getPatientByUserd(id: string){
+    this.dataApi.getPatientByUserd2(id).subscribe(patientSubmit => (this.patientSubmit = patientSubmit));
+    console.log("consultado"+this.patientSubmit.name);
+   
+  }
+ 
   
       get fval() {
   return this.ngFormNewDentistData.controls;
+  }
+      get fval2() {
+  return this.ngFormNewPatientData.controls;
   }
 
   ngOnInit() {
@@ -120,6 +139,19 @@ export class AccountComponent implements OnInit {
       phone:['',[Validators.required]], 
       surname:['',[Validators.required]], 
       about:['',[Validators.required]]
+         });
+
+    }
+    if(this._uw.usertype=='patient'){
+        this.dataApi.getPatientByUserd2(this._uw.userW.id).subscribe((res:any) => {    
+        this.patientSubmit=(res[0]);        
+        });
+      this.ngFormNewPatientData = this.formBuilder.group({
+      username: ['', [Validators.required]] ,
+      name: ['', [Validators.required]] ,
+      address:['',[Validators.required]], 
+      phone:['',[Validators.required]], 
+      surname:['',[Validators.required]]
          });
 
     }

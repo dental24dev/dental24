@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     ngFormSignup: FormGroup;
     submitted = false;
     public isError = false;
+    public waiting = false;
     public msgError = '';
   constructor(
  // public scrollTopService:ScrollTopService,
@@ -98,6 +99,7 @@ export class RegisterComponent implements OnInit {
 
 onRegister(){
     if (this.ngFormSignup.valid){
+      this.waiting=true;
       this.user.usertype='patient';
       this.user.status='new';
       this.patientSubmit.name=this.user.name;
@@ -108,7 +110,7 @@ onRegister(){
           this._uw.patient=user;
           this.authService.setUser(user);
           const token = user.id;
-          this.patientSubmit.userd=token;
+          this.patientSubmit.userd='p'+token;
           this._uw.userd=token;  
           this.authService.setToken(token);
           //this.router.navigate(['/dashboard']);
@@ -139,6 +141,7 @@ public saveDentist(dentist){
         .subscribe(
              patientSubmit => this.router.navigate(['/successpatientregister'])
         );
+        this.waiting=false;
 }
 
 

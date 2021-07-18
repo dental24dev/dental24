@@ -9,114 +9,162 @@
 			<!-- /Profile Sidebar -->
 
 			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='patient'">
-				<div class="card">
-					<div class="card-body">
+				<form  [formGroup]="ngFormNewPatientData" (ngSubmit) ="ok()" >		
+					<div class="card">
+						<div class="card-body">
 
-						<!-- Profile Settings Form -->
-						<form>
-							<div class="row form-row">
-								<div class="col-12 col-md-12">
-									<div class="form-group">
-										<div class="change-avatar">
-											<div class="profile-img">
-												<img src="assets/assetsdental/img/patients/profile.png" alt="User Image">
-											</div>
-											<div class="upload-img">
-												<div class="change-photo-btn">
-													<span><i class="fa fa-upload"></i> Subir foto</span>
-													<input type="file" class="upload">
+							<!-- Profile Settings Form -->
+							
+								<div class="row form-row">
+									<div class="col-12 col-md-12">
+										<div class="form-group">
+											<div class="change-avatar">
+												<div class="profile-img">
+													<img src="assets/assetsdental/img/patients/profile.png" alt="User Image">
 												</div>
-												<small class="form-text text-muted">Formato permitido JPG, GIF o PNG. Tamaño máx. 2MB</small>
+												<div class="upload-img">
+													<div class="change-photo-btn">
+														<span><i class="fa fa-upload"></i> Subir foto</span>
+														<input type="file" class="upload">
+													</div>
+													<small class="form-text text-muted">Formato permitido JPG, GIF o PNG. Tamaño máx. 2MB</small>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Nombre</label>
-										<input type="text" class="form-control" value="Richard">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Apellidos</label>
-										<input type="text" class="form-control" value="Wilson">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Fecha de Nacimiento</label>
-										<div class="cal-icon">
-											<input type="text" class="form-control datetimepicker" value="24-07-1983">
+									<div class="col-12 col-md-6">
+										<div class="form-group ">
+										<!-- 	<input type="text" class="form-control floating"> -->
+										<label>Nombre de usuario</label>
+											<input type="text" class="form-control floating" id="username" formControlName="username" placeholder="Nombre de usuario" [(ngModel)]="patientSubmit.username" [ngClass]="{'is-invalid': patientSubmitted && fval2.username.errors }"required disabled="disabled">
+
+											<div *ngIf="patientSubmitted && fval2.username.errors" class="invalid-feedback">
+												<div *ngIf="fval2.username.errors.required">
+												Por favor proporcione un nombre de usuario valido
+												</div>
+											 
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Grupo Sanguineo</label>
-										<select class="form-control select">
-											<option>A-</option>
-											<option>A+</option>
-											<option>B-</option>
-											<option>B+</option>
-											<option>AB-</option>
-											<option>AB+</option>
-											<option>O-</option>
-											<option>O+</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Email ID</label>
-										<input type="email" class="form-control" value="nombre@ejemplo.com">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Móvil</label>
-										<input type="text" value="+34 123 45 67 89" class="form-control">
-									</div>
-								</div>
-								<div class="col-12">
-									<div class="form-group">
-									<label>Domicilio</label>
-										<input type="text" class="form-control" value="Calle, plaza, avenida">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Ciudad</label>
-										<input type="text" class="form-control" value="Ciudad">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Provincia</label>
-										<input type="text" class="form-control" value="Provincia">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>Código Postal</label>
-										<input type="text" class="form-control" value="12345">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label>País</label>
-										<input type="text" class="form-control" value="País">
-									</div>
-								</div>
-							</div>
-							<div class="submit-section">
-								<button type="submit" class="btn btn-primary submit-btn">Guardar cambios</button>
-							</div>
-						</form>
-						<!-- /Profile Settings Form -->
+									<div class="col-12 col-md-6">
+											<div class="form-group ">
+											<!-- 	<input type="text" class="form-control floating"> -->
+											<label>Nombre </label>
+												<input type="text" class="form-control floating" id="name" formControlName="name" placeholder="Nombre" [(ngModel)]="patientSubmit.name" [ngClass]="{'is-invalid': patientSubmitted && fval2.name.errors }"required disabled="disabled">
 
+												<div *ngIf="patientSubmitted && fval2.name.errors" class="invalid-feedback">
+													<div *ngIf="fval2.name.errors.required">
+													El nombre es requerido
+													</div>
+												 
+												</div>
+											</div>
+									</div>
+									<div class="col-12 col-md-6">
+											<div class="form-group ">
+											<!-- 	<input type="text" class="form-control floating"> -->
+											<label>Apellidos</label>
+												<input type="text" class="form-control floating" id="surname" formControlName="surname" placeholder="Apellidos" [(ngModel)]="patientSubmit.surname" [ngClass]="{'is-invalid': patientSubmitted && fval2.surname.errors }"required >
+
+												<div *ngIf="patientSubmitted && fval2.surname.errors" class="invalid-feedback">
+													<div *ngIf="fval2.surname.errors.required">
+													El apellido es requerido
+													</div>
+												 
+												</div>
+											</div>
+									</div>
+								<!-- 	<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label>Fecha de Nacimiento</label>
+											<div class="cal-icon">
+												<input type="text" class="form-control datetimepicker" value="24-07-1983">
+											</div>
+										</div>
+									</div> -->
+									<!-- <div class="col-12 col-md-6">
+										<div class="form-group">
+											<label>Grupo Sanguineo</label>
+											<select class="form-control select">
+												<option>A-</option>
+												<option>A+</option>
+												<option>B-</option>
+												<option>B+</option>
+												<option>AB-</option>
+												<option>AB+</option>
+												<option>O-</option>
+												<option>O+</option>
+											</select>
+										</div>
+									</div> -->
+								<!-- 	<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label>Email ID</label>
+											<input type="email" class="form-control" value="nombre@ejemplo.com">
+										</div>
+									</div> -->
+									<div class="col-12 col-md-6">
+											<div class="form-group ">
+											<!-- 	<input type="text" class="form-control floating"> -->
+											<label>Telefono</label>
+												<input type="text" class="form-control floating" id="phone" formControlName="phone" placeholder="Telefono" [(ngModel)]="patientSubmit.phone" [ngClass]="{'is-invalid': patientSubmitted && fval2.phone.errors }"required >
+
+												<div *ngIf="patientSubmitted && fval2.phone.errors" class="invalid-feedback">
+													<div *ngIf="fval2.phone.errors.required">
+													Indique por favor un numero de telefono valido
+													</div>
+												 
+												</div>
+											</div>
+									</div>
+									<div class="col-12">
+											<div class="form-group ">
+											<!-- 	<input type="text" class="form-control floating"> -->
+											<label>Direccion de domicilio</label>
+												<input type="text" class="form-control floating" id="address" formControlName="address" placeholder="Domicilio" [(ngModel)]="patientSubmit.address" [ngClass]="{'is-invalid': patientSubmitted && fval2.address.errors }"required >
+
+												<div *ngIf="patientSubmitted && fval2.address.errors" class="invalid-feedback">
+													<div *ngIf="fval2.address.errors.required">
+													La direccion es requerida
+													</div>
+												 
+												</div>
+											</div>
+									</div>
+						<!-- 			<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label>Ciudad</label>
+											<input type="text" class="form-control" value="Ciudad">
+										</div>
+									</div>
+									<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label>Provincia</label>
+											<input type="text" class="form-control" value="Provincia">
+										</div>
+									</div>
+									<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label>Código Postal</label>
+											<input type="text" class="form-control" value="12345">
+										</div>
+									</div>
+									<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label>País</label>
+											<input type="text" class="form-control" value="País">
+										</div>
+									</div> -->
+								</div>
+								<div class="submit-section">
+									<button type="submit" class="btn btn-primary submit-btn">Guardar cambios</button>
+								</div>
+						
+							<!-- /Profile Settings Form -->
+
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 
 			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='dentist'">

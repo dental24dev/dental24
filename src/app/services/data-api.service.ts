@@ -134,6 +134,16 @@ getDentistByUserd2(userd: string){
 
 		// return this.http.get(url_api);
 	}
+getPatientByUserd2(userd: string){
+		let indice = userd;
+		const url_api =  "https://db.masterdent24.org:3032/api/patient?filter[where][userd]=p"+indice;
+		this.patient = this.http.get(url_api);
+		return (this.patient);
+
+		// return this.http.get(url_api);
+
+		// return this.http.get(url_api);
+	}
 		// let indice = id;
 		// const url_api=`https://db.andesproadventures.com:3018/api/book/${indice}`;
 		// this.book = this.http.get(url_api);
