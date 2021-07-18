@@ -25,7 +25,7 @@ export class DemoFilePickerAdapter extends FilePickerAdapter {
     const form = new FormData();
     form.append('file', fileItem.file);
 
-    const api = 'https://db.buckapi.com:3015/api/containers/tixsImages/upload';
+    const api = 'https://img.masterdent24.org:3033/api/containers/tixsImages/upload';
         // const api = 'https://db.buckapi.com:3015/api/containers/tixsImages/upload';
 
     const req = new HttpRequest('POST', api, form, {reportProgress: true});
@@ -36,7 +36,7 @@ export class DemoFilePickerAdapter extends FilePickerAdapter {
          this._uw.file=res.body.result.files.file;
          // console.log("Nombre: ",this._uw.file[0].name);
          // this._uw.images.push('http://192.168.1.2:80/imgApiFruit/server/local-storage/tixsImages/'+this._uw.file[0].name);
-         this._uw.images.push('https://db.buckapi.com:80/imgFrutme/server/local-storage/tixsImages/'+this._uw.file[0].name);
+         this._uw.images.push('https://img.masterdent24.org:80/dental24ImgApi/server/local-storage/tixsImages/'+this._uw.file[0].name);
           return res.body.id.toString();
        
         } else if (res.type ===  HttpEventType.UploadProgress) {

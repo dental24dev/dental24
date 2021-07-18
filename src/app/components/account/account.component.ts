@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { UserWService } from "../../services/user-w.service";
 import { DataApiService } from '../../services/data-api.service';
 import { ScrollTopService }  from '../../services/scroll-top.service';
@@ -6,6 +6,15 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { DentistInterface } from '../../models/dentist-interface'
 import { PatientInterface } from '../../models/patient-interface'
+
+import { HttpClient } from  '@angular/common/http';
+
+import { DemoFilePickerAdapter } from  '../../file-picker.adapter';
+import { FilePickerComponent } from '../../../assets/file-picker/src/lib/file-picker.component';
+import { FilePreviewModel } from '../../../assets/file-picker/src/lib/file-preview.model';
+import { ValidationError } from '../../../assets/file-picker/src/lib/validation-error.model';
+
+
 
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
   
@@ -15,8 +24,12 @@ import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+   adapter = new DemoFilePickerAdapter(this.http,this._uw);
+  @ViewChild('uploader', { static: true }) uploader: FilePickerComponent;
+   myFiles: FilePreviewModel[] = [];
 
   constructor( 
+      private  http: HttpClient,
     public scrollTopService:ScrollTopService,
     public _uw:UserWService,
     private dataApi: DataApiService,
@@ -125,6 +138,9 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(!this._uw.isLogged){
+      this.router.navigate(['/login']);
+    }
 
     if(this._uw.usertype=='dentist'){
         this.dataApi.getDentistByUserd2(this._uw.userW.id).subscribe((res:any) => {    
@@ -168,4 +184,29 @@ export class AccountComponent implements OnInit {
       }
     this._uw.loaded=true;
   }
+
+    reset():void{
+    // this._uw.selectorA=true;
+    // this.router.navigate(['/addtixs']);
+  }
+   onValidationError(e: ValidationError) {
+    console.log(e);
+  }
+  onUploadSuccess(e: FilePreviewModel) {
+  //this.images=this._uw.file;
+  }
+  onRemoveSuccess(e: FilePreviewModel) {  
+    console.log(e);
+  }
+  onFileAdded(file: FilePreviewModel) {
+     this.myFiles.push(file);
+  }
+
+
+  removeFile() {
+  this.uploader.removeFileFromList(this.myFiles[0].fileName);
+  }
+
+
 }
+

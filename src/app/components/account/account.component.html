@@ -183,13 +183,18 @@
 											<div class="profile-img">
 												<img src="assets/assetsdental/img/patients/profile.png" alt="User Image">
 											</div>
-											<div class="upload-img">
-												<div class="change-photo-btn">
-													<span><i class="fa fa-upload"></i> Subir Foto</span>
-													<input type="file" class="upload">
-												</div>
-												<small class="form-text text-muted">Se permiten JPG, GIF o PNG. Tamaño máximo de 2 MB</small>
-											</div>
+											 <ngx-file-picker
+                [uploadType]="'multi'"
+                (validationError)= "onValidationError($event)"
+                [adapter]="adapter"
+                [fileExtensions]="['pdf', 'jpeg','jpg', 'png', 'PNG', 'mp4', 'css', 'docx', 'txt']"
+                (uploadSuccess)="onUploadSuccess($event)"
+                (removeSuccess)="onRemoveSuccess($event)"
+                [showeDragDropZone]="true"
+                [showPreviewContainer]="true"
+                [accept]="'image/*'"
+                (fileAdded)="onFileAdded($event)">
+            </ngx-file-picker> 
 										</div>
 									</div>
 								</div>
