@@ -5,8 +5,8 @@ import { ScrollTopService }  from '../../services/scroll-top.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-      
-       
+import { UseractiveInterface } from '../../models/useractive-interface'
+import { isError } from "util";
 
 @Component({
   selector: 'app-lateralmenu',
@@ -22,7 +22,18 @@ export class LateralmenuComponent implements OnInit {
     private dataApi: DataApiService,
     public router: Router,
     ) { }
- loadAPI = null;  
+  public isError = false;
+  loadAPI = null;  
+  public userActive : UseractiveInterface ={
+  id:"",
+  name:"",
+  email:"",
+  images:[],
+  status:"",
+  usertype:"",
+  username:"",
+  userd:""
+  }
    onCheckUser(): void {
     if (this.authService.getCurrentUser() === null) {
       //this.isLogged = false;
@@ -98,6 +109,32 @@ export class LateralmenuComponent implements OnInit {
     document.getElementsByTagName("head")[0].appendChild(node);
   }
   ngOnInit() {
+       if(!this._uw.isLogged){
+      this.router.navigate(['/login']);
+    }
+
+      if(this._uw.usertype=='dentist'){
+        this.dataApi.getDentistByUserd2(this._uw.userW.id).subscribe((res:any) => {    
+        this.userActive=(res[0]);        
+        });
+   
+
+    }
+    if(this._uw.usertype=='patient'){
+        this.dataApi.getPatientByUserd2(this._uw.userW.id).subscribe((res:any) => {    
+        this.userActive=(res[0]);        
+        });
+
+    }
+    setTimeout(() => {
+      this.isError = false;
+     console.log("Usuario activo: " +this.userActive.name +" ; "+this.userActive.userd);
+    }, 5000);
+
+
+
+
+
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();

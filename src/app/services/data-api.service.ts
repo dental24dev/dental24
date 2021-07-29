@@ -99,6 +99,20 @@ sendMailNewBookAppToAdmin(book){
 		.put<OrderInterface>(url_api, order)
 		.pipe(map(data => data));
 	}
+	updateDentist(dentist :DentistInterface, id: string){
+		// let token = this.authService.getToken();
+		const url_api=`https://db.masterdent24.org:3032/api/dentist/${id}`;
+		return this.http
+		.put<DentistInterface>(url_api, dentist)
+		.pipe(map(data => data));
+	}
+	updatePatient(patient :PatientInterface, id: string){
+		// let token = this.authService.getToken();
+		const url_api=`https://db.masterdent24.org:3032/api/patient/${id}`;
+		return this.http
+		.put<PatientInterface>(url_api, patient)
+		.pipe(map(data => data));
+	}
 	getOrderByNpedido(npedido: string){
 		const url_api = `https://db.masterdent24.org:3032/api/order?filter[where][npedido]=${npedido}`;
 		this.order = this.http.get(url_api);

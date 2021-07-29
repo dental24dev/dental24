@@ -51,30 +51,31 @@ export class RegisterformComponent implements OnInit {
     public images:any[]=[];
 
   public dentistSubmit : DentistInterface ={
-    about:"",
-    name:"",
-    username:"",
-    password:"",
     address:"",
-    surname:"",
-    userd:"",
-    phone:"",
-    clinicName:"",
-    specialty:"",
-    status:""
-  }; public dentist : DentistInterface ={
-    about:"",
-    collegeN:"",
-    name:"",
+    collegeN:"",    
     username:"",
-    password:"",
-    userd:"",
-    address:"",
-    surname:"",
-    phone:"",
     clinicName:"",
+    images:[],
+    name:"",
+    password:"",
+    phone:"",
     status:"",
     specialty:"",
+    surname:"",
+    userd:""
+  }; public dentist : DentistInterface ={
+    address:"",
+    collegeN:"",
+    clinicName:"",
+    images:[],
+    name:"",
+    password:"",
+    phone:"",
+    status:"",
+    specialty:"",
+    surname:"",
+    userd:"",
+    username:"",
     usertype:""
   };
  
@@ -179,6 +180,8 @@ public loadScript() {
           this.dentistSubmit.surname=this.dentist.surname;
           this.dentistSubmit.usertype='dentist';
           this.dentistSubmit.status='new';
+          this.dentistSubmit.images[0]="https://db.masterdent24.org/dental24ImgApi/server/local-storage/tixsImages/profile.png";
+
           this.dentistSubmit.specialty=this.dentist.specialty;
           // DESACTIVAR EN PRODUCCION
           // this._uw.dentist.email="frutmeteam@protonmail.com",
@@ -215,8 +218,8 @@ public saveDentist(dentist){
       clinicName:['',[Validators.required]], 
       address:['',[Validators.required]], 
       phone:['',[Validators.required]], 
-      surname:['',[Validators.required]], 
-      about:['',[Validators.required]]
+      surname:['',[Validators.required]],
+      collegeN:['',[Validators.required]]
          });
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {

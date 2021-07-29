@@ -34,9 +34,10 @@ export class DemoFilePickerAdapter extends FilePickerAdapter {
       map( (res: HttpEvent<any>) => {
           if (res.type === HttpEventType.Response) {
          this._uw.file=res.body.result.files.file;
+          this._uw.buttonDisabled=false;
          // console.log("Nombre: ",this._uw.file[0].name);
          // this._uw.images.push('http://192.168.1.2:80/imgApiFruit/server/local-storage/tixsImages/'+this._uw.file[0].name);
-         this._uw.images.push('https://img.masterdent24.org:80/dental24ImgApi/server/local-storage/tixsImages/'+this._uw.file[0].name);
+         this._uw.images.push('https://db.masterdent24.org/dental24ImgApi/server/local-storage/tixsImages/'+this._uw.file[0].name);
           return res.body.id.toString();
        
         } else if (res.type ===  HttpEventType.UploadProgress) {

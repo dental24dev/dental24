@@ -14,6 +14,8 @@ export class UserWService {
 	book:any={};
 	bookToCancel:any={};
 	botas:boolean=false;
+	buttonDisabled:boolean=false;
+
 	car:any[]=[];
 	card:any={};
 	cardsResult:any[]=[];
@@ -31,6 +33,7 @@ export class UserWService {
 	errorFormSendSale:boolean;
 	errorFormSendOrder:boolean;
 	errorFormSendDentist:boolean;
+	errorFormUpdateDentist:boolean;
 	errorFormPago:boolean;
 	feet:number=0;
 	file:any[]=[];st

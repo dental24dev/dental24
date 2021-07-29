@@ -6,9 +6,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { DentistInterface } from '../../models/dentist-interface'
 import { PatientInterface } from '../../models/patient-interface'
-
 import { HttpClient } from  '@angular/common/http';
-
 import { DemoFilePickerAdapter } from  '../../file-picker.adapter';
 import { FilePickerComponent } from '../../../assets/file-picker/src/lib/file-picker.component';
 import { FilePreviewModel } from '../../../assets/file-picker/src/lib/file-preview.model';
@@ -27,36 +25,41 @@ export class AccountComponent implements OnInit {
    adapter = new DemoFilePickerAdapter(this.http,this._uw);
   @ViewChild('uploader', { static: true }) uploader: FilePickerComponent;
    myFiles: FilePreviewModel[] = [];
-
+  public images:any[]=[];
   constructor( 
       private  http: HttpClient,
-    public scrollTopService:ScrollTopService,
-    public _uw:UserWService,
-    private dataApi: DataApiService,
-     private formBuilder: FormBuilder,
-    public router: Router,
+      public scrollTopService:ScrollTopService,
+      public _uw:UserWService,
+      private dataApi: DataApiService,
+      private formBuilder: FormBuilder,
+      public router: Router,
     ) { }
- loadAPI = null;  
-   ngFormNewDentistData: FormGroup;
-   ngFormNewPatientData: FormGroup;
-     dentistSubmitted = false;
-     patientSubmitted = false;
- public dentistSubmit : DentistInterface ={
-    about:"",
-    name:"",
-    username:"",
-    password:"",
-    address:"",
-    surname:"",
-    userd:"",
-    phone:"",
-    clinicName:"",
-    specialty:""
-  }; 
+    loadAPI = null;  
+
+    ngFormUpdateDentistData: FormGroup;
+    ngFormNewPatientData: FormGroup;
+    dentistSubmitted = false;
+    uploading = false;
+    buttonDisabled = false;
+    patientSubmitted = false;
+    public dentistSubmit : DentistInterface ={
+      about:"",
+      name:"",
+      username:"",
+      password:"",
+      address:"",
+         images:[],
+      surname:"",
+      userd:"",
+      phone:"",
+      clinicName:"",
+      specialty:""
+    };   
   public patientSubmit : PatientInterface ={
     name:"",
     username:"",
     address:"",
+       images:[],
     surname:"",
     phone:""
   };
@@ -66,6 +69,11 @@ export class AccountComponent implements OnInit {
   url3 = "assets/assetsdental/plugins/swiper/js/swiper.min.js";
   url4 = "assets/assetsdental/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js";
   url5 = "assets/assetsdental/js/script.js";
+
+public upload(){
+  this.uploading=true;
+  this._uw.buttonDisabled=true;
+}
 
  public loadScript() {
     let node = document.createElement("script");
@@ -128,25 +136,20 @@ export class AccountComponent implements OnInit {
     console.log("consultado"+this.patientSubmit.name);
    
   }
- 
-  
       get fval() {
-  return this.ngFormNewDentistData.controls;
+  return this.ngFormUpdateDentistData.controls;
   }
       get fval2() {
   return this.ngFormNewPatientData.controls;
   }
 
   ngOnInit() {
-    if(!this._uw.isLogged){
-      this.router.navigate(['/login']);
-    }
-
+    this._uw.images=this.images;
     if(this._uw.usertype=='dentist'){
         this.dataApi.getDentistByUserd2(this._uw.userW.id).subscribe((res:any) => {    
         this.dentistSubmit=(res[0]);        
         });
-      this.ngFormNewDentistData = this.formBuilder.group({
+      this.ngFormUpdateDentistData = this.formBuilder.group({
       username: ['', [Validators.required]] ,
       name: ['', [Validators.required]] ,
       specialty:['',[Validators.required]], 
@@ -156,7 +159,6 @@ export class AccountComponent implements OnInit {
       surname:['',[Validators.required]], 
       about:['',[Validators.required]]
          });
-
     }
     if(this._uw.usertype=='patient'){
         this.dataApi.getPatientByUserd2(this._uw.userW.id).subscribe((res:any) => {    
@@ -169,9 +171,8 @@ export class AccountComponent implements OnInit {
       phone:['',[Validators.required]], 
       surname:['',[Validators.required]]
          });
-
     }
-         if (this._uw.loaded==true){
+    if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();
         this.loadScript1();
@@ -179,34 +180,53 @@ export class AccountComponent implements OnInit {
         this.loadScript3();
         this.loadScript4();
         this.loadScript5();
-        // this.loadScript3();
         });
       }
-    this._uw.loaded=true;
-  }
+      this._uw.loaded=true;
+    }
+okUpdateDentist(dentist){
+     // this.submittedCostPrice= true;
+      if (this.ngFormUpdateDentistData.invalid) {
+        this._uw.errorFormUpdateDentist=true;
+        return;
+      } 
+      this._uw.errorFormUpdateDentist=false;
+      this.dentistSubmit=dentist;
+      this.dentistSubmit.images=this._uw.images;
+//      let costPrice=tix.costPrice;
+
+      //this.tixCostPrice.costPrice=costPrice;
+        //    this.tixCostPrice.globalPrice=this.tixCostPrice.costPrice+(this.tixCostPrice.costPrice*tix.beneficio/100);
+      let id = dentist.id;
+      this.dataApi.updateDentist(this.dentistSubmit, id)
+        .subscribe(
+           dentist => this.router.navigate(['/dashboard'])
+      );
+       //   this.editingCostPrice=false;
+    }
 
     reset():void{
-    // this._uw.selectorA=true;
-    // this.router.navigate(['/addtixs']);
-  }
-   onValidationError(e: ValidationError) {
-    console.log(e);
-  }
-  onUploadSuccess(e: FilePreviewModel) {
-  //this.images=this._uw.file;
-  }
-  onRemoveSuccess(e: FilePreviewModel) {  
-    console.log(e);
-  }
-  onFileAdded(file: FilePreviewModel) {
-     this.myFiles.push(file);
-  }
+      // this._uw.selectorA=true;
+      // this.router.navigate(['/addtixs']);
+    }
+    onValidationError(e: ValidationError) {
+      console.log(e);
+    }
+    onUploadSuccess(e: FilePreviewModel) {
+    //this.images=this._uw.file;
 
+    }
+    onRemoveSuccess(e: FilePreviewModel) {  
+      console.log(e);
+    }
+    onFileAdded(file: FilePreviewModel) {
+       this.myFiles.push(file);
 
-  removeFile() {
-  this.uploader.removeFileFromList(this.myFiles[0].fileName);
+       //      console.log(file);
+         //    this.uploading=false
+    }
+    removeFile() {
+      this.uploader.removeFileFromList(this.myFiles[0].fileName);
   }
-
-
 }
 

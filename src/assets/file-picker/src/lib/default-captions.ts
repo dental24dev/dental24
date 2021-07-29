@@ -4,7 +4,7 @@ export const DefaultCaptions: UploaderCaptions = {
     dropzone: {
         title: "",
         or: "",
-        browse: "Tu Fotografía"
+        browse: "Cargar fotografía"
     },
     cropper: {
         crop: "Crop",

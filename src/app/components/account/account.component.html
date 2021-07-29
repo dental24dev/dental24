@@ -170,7 +170,7 @@
 			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='dentist'">
 
 			
-			<form  [formGroup]="ngFormNewDentistData" (ngSubmit) ="ok()" >		
+			<form  [formGroup]="ngFormUpdateDentistData"  >		
 
 					<!-- Basic Information -->
 					<div class="card">
@@ -180,10 +180,17 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<div class="change-avatar">
-											<div class="profile-img">
-												<img src="assets/assetsdental/img/patients/profile.png" alt="User Image">
+											<div class="profile-img" [hidden]="uploading" *ngIf="dentistSubmit.images[0]!==undefined">
+												<img src="{{dentistSubmit.images[0]}}" alt="User Image">
 											</div>
-											 <ngx-file-picker
+												<div class="upload-img" [hidden]="uploading">
+													<div class="change-photo-btn">
+														<span><i class="fa fa-edit"></i> </span>
+														<input  class="upload"(click)="upload()">
+													</div>
+											<!-- 		<small class="form-text text-muted">Formato permitido JPG, GIF o PNG. Tamaño máx. 2MB</small> -->
+												</div>
+											 <ngx-file-picker [hidden]="!uploading"
                 [uploadType]="'multi'"
                 (validationError)= "onValidationError($event)"
                 [adapter]="adapter"
@@ -352,7 +359,8 @@
 
 					<div class="submit-section submit-btn-bottom">
 						
-						<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" >Enviar</button>
+						<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" [hidden]="!_uw.buttonDisabled" disabled="disabled" (click)="okUpdateDentist(dentistSubmit)">Enviar</button>
+						<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" [hidden]="_uw.buttonDisabled" (click)="okUpdateDentist(dentistSubmit)">Enviar</button>
 					</div>
 
 			</form>
