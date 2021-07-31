@@ -37,7 +37,7 @@ export class AccountComponent implements OnInit {
     loadAPI = null;  
 
     ngFormUpdateDentistData: FormGroup;
-    ngFormNewPatientData: FormGroup;
+    ngFormUpdatePatientData: FormGroup;
     dentistSubmitted = false;
     uploading = false;
     buttonDisabled = false;
@@ -140,7 +140,7 @@ public upload(){
   return this.ngFormUpdateDentistData.controls;
   }
       get fval2() {
-  return this.ngFormNewPatientData.controls;
+  return this.ngFormUpdatePatientData.controls;
   }
 
   ngOnInit() {
@@ -164,7 +164,7 @@ public upload(){
         this.dataApi.getPatientByUserd2(this._uw.userW.id).subscribe((res:any) => {    
         this.patientSubmit=(res[0]);        
         });
-      this.ngFormNewPatientData = this.formBuilder.group({
+      this.ngFormUpdatePatientData = this.formBuilder.group({
       username: ['', [Validators.required]] ,
       name: ['', [Validators.required]] ,
       address:['',[Validators.required]], 
@@ -201,6 +201,26 @@ okUpdateDentist(dentist){
       this.dataApi.updateDentist(this.dentistSubmit, id)
         .subscribe(
            dentist => this.router.navigate(['/dashboard'])
+      );
+       //   this.editingCostPrice=false;
+    }
+    okUpdatePatient(patient){
+     // this.submittedCostPrice= true;
+      if (this.ngFormUpdatePatientData.invalid) {
+        this._uw.errorFormUpdatePatient=true;
+        return;
+      } 
+      this._uw.errorFormUpdatePatient=false;
+      this.patientSubmit=patient;
+      this.patientSubmit.images=this._uw.images;
+//      let costPrice=tix.costPrice;
+
+      //this.tixCostPrice.costPrice=costPrice;
+        //    this.tixCostPrice.globalPrice=this.tixCostPrice.costPrice+(this.tixCostPrice.costPrice*tix.beneficio/100);
+      let id = patient.id;
+      this.dataApi.updatePatient(this.patientSubmit, id)
+        .subscribe(
+           patient => this.router.navigate(['/dashboard'])
       );
        //   this.editingCostPrice=false;
     }

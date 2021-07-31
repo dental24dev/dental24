@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
     username:"",
     address:"",
     surname:"",
+    images:[],
     userd:"",
     phone:""
   }; 
@@ -104,6 +105,9 @@ onRegister(){
       this.user.status='new';
       this.patientSubmit.name=this.user.name;
       this.patientSubmit.username=this.user.email;
+      this.patientSubmit.images[0]="https://db.masterdent24.org/dental24ImgApi/server/local-storage/tixsImages/profile.png";
+
+
       this.authService
         .registerUser(this.user.name, this.user.email, this.user.password, this.user.usertype, this.user.status)
         .subscribe(user => {

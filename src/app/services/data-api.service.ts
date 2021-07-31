@@ -21,6 +21,7 @@ export class DataApiService {
 	sale: Observable<any>;
 	order: Observable<any>;
 	dentist: Observable<any>;
+	dentists: Observable<any>;
 	patient: Observable<any>;
   constructor(
   	public _uw:UserWService,
@@ -37,6 +38,10 @@ export class DataApiService {
 		return this.http
 		.put<TixInterface>(url_api, tix)
 		.pipe(map(data => data));
+	}
+	getAllDentistsReturn(){
+		const url_api = 'https://db.masterdent24.org:3032/api/dentist?filter[where][status]=activated';
+		return (this.dentists = this.http.get(url_api));
 	}
 	getAllTixs(){
 		const url_api = 'https://db.masterdent24.org:3032/api/tixes?filter[where][status]=activated';

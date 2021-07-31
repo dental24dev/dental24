@@ -34,6 +34,7 @@ export class UserWService {
 	errorFormSendOrder:boolean;
 	errorFormSendDentist:boolean;
 	errorFormUpdateDentist:boolean;
+	errorFormUpdatePatient:boolean;
 	errorFormPago:boolean;
 	feet:number=0;
 	file:any[]=[];st
@@ -68,6 +69,7 @@ export class UserWService {
 	tixsNew:any={};
 	total:number=0;
 	totalBooks:number;
+	totalDentists:number;
 	totalDiscount:number=0;
 	totalNew:number=0;
 	totalProducts:number=0;
