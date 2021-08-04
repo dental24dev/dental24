@@ -2,7 +2,7 @@
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
 					<div class="row align-items-center">
-						<div class="col-md-8 col-12" *ngIf="_uw.totalDentists!==undefined">
+						<div class="col-md-8 col-12" *ngIf="_uw.dentistsf[0]!==undefined">
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a routerLink="/dashboard">Inicio</a></li>
@@ -40,77 +40,61 @@
 							<!-- Search Filter -->
 							<div class="card search-filter">
 								<div class="card-header">
-									<h4 class="card-title mb-0">Buscar por filtros</h4>
+									<h4 class="card-title mb-0">Busqueda personalizada</h4>
 								</div>
 								<div class="card-body">
-							<!-- 	<div class="filter-widget">
-									<div class="cal-icon">
-										<input type="text" class="form-control datetimepicker" placeholder="Seleccionar día">
+					
+									<div class="filter-widget" >
+										<h4>Género</h4>
+								<!-- 		<div>
+											<label class="custom_check" (click)="setGenderMale()">
+												<input type="checkbox" name="gender_type" checked>
+												<span class="checkmark" ></span> Masculino
+											</label>
+										</div>
+										<div>
+											<label class="custom_check" (click)="setGenderFemale()">
+												<input type="checkbox" name="gender_type">
+												<span class="checkmark"></span> Femenino
+											</label>
+										</div> -->
+										<div class="clinic-services" style="color:#018fcd; cursor: pointer; padding-top: 10px;" (click)="setGenderFemale()" [hidden]="!genders.male">
+											Masculino
+										</div>
+										<div class="clinic-services"  style="cursor:pointer;padding-top: 10px;"  (click)="setGenderMale()"  [hidden]="genders.male">
+											Masculino
+										</div>
+										<div class="clinic-services" style="color:#018fcd; cursor: pointer; padding-top: 10px;" (click)="setGenderMale()" [hidden]="!genders.female">
+											Femenino
+										</div>
+										<div class="clinic-services"  style="cursor:pointer;padding-top: 10px;"(click)="setGenderFemale() " [hidden]="genders.female">
+											Femenino
+										</div>
 									</div>
-								</div> -->
-								<div class="filter-widget">
-									<h4>Género</h4>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="gender_type" checked>
-											<span class="checkmark"></span> Masculino
-										</label>
+									<div class="filter-widget">
+										<h4>Especialidad</h4>
+										<div *ngFor="let spec of specs ;let i = index"  >
+											
+											<div class="clinic-services" [hidden]="!spec.filterStatus || spec.number<1" (click)="setUnselected(i)" style="color:#018fcd; cursor: pointer; padding-top: 10px;">
+												<span >
+													
+												 {{spec.name}} 		( {{spec.number}} )
+												</span>
+											<!-- <i class="fas fa-check"></i> -->
+											</div>
+											<div class="clinic-services" [hidden]="spec.filterStatus && spec.number>0" (click)="setSelected(i)" style="cursor:pointer;padding-top: 10px;">
+												<span >
+													
+
+												{{spec.name}} ( {{spec.number}} )
+												</span> 
+											<!-- <i class="fas fa-check"></i> -->
+											</div>
+										
+										</div>
+					
 									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="gender_type">
-											<span class="checkmark"></span> Femenino
-										</label>
-									</div>
-								</div>
-								<div class="filter-widget">
-									<h4>Seleccionar especialización</h4>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist" checked>
-											<span class="checkmark"></span> Implantología
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist" checked>
-											<span class="checkmark"></span> Ortodoncia
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Peridoncia
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Endodoncia
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Odontopediatría
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Estética Dental
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist">
-											<span class="checkmark"></span> Limpieza Bucal
-										</label>
-									</div>
-								</div>
-									<!-- <div class="btn-search">
-										<button type="button" class="btn btn-block">Buscar</button>
-									</div> -->
+								
 								</div>
 							</div>
 							<!-- /Search Filter -->
@@ -121,10 +105,13 @@
 
 
 							<!-- Doctor Widget -->
-							<div class="card" *ngFor="let dentist of dentists" >
-								<div class="card-body">
-									<div class="doctor-widget">
-										<div class="doc-info-left">
+							<div class="card" *ngFor="let dentist of this.dentistsf"  [hidden]="!dentist.visible || dentist.viewLevel<0 || (dentist.gender!=gender && gender!=all)">
+								<div class="card-body" >
+									<div class="doctor-widget" >
+
+									
+
+										<div class="doc-info-left"  >
 											<div class="doctor-img">
 												<a href="doctor-profile.php">
 													<img src="{{dentist.images[0]}}" class="img-fluid" alt="User Image">
@@ -132,8 +119,8 @@
 											</div>
 											<div class="doc-info-cont">
 												<h4 class="doc-name"><a href="doctor-profile.php">Dr. {{dentist.name}}</a></h4>
-												<p class="doc-speciality">Especialista en  {{dentist.specialty}}</p>
-												<h5 class="doc-department"><img src="assets/assetsdental/img/doctors/doctor.png" class="img-fluid" alt="Speciality">Dentist</h5>
+												<p class="doc-speciality"> {{dentist.about}}</p>
+												<!-- <h5 class="doc-department"><img src="assets/assetsdental/img/doctors/doctor.png" class="img-fluid" alt="Speciality">Dentist</h5> -->
 												<div class="rating">
 													<i class="fas fa-star filled"></i>
 													<i class="fas fa-star filled"></i>
@@ -142,28 +129,25 @@
 													<i class="fas fa-star"></i>
 													<span class="d-inline-block average-rating">(17)</span>
 												</div>
-												<div class="clinic-details">
+											<!-- 	<div class="clinic-details">
 													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{dentist.address}}</p>
-													<!-- <ul class="clinic-gallery">
-														<li>
-															<a href="assets/assetsdental/img/doctors/doctor.png" data-fancybox="gallery">
-																<img src="assets/assetsdental/img/doctors/doctor.png" alt="Feature">
-															</a>
-														</li>
-														<li>
-															<a href="assets/assetsdental/img/doctors/doctor.png" data-fancybox="gallery">
-																<img src="assets/assetsdental/img/doctors/doctor.png" alt="Feature">
-															</a>
-														</li>
-														<li>
-															<a href="assets/assetsdental/img/doctors/doctor.png" data-fancybox="gallery">
-																<img src="assets/assetsdental/img/doctors/doctor.png" alt="Feature">
-															</a>
-														</li>
-													</ul> -->
+												
+												</div> -->
+										<div class="clinic-details" *ngIf="dentist.specs[0]!==undefined" >
+													<p class="doc-speciality" style="color: green;">
+														<i class="fas fa-check" ></i>
+													Especialista verificado</p>
 												</div>
-												<div class="clinic-services">
-													<span>{{dentist.specialty}}</span>
+												<div class="clinic-services" *ngIf="dentist.specs[0]!==undefined">
+
+													<span  *ngFor="let spec of dentist.specs">
+														<div  *ngFor="let sp of specs">
+															<div [hidden]="sp.idspec!=spec">	
+															{{sp.name}}
+															</div>	
+														</div>	
+
+													</span>
 													
 												</div>
 											</div>
@@ -171,9 +155,9 @@
 										<div class="doc-info-right">
 											<div class="clini-infos">
 												<ul>
-													<li><i class="far fa-thumbs-up"></i> 98%</li>
-													<li><i class="far fa-comment"></i> 17 Respuestas</li>
-													<li><i class="fas fa-map-marker-alt"></i> Palma de Mallorca</li>
+												<!-- 	<li><i class="far fa-thumbs-up"></i> 98%</li>
+													<li><i class="far fa-comment"></i> 17 Respuestas</li> -->
+													<li><i class="fas fa-map-marker-alt"></i>{{dentist.address}}</li>
 													<li><i class="far fa-money-bill-alt"></i> 50€ - 300€ <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> </li>
 												</ul>
 											</div>

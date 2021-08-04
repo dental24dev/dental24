@@ -1,6 +1,8 @@
 export interface DentistInterface{
 	id?:string;
 	name?:string;
+	added?:boolean;
+	visible?:boolean;
 	surname?:string;
 	phone?:string;
 	specialty?:string;
@@ -11,6 +13,7 @@ export interface DentistInterface{
 	type?:string;
 	dentistId?:string;
 	dentistIdPre?:number;
+	viewLevel?:number;
 	selected?:string;
 	address?:string;
 	usertype?:string;

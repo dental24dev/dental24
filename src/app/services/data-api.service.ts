@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { TixInterface } from '../models/tix-interface';
 import { SaleInterface } from '../models/sale-interface';
 import { DentistInterface } from '../models/dentist-interface';
+import { SpecInterface } from '../models/spec-interface';
 import { PatientInterface } from '../models/patient-interface';
 import { OrderInterface } from '../models/order-interface';
 import { InfoInterface } from '../models/info-interface';
@@ -21,7 +22,9 @@ export class DataApiService {
 	sale: Observable<any>;
 	order: Observable<any>;
 	dentist: Observable<any>;
-	dentists: Observable<any>;
+	dentists: Observable<any>;	
+	spec: Observable<any>;
+	specs: Observable<any>;
 	patient: Observable<any>;
   constructor(
   	public _uw:UserWService,
@@ -42,6 +45,10 @@ export class DataApiService {
 	getAllDentistsReturn(){
 		const url_api = 'https://db.masterdent24.org:3032/api/dentist?filter[where][status]=activated';
 		return (this.dentists = this.http.get(url_api));
+	}
+	getAllSpecialties(){
+		const url_api = 'https://db.masterdent24.org:3032/api/specialties';
+		return (this.specs = this.http.get(url_api));
 	}
 	getAllTixs(){
 		const url_api = 'https://db.masterdent24.org:3032/api/tixes?filter[where][status]=activated';

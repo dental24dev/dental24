@@ -8,19 +8,26 @@
         <span></span>
         </span>
         </a>
-        <a routerLink="" class="navbar-brand logo">
+        <a routerLink="dashboard" class="navbar-brand logo">
         <img src="assets/assetsdental/img/logo.png" class="img-fluid" alt="Logo">
         </a>
         </div>
         <div class="main-menu-wrapper">
             <div class="menu-header">
-                <a routerLink="" class="menu-logo">
+                <a routerLink="dashboard" class="menu-logo">
                 <img src="assets/assetsdental/img/logo.png" class="img-fluid" alt="Logo">
                 </a>
                 <a id="menu_close" class="menu-close" href="javascript:void(0);">
                 <i class="fas fa-times"></i>
                 </a>
             </div>
+
+            <ul class="main-nav blue-font">
+                <li class="has-submenu active">
+                    <a routerLink="dentists"><i class="fas fa-search"></i> Nuestros dentistas </a>
+                  
+                </li>
+            </ul>
             <ul class="main-nav blue-font" [hidden]="!router.url.includes('/dashboarding')">
                 <li class="has-submenu active">
                     <a href="index-8.html">Home <i class="fas fa-chevron-down"></i></a>

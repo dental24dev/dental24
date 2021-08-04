@@ -15,8 +15,9 @@ export class UserWService {
 	bookToCancel:any={};
 	botas:boolean=false;
 	buttonDisabled:boolean=false;
-
+	
 	car:any[]=[];
+	dentistsf:any[]=[];
 	card:any={};
 	cardsResult:any[]=[];
 	currency:number=1;
@@ -42,6 +43,7 @@ export class UserWService {
 	foredit:any={};
 	globalCategory:boolean=true;
 	idCard:string;
+	idspec:string;
 	imagePreviewProduct:string;
 	images:any[]=[];
 	info:any={};
@@ -63,12 +65,13 @@ export class UserWService {
 	showAll:boolean=false;
 	subTotal:number=0;
 	tixs:any[]=[];
+	specs:any={};
 	tixPreview:any={};
 	tixsOrigin:any[]=[];
 	tixsDiscount:any={};
 	tixsNew:any={};
 	total:number=0;
-	totalBooks:number;
+	totalBooks:number;	totalSpecs:number;
 	totalDentists:number;
 	totalDiscount:number=0;
 	totalNew:number=0;
