@@ -19,7 +19,7 @@ export class DentistsComponent implements OnInit {
     public router: Router,
     ) { }
  loadAPI = null;  
- gender = null;  
+ gender = "all";  
  genders:any={};
 public dentist:DentistInterface;
 public dentists:DentistInterface;
@@ -56,7 +56,6 @@ setSelectedAll(){
             if(this.dentists[j].specs[k]==this.specs[i].idspec){
               this.specs[i].number=this.specs[i].number+1;
               this.dentistsf[j].visible=true;this.dentistsf[j].added=true;
-              console.log("Agregado: "+this.dentistsf[j].username);
             }
           }
        
@@ -75,8 +74,13 @@ setGenderFemale(){
     this.genders.male=false;
     this.gender="female";
 }
+setAmbos(){
+  this.genders.female=false;
+    this.genders.male=false;
+    this.gender="all";
+}
 setGenderMale(){
-    this.genders.female=false;
+  this.genders.female=false;
     this.genders.male=true;
     this.gender="male";
 }
@@ -89,30 +93,29 @@ this.filter(i,this.specs[i].filterStatus);
 filter(index,bandera){ 
   this.dentistsf={};
   this.dentistsf=this.dentists;
-    for(let j=0; j < this._uw.totalDentists ; j++ ){
-             this.dentistsf[j].viewLevel=0;
-       for(let k=0; k < this._uw.totalSpecs ; k++ ){
-        if (this.specs[k].filterStatus==true){
-           let dentistSpecsLength=this.dentists[j].specs.length;
-          for(let l=0; l < dentistSpecsLength; l++ ){
-            if(this.dentists[j].specs[l]== this.specs[k].idspec ){
-              this.dentistsf[j].viewLevel=this.dentistsf[j].viewLevel+1;
-              this.dentistsf[j].visible=true;
-              }
+  for(let j=0; j < this._uw.totalDentists ; j++ ){
+    this.dentistsf[j].viewLevel=0;
+    for(let k=0; k < this._uw.totalSpecs ; k++ ){
+      if (this.specs[k].filterStatus==true){
+        let dentistSpecsLength=this.dentists[j].specs.length;
+        for(let l=0; l < dentistSpecsLength; l++ ){
+          if(this.dentists[j].specs[l]== this.specs[k].idspec ){
+            this.dentistsf[j].viewLevel=this.dentistsf[j].viewLevel+1;
+            this.dentistsf[j].visible=true;
             }
           }
-            if (this.specs[k].filterStatus==false){
-               let dentistSpecsLength=this.dentists[j].specs.length;
-          for(let l=0; l < dentistSpecsLength ; l++ ){
-            if(this.dentists[j].specs[l]== this.specs[k].idspec ){
-              this.dentistsf[j].viewLevel=this.dentistsf[j].viewLevel-1;
-       
-              }
+        }
+      if (this.specs[k].filterStatus==false){
+        let dentistSpecsLength=this.dentists[j].specs.length;
+        for(let l=0; l < dentistSpecsLength ; l++ ){
+          if(this.dentists[j].specs[l]== this.specs[k].idspec ){
+            this.dentistsf[j].viewLevel=this.dentistsf[j].viewLevel-1;   
             }
           }
         }
       }
     }
+  }
 
 
 getAllSpecialties(){
@@ -179,8 +182,8 @@ getAllSpecialties(){
     document.getElementsByTagName("head")[0].appendChild(node);
   }
   ngOnInit() {
-    this.genders.male=true;
-    this.genders.female=true;
+    this.genders.male=false;
+    this.genders.female=false;
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();

@@ -35,7 +35,7 @@
 				<div class="container-fluid">
 
 					<div class="row">
-						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar" *ngIf="specs[0]!==undefined">
 
 							<!-- Search Filter -->
 							<div class="card search-filter">
@@ -46,29 +46,26 @@
 					
 									<div class="filter-widget" >
 										<h4>Género</h4>
-								<!-- 		<div>
-											<label class="custom_check" (click)="setGenderMale()">
-												<input type="checkbox" name="gender_type" checked>
-												<span class="checkmark" ></span> Masculino
-											</label>
+						<div class="clinic-services" style="color:#018fcd; cursor: pointer; padding-top: 10px;"  (click)="setAmbos()"  [hidden]="gender!='all'">
+											<span >
+											Ambos	</span>
 										</div>
-										<div>
-											<label class="custom_check" (click)="setGenderFemale()">
-												<input type="checkbox" name="gender_type">
-												<span class="checkmark"></span> Femenino
-											</label>
-										</div> -->
-										<div class="clinic-services" style="color:#018fcd; cursor: pointer; padding-top: 10px;" (click)="setGenderFemale()" [hidden]="!genders.male">
-											Masculino
+											<div class="clinic-services" style="cursor:pointer;padding-top: 10px;"  (click)="setAmbos()" [hidden]="gender=='all'">
+											<span >
+											Ambos	</span>
 										</div>
-										<div class="clinic-services"  style="cursor:pointer;padding-top: 10px;"  (click)="setGenderMale()"  [hidden]="genders.male">
-											Masculino
+										<div class="clinic-services" style="cursor:pointer;padding-top: 10px;"  (click)="setGenderMale()" [hidden]="genders.male">
+											<span >
+											Masculino	</span>
 										</div>
-										<div class="clinic-services" style="color:#018fcd; cursor: pointer; padding-top: 10px;" (click)="setGenderMale()" [hidden]="!genders.female">
-											Femenino
+										<div class="clinic-services"  style="color:#018fcd; cursor: pointer; padding-top: 10px;"  (click)="setGenderFemale()"  [hidden]="!genders.male"><span >
+											Masculino	</span>
 										</div>
-										<div class="clinic-services"  style="cursor:pointer;padding-top: 10px;"(click)="setGenderFemale() " [hidden]="genders.female">
-											Femenino
+										<div class="clinic-services" style="cursor:pointer;padding-top: 10px;" (click)="setGenderFemale()" [hidden]="genders.female"><span >
+											Femenino	</span>
+										</div>
+										<div class="clinic-services" style="color:#018fcd; cursor: pointer; padding-top: 10px;" (click)="setGenderMale() " [hidden]="!genders.female"><span >
+											Femenino	</span>
 										</div>
 									</div>
 									<div class="filter-widget">
@@ -101,11 +98,11 @@
 
 						</div>
 
-						<div class="col-md-12 col-lg-8 col-xl-9">
+						<div class="col-md-12 col-lg-8 col-xl-9" *ngIf="dentistsf[0]!==undefined">
 
 
 							<!-- Doctor Widget -->
-							<div class="card" *ngFor="let dentist of this.dentistsf"  [hidden]="!dentist.visible || dentist.viewLevel<0 || (dentist.gender!=gender && gender!=all)">
+							<div class="card" *ngFor="let dentist of this.dentistsf"  [hidden]="!dentist.visible || dentist.viewLevel<0 || (dentist.gender!=gender && gender!='all')">
 								<div class="card-body" >
 									<div class="doctor-widget" >
 
