@@ -1,5 +1,5 @@
 <!-- Breadcrumb -->
-			<div class="breadcrumb-bar">
+		<!-- 	<div class="breadcrumb-bar">
 				<div class="container-fluid">
 					<div class="row align-items-center">
 						<div class="col-md-8 col-12" *ngIf="_uw.dentistsf[0]!==undefined">
@@ -27,7 +27,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<!-- /Breadcrumb -->
 
 			<!-- Page Content -->
@@ -40,46 +40,46 @@
 							<!-- Search Filter -->
 							<div class="card search-filter">
 								<div class="card-header">
-									<h4 class="card-title mb-0">Busqueda personalizada</h4>
+									<h4 class="card-title mb-0">Filtrar resultados</h4>
 								</div>
 								<div class="card-body">
 					
 									<div class="filter-widget" >
-										<h4>Género</h4>
-						<div class="clinic-services" style="color:#018fcd; cursor: pointer; padding-top: 10px;"  (click)="setAmbos()"  [hidden]="gender!='all'">
+										<h4>Por género ...</h4>
+						<div class="" style="color:#018fcd; cursor: pointer; border-color: transparent; padding-top: 10px;"  (click)="setAmbos()"  [hidden]="gender!='all'">
 											<span >
 											Ambos	</span>
 										</div>
-											<div class="clinic-services" style="cursor:pointer;padding-top: 10px;"  (click)="setAmbos()" [hidden]="gender=='all'">
+											<div class="" style="cursor:pointer;padding-top: 10px;"  (click)="setAmbos()" [hidden]="gender=='all'">
 											<span >
 											Ambos	</span>
 										</div>
-										<div class="clinic-services" style="cursor:pointer;padding-top: 10px;"  (click)="setGenderMale()" [hidden]="genders.male">
+										<div class="" style="cursor:pointer;padding-top: 10px;"  (click)="setGenderMale()" [hidden]="genders.male">
 											<span >
 											Masculino	</span>
 										</div>
-										<div class="clinic-services"  style="color:#018fcd; cursor: pointer; padding-top: 10px;"  (click)="setGenderFemale()"  [hidden]="!genders.male"><span >
+										<div class=""  style="color:#018fcd; cursor: pointer; padding-top: 10px;"  (click)="setGenderFemale()"  [hidden]="!genders.male"><span >
 											Masculino	</span>
 										</div>
-										<div class="clinic-services" style="cursor:pointer;padding-top: 10px;" (click)="setGenderFemale()" [hidden]="genders.female"><span >
+										<div class="" style="cursor:pointer;padding-top: 10px;" (click)="setGenderFemale()" [hidden]="genders.female"><span >
 											Femenino	</span>
 										</div>
-										<div class="clinic-services" style="color:#018fcd; cursor: pointer; padding-top: 10px;" (click)="setGenderMale() " [hidden]="!genders.female"><span >
+										<div class="" style="color:#018fcd; cursor: pointer; padding-top: 10px;" (click)="setGenderMale() " [hidden]="!genders.female"><span >
 											Femenino	</span>
 										</div>
 									</div>
 									<div class="filter-widget">
-										<h4>Especialidad</h4>
+										<h4>Por especialidad ...</h4>
 										<div *ngFor="let spec of specs ;let i = index"  >
 											
-											<div class="clinic-services" [hidden]="!spec.filterStatus || spec.number<1" (click)="setUnselected(i)" style="color:#018fcd; cursor: pointer; padding-top: 10px;">
+											<div class="" [hidden]="!spec.filterStatus || spec.number<1" (click)="setUnselected(i)" style="color:#018fcd; cursor: pointer; padding-top: 10px;">
 												<span >
 													
 												 {{spec.name}} 		( {{spec.number}} )
 												</span>
 											<!-- <i class="fas fa-check"></i> -->
 											</div>
-											<div class="clinic-services" [hidden]="spec.filterStatus && spec.number>0" (click)="setSelected(i)" style="cursor:pointer;padding-top: 10px;">
+											<div class="" [hidden]="spec.filterStatus && spec.number>0" (click)="setSelected(i)" style="cursor:pointer;padding-top: 10px;">
 												<span >
 													
 
