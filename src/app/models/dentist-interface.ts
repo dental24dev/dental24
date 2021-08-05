@@ -21,6 +21,7 @@ export interface DentistInterface{
 	userd?:string;
 	about?:string;
 	collegeN?:string;
+	specs?:Array<string>;
 	images?:Array<string>;
 }
 
