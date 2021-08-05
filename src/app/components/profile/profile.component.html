@@ -24,7 +24,7 @@
 								<p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{dentist.address}} <a >Get Directions</a></p>
 								
 							</div>
-							<div class="clinic-services" *ngIf="dentist.specs[0]!==undefined">
+							<div class="clinic-services" *ngIf="dentist.specs[0]!=undefined">
 
 													<span  *ngFor="let spec of dentist.specs">
 														<div  *ngFor="let sp of _uw.specs">
