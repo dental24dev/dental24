@@ -1,0 +1,10 @@
+.selected{
+color:#018fcd; 
+cursor: pointer; 
+border-color: transparent;
+ padding-top: 10px;
+}
+.unselected{
+	cursor:pointer;
+	padding-top: 10px;
+}

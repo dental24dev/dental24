@@ -170,6 +170,13 @@ getPatientByUserd2(userd: string){
 
 		// return this.http.get(url_api);
 	}
+		getProfileById(id:string){
+		let indice = id;
+		const url_api=`https://db.masterdent24.org:3032/api/dentist/${indice}`;
+		this.dentist = this.http.get(url_api);
+		return (this.dentist);
+	}
+	ge
 		// let indice = id;
 		// const url_api=`https://db.andesproadventures.com:3018/api/book/${indice}`;
 		// this.book = this.http.get(url_api);

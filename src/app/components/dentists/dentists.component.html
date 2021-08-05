@@ -46,25 +46,25 @@
 					
 									<div class="filter-widget" >
 										<h4>Por género ...</h4>
-						<div class="" style="color:#018fcd; cursor: pointer; border-color: transparent; padding-top: 10px;"  (click)="setAmbos()"  [hidden]="gender!='all'">
+						<div class="selected"  (click)="setAmbos()"  [hidden]="gender!='all'">
 											<span >
 											Ambos	</span>
 										</div>
-											<div class="" style="cursor:pointer;padding-top: 10px;"  (click)="setAmbos()" [hidden]="gender=='all'">
+											<div class="unselected"  (click)="setAmbos()" [hidden]="gender=='all'">
 											<span >
 											Ambos	</span>
 										</div>
-										<div class="" style="cursor:pointer;padding-top: 10px;"  (click)="setGenderMale()" [hidden]="genders.male">
+										<div class="unselected"  (click)="setGenderMale()" [hidden]="genders.male">
 											<span >
 											Masculino	</span>
 										</div>
-										<div class=""  style="color:#018fcd; cursor: pointer; padding-top: 10px;"  (click)="setGenderFemale()"  [hidden]="!genders.male"><span >
+										<div class="selected"(click)="setGenderFemale()"  [hidden]="!genders.male"><span >
 											Masculino	</span>
 										</div>
-										<div class="" style="cursor:pointer;padding-top: 10px;" (click)="setGenderFemale()" [hidden]="genders.female"><span >
+										<div class="unselected"(click)="setGenderFemale()" [hidden]="genders.female"><span >
 											Femenino	</span>
 										</div>
-										<div class="" style="color:#018fcd; cursor: pointer; padding-top: 10px;" (click)="setGenderMale() " [hidden]="!genders.female"><span >
+										<div class="selected"(click)="setGenderMale() " [hidden]="!genders.female"><span >
 											Femenino	</span>
 										</div>
 									</div>
@@ -159,7 +159,7 @@
 												</ul>
 											</div>
 											<div class="clinic-booking">
-												<a class="view-pro-btn" href="doctor-profile.php">Ver Perfil</a>
+												<a class="view-pro-btn" routerLink="/profile/{{dentist.id}}">Ver Perfil</a>
 												<a class="apt-btn" href="booking.php">Pedir Cita Ahora</a>
 											</div>
 										</div>
@@ -169,9 +169,9 @@
 							<!-- /Doctor Widget -->
 
 
-							<div class="load-more text-center">
+							<!-- <div class="load-more text-center">
 								<a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 

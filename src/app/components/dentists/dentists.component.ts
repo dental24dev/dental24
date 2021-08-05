@@ -123,6 +123,7 @@ getAllSpecialties(){
       if (res[0] === undefined){
        }else{
         this.specs=res;  
+        this._uw.specs=res;
            this._uw.totalSpecs = res.length;          
         console.log("specialties: " +this._uw.totalSpecs );
         }
