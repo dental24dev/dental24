@@ -36,7 +36,6 @@ export class DataApiService {
   	) {}
   	headers : HttpHeaders = new HttpHeaders({
   		"Content-Type":"application/json",
-  		  'Access-Control-Allow-Origin':'*',
   		Authorization: this.authService.getToken()
   		});
   	updateTix(tix :TixInterface, id: string){
