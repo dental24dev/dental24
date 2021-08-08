@@ -14,6 +14,7 @@ import { isError } from "util";
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserInterface } from '../../models/user-interface'; 
+import { RequestInterface } from '../../models/request-interface'; 
 
 @Component({
   selector: 'app-registerform',
@@ -33,7 +34,8 @@ export class RegisterformComponent implements OnInit {
     private formBuilder: FormBuilder
     ) { }
    loadAPI = null;  
-
+public request:RequestInterface;
+public requests:RequestInterface;
 
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";
@@ -61,6 +63,7 @@ export class RegisterformComponent implements OnInit {
     phone:"",
     status:"",
     specialty:"",
+    specs:[],
     surname:"",
     userd:""
   }; public dentist : DentistInterface ={
@@ -73,6 +76,7 @@ export class RegisterformComponent implements OnInit {
     phone:"",
     status:"",
     specialty:"",
+    specs:[],
     surname:"",
     userd:"",
     username:"",
@@ -182,11 +186,15 @@ public loadScript() {
           this.dentistSubmit.status='new';
           this.dentistSubmit.images[0]="https://db.masterdent24.org/dental24ImgApi/server/local-storage/tixsImages/profile.png";
 
+          this._uw.newdentistrequest.email="frutmeteam@protonmail.com";
+          this._uw.newdentistrequest.subject="Nueva solicitud de registro para dentista";
+          this._uw.newdentistrequest.name=this.dentist.name;
+          this._uw.newdentistrequest.phone=this.dentist.phone;
           this.dentistSubmit.specialty=this.dentist.specialty;
           // DESACTIVAR EN PRODUCCION
           // this._uw.dentist.email="frutmeteam@protonmail.com",
          // this.router.navigate(['/registerform']);
-        
+              this.dataApi.newdentistrequest(this._uw.newdentistrequest).subscribe();
          // this.saveDentist(this.dentistSubmit);
           return this.dataApi.saveDentist(this.dentistSubmit)
         .subscribe(

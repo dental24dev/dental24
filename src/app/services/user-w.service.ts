@@ -67,6 +67,7 @@ export class UserWService {
 	tixs:any[]=[];
 	specs:any={};
 	tixPreview:any={};
+	newdentistrequest:any={};
 	tixsOrigin:any[]=[];
 	tixsDiscount:any={};
 	tixsNew:any={};

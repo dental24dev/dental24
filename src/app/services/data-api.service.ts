@@ -9,6 +9,7 @@ import { DentistInterface } from '../models/dentist-interface';
 import { SpecInterface } from '../models/spec-interface';
 import { PatientInterface } from '../models/patient-interface';
 import { OrderInterface } from '../models/order-interface';
+import { QuoteInterface } from '../models/quote-interface';
 import { InfoInterface } from '../models/info-interface';
 import { UserWService } from "./user-w.service";
 
@@ -21,6 +22,8 @@ export class DataApiService {
 	tix: Observable<any>;
 	sale: Observable<any>;
 	order: Observable<any>;
+	quote: Observable<any>;
+	quotes: Observable<any>;
 	dentist: Observable<any>;
 	dentists: Observable<any>;	
 	spec: Observable<any>;
@@ -97,10 +100,10 @@ export class DataApiService {
 		.post<OrderInterface>(url_api, order)
 		.pipe(map(data => data));
 	}
-sendMailNewBookAppToAdmin(book){
-		const url_api='https://email.penguinscleaning.ca:3005/newBookAppToAdmin';
+newdentistrequest(request){
+		const url_api='https://email.masterdent24.org:3029/newdentistrequest';
 		return this.http
-		.post(url_api, book)
+		.post(url_api, request)
 		.pipe(map(data => data));
 	}
 	
@@ -176,7 +179,7 @@ getPatientByUserd2(userd: string){
 		this.dentist = this.http.get(url_api);
 		return (this.dentist);
 	}
-	ge
+	
 		// let indice = id;
 		// const url_api=`https://db.andesproadventures.com:3018/api/book/${indice}`;
 		// this.book = this.http.get(url_api);

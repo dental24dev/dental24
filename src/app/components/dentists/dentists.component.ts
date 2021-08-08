@@ -5,6 +5,7 @@ import { ScrollTopService }  from '../../services/scroll-top.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { DentistInterface } from '../../models/dentist-interface'; 
+import { RequestInterface } from '../../models/request-interface'; 
 import { SpecInterface } from '../../models/spec-interface'; 
 @Component({
   selector: 'app-dentists',
@@ -23,6 +24,8 @@ export class DentistsComponent implements OnInit {
  genders:any={};
 public dentist:DentistInterface;
 public dentists:DentistInterface;
+public request:RequestInterface;
+public requests:RequestInterface;
 public dentistsf:DentistInterface;
 public spec:SpecInterface;
 public specs:SpecInterface;
