@@ -104,7 +104,7 @@ export class DataApiService {
 newdentistrequest(request){
 		const url_api='https://email.masterdent24.org:3029/newdentistrequest';
 		return this.http
-		.post(url_api, request)
+		.post(url_api, request,{headers: this.headers})
 		.pipe(map(data => data));
 	}
 	
