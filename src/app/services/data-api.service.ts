@@ -35,8 +35,7 @@ export class DataApiService {
   	private authService:AuthService
   	) {}
   	headers : HttpHeaders = new HttpHeaders({
-  		"Content-Type":"application/json",
-  		Authorization: this.authService.getToken()
+  		"Content-Type":"application/json"
   		});
   	updateTix(tix :TixInterface, id: string){
 		// let token = this.authService.getToken();
