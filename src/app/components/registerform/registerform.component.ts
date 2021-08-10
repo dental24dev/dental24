@@ -14,15 +14,19 @@ import { isError } from "util";
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserInterface } from '../../models/user-interface'; 
+import { SpecInterface } from '../../models/spec-interface'; 
 import { RequestInterface } from '../../models/request-interface'; 
 
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 @Component({
   selector: 'app-registerform',
   templateUrl: './registerform.component.html',
   styleUrls: ['./registerform.component.css']
 })
 export class RegisterformComponent implements OnInit {
-
+dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
    constructor(
     private authService: AuthService,
     public scrollTopService:ScrollTopService,
@@ -46,7 +50,8 @@ public requests:RequestInterface;
   url5 = "assets/assetsdental/js/moment.min.js";
   url6 = "assets/assetsdental/js/bootstrap-datetimepicker.min.js";
   url7 = "assets/assetsdental/js/script.js";
-
+    public spec:SpecInterface;
+    public specs:SpecInterface;
 
   ngFormNewDentistData: FormGroup;
   dentistSubmitted = false;
@@ -94,6 +99,30 @@ public loadScript() {
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
+    getAllSpecs(){
+        this.dataApi.getAllSpecialties().subscribe((res:any) => {
+      if (res[0] === undefined){
+        console.log("hey");
+       }else{
+        this.specs=res;  
+        this._uw.totalSpecs=res.length;          
+        }
+     });  
+
+    setTimeout(() => {
+           for (let i=0;i<this._uw.totalSpecs;i++){
+              this.dropdownList = this.dropdownList.  concat({
+              id: i + 1,
+              item_id: i + 1,
+              item_text: this.specs[i].name,
+              idspec: this.specs[i].idspec
+            });
+          }
+      }, 4000);
+    }
+
+
+
 
   public loadScript1() {
     let node = document.createElement("script");
@@ -215,14 +244,18 @@ public saveDentist(dentist){
       this.isError = false;
     }, 4000);
   }
+
+
+
   ngOnInit() {
+          this.getAllSpecs();
     this.dentistSubmit.name=this._uw.dentist.name;
     this.dentistSubmit.username=this._uw.dentist.email;
     this.dentistSubmit.userd="d"+this._uw.dentist.userd
     this.ngFormNewDentistData = this.formBuilder.group({
       username: ['', [Validators.required]] ,
       name: [+this._uw.dentist.name, [Validators.required]] ,
-      specialty:['',[Validators.required]], 
+    
       clinicName:['',[Validators.required]], 
       address:['',[Validators.required]], 
       phone:['',[Validators.required]], 
@@ -243,7 +276,43 @@ public saveDentist(dentist){
         });
       }
     this._uw.loaded=true;
+
+
+   // this.dropdownList = this.specs;
+ this.dropdownList = [
+      
+    ];  
+ 
+
+    this.selectedItems = [];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Seleccionar todas',
+      unSelectAllText: 'Deseleccionar todas',
+      itemsShowLimit: 7,
+      allowSearchFilter: false
+    };
+    
   }
+   onItemSelect(item: any) {
+    let dato = 0;
+    dato = this.specs[item.item_id-1].idspec;
+    console.log("seleccionar: "+dato);
+  }
+   onItemDeSelect(item: any) {
+    let dato = 0;
+    dato = this.specs[item.item_id-1].idspec;
+    console.log("deseleccionar: "+dato);
+  }
+   onSelectAll(items: any) {
+    console.log(items);
+  }
+   onDeselectAll(items: any) {
+    console.log(items);
+  }
+
 
  get fval() {
   return this.ngFormNewDentistData.controls;

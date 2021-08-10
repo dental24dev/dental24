@@ -58,6 +58,7 @@ import { SuccessregisterComponent } from './components/successregister/successre
 import { SuccesspatientregisterComponent } from './components/successpatientregister/successpatientregister.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ProfileComponent } from './components/profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    NgMultiSelectDropDownModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HttpClientModule,
     FormsModule,
