@@ -56,7 +56,7 @@ public requests:RequestInterface;
   ngFormNewDentistData: FormGroup;
   dentistSubmitted = false;
     public images:any[]=[];
-
+    public specStatus:any[]=[];
   public dentistSubmit : DentistInterface ={
     address:"",
     collegeN:"",    
@@ -88,6 +88,7 @@ public requests:RequestInterface;
     usertype:""
   };
  
+  loaded = false;
   submitted = false;
     public isError = false;
      public msgError = '';
@@ -111,6 +112,7 @@ public loadScript() {
 
     setTimeout(() => {
            for (let i=0;i<this._uw.totalSpecs;i++){
+            this.specStatus.push({filterStatus:false});
               this.dropdownList = this.dropdownList.  concat({
               id: i + 1,
               item_id: i + 1,
@@ -118,7 +120,9 @@ public loadScript() {
               idspec: this.specs[i].idspec
             });
           }
-      }, 4000);
+             
+          this.loaded=true;
+      }, 10000);
     }
 
 
@@ -223,6 +227,14 @@ public loadScript() {
           // DESACTIVAR EN PRODUCCION
           // this._uw.dentist.email="frutmeteam@protonmail.com",
          // this.router.navigate(['/registerform']);
+
+         for(let i =0; i<this._uw.totalSpecs;i++){
+           console.log(""+this.specStatus[3].filterStatus);
+          if(this.specStatus[i].filterStatus==true){
+            this.dentistSubmit.specs.push(this.specs[i].idspec);
+          }
+         }
+
               this.dataApi.newdentistrequest(this._uw.newdentistrequest).subscribe();
          // this.saveDentist(this.dentistSubmit);
           return this.dataApi.saveDentist(this.dentistSubmit)
@@ -300,11 +312,14 @@ public saveDentist(dentist){
     let dato = 0;
     dato = this.specs[item.item_id-1].idspec;
     console.log("seleccionar: "+dato);
+this.specStatus[item.item_id-1].filterStatus=true;
+    
   }
    onItemDeSelect(item: any) {
     let dato = 0;
     dato = this.specs[item.item_id-1].idspec;
     console.log("deseleccionar: "+dato);
+this.specStatus[item.item_id-1].filterStatus=false;
   }
    onSelectAll(items: any) {
     console.log(items);
