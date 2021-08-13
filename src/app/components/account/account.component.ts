@@ -11,9 +11,8 @@ import { DemoFilePickerAdapter } from  '../../file-picker.adapter';
 import { FilePickerComponent } from '../../../assets/file-picker/src/lib/file-picker.component';
 import { FilePreviewModel } from '../../../assets/file-picker/src/lib/file-preview.model';
 import { ValidationError } from '../../../assets/file-picker/src/lib/validation-error.model';
-
-
-
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { SpecInterface } from '../../models/spec-interface'; 
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
   
 @Component({
@@ -25,7 +24,6 @@ export class AccountComponent implements OnInit {
    adapter = new DemoFilePickerAdapter(this.http,this._uw);
   @ViewChild('uploader', { static: true }) uploader: FilePickerComponent;
    myFiles: FilePreviewModel[] = [];
-  public images:any[]=[];
   constructor( 
       private  http: HttpClient,
       public scrollTopService:ScrollTopService,
@@ -34,32 +32,39 @@ export class AccountComponent implements OnInit {
       private formBuilder: FormBuilder,
       public router: Router,
     ) { }
-    loadAPI = null;  
-
-    ngFormUpdateDentistData: FormGroup;
-    ngFormUpdatePatientData: FormGroup;
-    dentistSubmitted = false;
-    uploading = false;
-    buttonDisabled = false;
-    patientSubmitted = false;
-    public dentistSubmit : DentistInterface ={
-      about:"",
-      name:"",
-      username:"",
-      password:"",
-      address:"",
-         images:[],
-      surname:"",
-      userd:"",
-      phone:"",
-      clinicName:"",
-      specialty:""
-    };   
+  loadAPI = null;  
+  loaded = false;
+  dentistSubmitted = false;
+  uploading = false;
+  buttonDisabled = false;
+  patientSubmitted = false;
+  selectedItems = [];
+  dropdownList = [];
+  dropdownSettings = {};
+  ngFormUpdateDentistData: FormGroup;
+  ngFormUpdatePatientData: FormGroup;
+  public spec:SpecInterface;
+  public specs:SpecInterface;
+  public images:any[]=[];
+  public specStatus:any[]=[];
+  public dentistSubmit : DentistInterface ={
+    about:"",
+    name:"",
+    username:"",
+    password:"",
+    address:"",
+    images:[],
+    surname:"",
+    userd:"",
+    phone:"",
+    clinicName:"",
+    specs:[]
+  };   
   public patientSubmit : PatientInterface ={
     name:"",
     username:"",
     address:"",
-       images:[],
+    images:[],
     surname:"",
     phone:""
   };
@@ -69,13 +74,7 @@ export class AccountComponent implements OnInit {
   url3 = "assets/assetsdental/plugins/swiper/js/swiper.min.js";
   url4 = "assets/assetsdental/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js";
   url5 = "assets/assetsdental/js/script.js";
-
-public upload(){
-  this.uploading=true;
-  this._uw.buttonDisabled=true;
-}
-
- public loadScript() {
+  public loadScript() {
     let node = document.createElement("script");
     node.src = this.url;
     node.type = "text/javascript";
@@ -83,7 +82,6 @@ public upload(){
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
-  public ok(){}
 
   public loadScript1() {
     let node = document.createElement("script");
@@ -101,7 +99,7 @@ public upload(){
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   } 
-   public loadScript3() {
+  public loadScript3() {
     let node = document.createElement("script");
     node.src = this.url3;
     node.type = "text/javascript";
@@ -109,7 +107,7 @@ public upload(){
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   } 
-   public loadScript4() {
+  public loadScript4() {
     let node = document.createElement("script");
     node.src = this.url4;
     node.type = "text/javascript";
@@ -117,7 +115,7 @@ public upload(){
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
-   public loadScript5() {
+  public loadScript5() {
     let node = document.createElement("script");
     node.src = this.url5;
     node.type = "text/javascript";
@@ -125,53 +123,169 @@ public upload(){
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
+  
+  public getAllSpecs(){
+    this.dataApi.getAllSpecialties().subscribe((res:any) => {
+      if (res[0] === undefined){
+       }else{
+        this.specs=res;  
+        this._uw.totalSpecs=res.length;          
+        }
+    });  
+    setTimeout(() => {
+      for (let i=0;i<this._uw.totalSpecs;i++){
+          this.specStatus.push({filterStatus:false});
+          this.dropdownList = this.dropdownList.  concat({
+          id: i + 1,
+          item_id: i + 1,
+          item_text: this.specs[i].name,
+          idspec: this.specs[i].idspec
+        });
+      }
+      for (let i=0;i<this.dentistSubmit.specs.length; i++){
+        for (let j=0;j<this._uw.totalSpecs;j++){
+          if(this.dentistSubmit.specs[i]==this.specs[j].idspec){
+            this.specStatus[j].filterStatus=true;
+            this.selectedItems = this.selectedItems.concat({
+              id: j + 1,
+              item_id: j + 1,
+              item_text: this.specs[j].name,
+              idspec: this.specs[j].idspec
+            });
+          }
+        }
+      }
+      this.loaded=true;
+    }, 10000);
+  }
+
+  public upload(){
+    this.uploading=true;
+    this._uw.buttonDisabled=true;
+  }
+
 
   getDentistByUserd(id: string){
     this.dataApi.getDentistByUserd2(id).subscribe(dentistSubmit => (this.dentistSubmit = dentistSubmit));
-    console.log("consultado"+this.dentistSubmit.name);
-   
   }
   getPatientByUserd(id: string){
     this.dataApi.getPatientByUserd2(id).subscribe(patientSubmit => (this.patientSubmit = patientSubmit));
-    console.log("consultado"+this.patientSubmit.name);
-   
   }
-      get fval() {
-  return this.ngFormUpdateDentistData.controls;
+  get fval() {
+    return this.ngFormUpdateDentistData.controls;
   }
-      get fval2() {
-  return this.ngFormUpdatePatientData.controls;
+  get fval2() {
+    return this.ngFormUpdatePatientData.controls;
+  }
+  onItemSelect(item: any) {
+    let dato = 0;
+    dato = this.specs[item.item_id-1].idspec;
+    this.specStatus[item.item_id-1].filterStatus=true; 
+  }
+  onItemDeSelect(item: any) {
+    let dato = 0;
+    dato = this.specs[item.item_id-1].idspec;
+    this.specStatus[item.item_id-1].filterStatus=false;
+  }
+  onSelectAll(items: any) {
+  }
+  onDeselectAll(items: any) {
   }
 
+  okUpdateDentist(dentist){
+    if (this.ngFormUpdateDentistData.invalid) {
+      this._uw.errorFormUpdateDentist=true;
+      return;
+    } 
+    this._uw.errorFormUpdateDentist=false;
+    this.dentistSubmit=dentist;
+    this.dentistSubmit.images=this._uw.images;
+    this.dentistSubmit.specs=[];
+    for(let i =0; i<this._uw.totalSpecs;i++){
+      if(this.specStatus[i].filterStatus==true){
+        this.dentistSubmit.specs.push(this.specs[i].idspec);
+      }
+    }
+    let id = dentist.id;
+    this.dataApi.updateDentist(this.dentistSubmit, id)
+      .subscribe(
+         dentist => this.router.navigate(['/dashboard'])
+    );
+  }
+
+  okUpdatePatient(patient){
+    if (this.ngFormUpdatePatientData.invalid) {
+      this._uw.errorFormUpdatePatient=true;
+      return;
+    } 
+    this._uw.errorFormUpdatePatient=false;
+    this.patientSubmit=patient;
+    this.patientSubmit.images=this._uw.images;
+    let id = patient.id;
+    this.dataApi.updatePatient(this.patientSubmit, id)
+      .subscribe(
+         patient => this.router.navigate(['/dashboard'])
+    );
+  }
+
+  reset():void{
+  }
+  onValidationError(e: ValidationError) {
+
+  }
+  onUploadSuccess(e: FilePreviewModel) {
+
+  }
+  onRemoveSuccess(e: FilePreviewModel) {  
+
+  }
+  onFileAdded(file: FilePreviewModel) {
+     this.myFiles.push(file);
+  }
+  removeFile() {
+    this.uploader.removeFileFromList(this.myFiles[0].fileName);
+  }
   ngOnInit() {
-    this._uw.images=this.images;
+
+    this.dropdownList = []; 
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Seleccionar todas',
+      unSelectAllText: 'Deseleccionar todas',
+      itemsShowLimit: 7,
+      allowSearchFilter: false
+    };
+ 
     if(this._uw.usertype=='dentist'){
         this.dataApi.getDentistByUserd2(this._uw.userW.id).subscribe((res:any) => {    
-        this.dentistSubmit=(res[0]);        
-        });
+        this.dentistSubmit=(res[0]); 
+        this._uw.images=this.dentistSubmit.images;  
+        this.getAllSpecs();        
+      });
       this.ngFormUpdateDentistData = this.formBuilder.group({
-      username: ['', [Validators.required]] ,
-      name: ['', [Validators.required]] ,
-      specialty:['',[Validators.required]], 
-      clinicName:['',[Validators.required]], 
-      address:['',[Validators.required]], 
-      phone:['',[Validators.required]], 
-      surname:['',[Validators.required]], 
-      about:['',[Validators.required]]
-         });
+          username: ['', [Validators.required]] ,
+          name: ['', [Validators.required]] , 
+          clinicName:['',[Validators.required]], 
+          address:['',[Validators.required]], 
+          phone:['',[Validators.required]], 
+          surname:['',[Validators.required]], 
+          about:['',[Validators.required]]
+      });
     }
     if(this._uw.usertype=='patient'){
-        this.dataApi.getPatientByUserd2(this._uw.userW.id).subscribe((res:any) => {    
-        this.patientSubmit=(res[0]);        
+      this.dataApi.getPatientByUserd2(this._uw.userW.id).subscribe((res:any) => {    
+          this.patientSubmit=(res[0]);        
         });
       this.ngFormUpdatePatientData = this.formBuilder.group({
-      username: ['', [Validators.required]] ,
-      name: ['', [Validators.required]] ,
-      address:['',[Validators.required]], 
-      phone:['',[Validators.required]], 
-      surname:['',[Validators.required]]
-         });
-    }
+        username: ['', [Validators.required]] ,
+        name: ['', [Validators.required]] ,
+        address:['',[Validators.required]], 
+        phone:['',[Validators.required]], 
+        surname:['',[Validators.required]]
+        });
+      } 
     if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();
@@ -182,71 +296,7 @@ public upload(){
         this.loadScript5();
         });
       }
-      this._uw.loaded=true;
-    }
-okUpdateDentist(dentist){
-     // this.submittedCostPrice= true;
-      if (this.ngFormUpdateDentistData.invalid) {
-        this._uw.errorFormUpdateDentist=true;
-        return;
-      } 
-      this._uw.errorFormUpdateDentist=false;
-      this.dentistSubmit=dentist;
-      this.dentistSubmit.images=this._uw.images;
-//      let costPrice=tix.costPrice;
-
-      //this.tixCostPrice.costPrice=costPrice;
-        //    this.tixCostPrice.globalPrice=this.tixCostPrice.costPrice+(this.tixCostPrice.costPrice*tix.beneficio/100);
-      let id = dentist.id;
-      this.dataApi.updateDentist(this.dentistSubmit, id)
-        .subscribe(
-           dentist => this.router.navigate(['/dashboard'])
-      );
-       //   this.editingCostPrice=false;
-    }
-    okUpdatePatient(patient){
-     // this.submittedCostPrice= true;
-      if (this.ngFormUpdatePatientData.invalid) {
-        this._uw.errorFormUpdatePatient=true;
-        return;
-      } 
-      this._uw.errorFormUpdatePatient=false;
-      this.patientSubmit=patient;
-      this.patientSubmit.images=this._uw.images;
-//      let costPrice=tix.costPrice;
-
-      //this.tixCostPrice.costPrice=costPrice;
-        //    this.tixCostPrice.globalPrice=this.tixCostPrice.costPrice+(this.tixCostPrice.costPrice*tix.beneficio/100);
-      let id = patient.id;
-      this.dataApi.updatePatient(this.patientSubmit, id)
-        .subscribe(
-           patient => this.router.navigate(['/dashboard'])
-      );
-       //   this.editingCostPrice=false;
-    }
-
-    reset():void{
-      // this._uw.selectorA=true;
-      // this.router.navigate(['/addtixs']);
-    }
-    onValidationError(e: ValidationError) {
-      console.log(e);
-    }
-    onUploadSuccess(e: FilePreviewModel) {
-    //this.images=this._uw.file;
-
-    }
-    onRemoveSuccess(e: FilePreviewModel) {  
-      console.log(e);
-    }
-    onFileAdded(file: FilePreviewModel) {
-       this.myFiles.push(file);
-
-       //      console.log(file);
-         //    this.uploading=false
-    }
-    removeFile() {
-      this.uploader.removeFileFromList(this.myFiles[0].fileName);
+    this._uw.loaded=true;
   }
 }
 
