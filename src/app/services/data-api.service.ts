@@ -39,62 +39,62 @@ export class DataApiService {
   		});
   	updateTix(tix :TixInterface, id: string){
 		// let token = this.authService.getToken();
-		const url_api=`http://192.168.43.103:3032/api/tixes/${id}`;
+		const url_api=`https://db.masterdent24.org:3032/api/tixes/${id}`;
 		return this.http
 		.put<TixInterface>(url_api, tix)
 		.pipe(map(data => data));
 	}
 	getAllDentistsReturn(){
-		const url_api = 'http://192.168.43.103:3032/api/dentist?filter[where][status]=activated';
+		const url_api = 'https://db.masterdent24.org:3032/api/dentist?filter[where][status]=activated';
 		return (this.dentists = this.http.get(url_api));
 	}
 	getAllSpecialties(){
-		const url_api = 'http://192.168.43.103:3032/api/specialties';
+		const url_api = 'https://db.masterdent24.org:3032/api/specialties';
 		return (this.specs = this.http.get(url_api));
 	}
 	getAllTixs(){
-		const url_api = 'http://192.168.43.103:3032/api/tixes?filter[where][status]=activated';
+		const url_api = 'https://db.masterdent24.org:3032/api/tixes?filter[where][status]=activated';
 		return this.http.get(url_api);
 	}
  		getTamano(){
-		const url_api = 'http://192.168.43.103:3032/api/tixes?filter[where][status]=activated';
+		const url_api = 'https://db.masterdent24.org:3032/api/tixes?filter[where][status]=activated';
 		return (this.tixs = this.http.get(url_api));
 	}
 	getTamanoIni(){
-		const url_api = 'http://192.168.43.103:3032/api/tixes?filter[where][initload]=activated';
+		const url_api = 'https://db.masterdent24.org:3032/api/tixes?filter[where][initload]=activated';
 		return (this.tixs = this.http.get(url_api));
 	}
  	
 
 	getAllTixsInitload(){
-		const url_api = 'http://192.168.43.103:3032/api/tixes?filter[where][initload]=activated';
+		const url_api = 'https://db.masterdent24.org:3032/api/tixes?filter[where][initload]=activated';
 		return this.http.get(url_api);
 	}
 	getInfo(){
-		const url_api=`http://192.168.43.103:3032/api/infos/`;
+		const url_api=`https://db.masterdent24.org:3032/api/infos/`;
 		this.info = this.http.get(url_api);
 		return (this.info);
 	}
 	saveSale(sale :SaleInterface){
-		const url_api='http://192.168.43.103:3032/api/sale';
+		const url_api='https://db.masterdent24.org:3032/api/sale';
 		return this.http
 		.post<SaleInterface>(url_api, sale)
 		.pipe(map(data => data));
 	}	
 	savePatient(patient :PatientInterface){
-		const url_api='http://192.168.43.103:3032/api/patient';
+		const url_api='https://db.masterdent24.org:3032/api/patient';
 		return this.http
 		.post<PatientInterface>(url_api, patient)
 		.pipe(map(data => data));
 	}
 	saveDentist(dentist :DentistInterface){
-		const url_api='http://192.168.43.103:3032/api/dentist';
+		const url_api='https://db.masterdent24.org:3032/api/dentist';
 		return this.http
 		.post<DentistInterface>(url_api, dentist)
 		.pipe(map(data => data));
 	}
 	saveOrder(order :OrderInterface){
-		const url_api='http://192.168.43.103:3032/api/order';
+		const url_api='https://db.masterdent24.org:3032/api/order';
 		return this.http
 		.post<OrderInterface>(url_api, order)
 		.pipe(map(data => data));
@@ -108,27 +108,27 @@ newdentistrequest(request){
 	
 	updateOrder(order :OrderInterface, id: string){
 		// let token = this.authService.getToken();
-		const url_api=`http://192.168.43.103:3032/api/order/${id}`;
+		const url_api=`https://db.masterdent24.org:3032/api/order/${id}`;
 		return this.http
 		.put<OrderInterface>(url_api, order)
 		.pipe(map(data => data));
 	}
 	updateDentist(dentist :DentistInterface, id: string){
 		// let token = this.authService.getToken();
-		const url_api=`http://192.168.43.103:3032/api/dentist/${id}`;
+		const url_api=`https://db.masterdent24.org:3032/api/dentist/${id}`;
 		return this.http
 		.put<DentistInterface>(url_api, dentist)
 		.pipe(map(data => data));
 	}
 	updatePatient(patient :PatientInterface, id: string){
 		// let token = this.authService.getToken();
-		const url_api=`http://192.168.43.103:3032/api/patient/${id}`;
+		const url_api=`https://db.masterdent24.org:3032/api/patient/${id}`;
 		return this.http
 		.put<PatientInterface>(url_api, patient)
 		.pipe(map(data => data));
 	}
 	getOrderByNpedido(npedido: string){
-		const url_api = `http://192.168.43.103:3032/api/order?filter[where][npedido]=${npedido}`;
+		const url_api = `https://db.masterdent24.org:3032/api/order?filter[where][npedido]=${npedido}`;
 		this.order = this.http.get(url_api);
 		return (this.order);
 
@@ -137,7 +137,7 @@ newdentistrequest(request){
 		// return this.http.get(url_api);
 	}
 	getDentistByUserd(userd: string){
-		const url_api = `http://192.168.43.103:3032/api/dentist?filter[where][userd]=${userd}`;
+		const url_api = `https://db.masterdent24.org:3032/api/dentist?filter[where][userd]=${userd}`;
 		this.dentist = this.http.get(url_api);
 		return (this.dentist);
 
@@ -148,13 +148,13 @@ newdentistrequest(request){
 
 	// 	getDentistByUserd2(userd:string){
 	// 	let indice = userd;
-	// 	const url_api = "http://192.168.43.103:3032/api/dentist?filter[where][userd]=d"+indice;
+	// 	const url_api = "https://db.masterdent24.org:3032/api/dentist?filter[where][userd]=d"+indice;
 	// 	return this.http.get(url_api);
 	// }
 
 getDentistByUserd2(userd: string){
 		let indice = userd;
-		const url_api =  "http://192.168.43.103:3032/api/dentist?filter[where][userd]=d"+indice;
+		const url_api =  "https://db.masterdent24.org:3032/api/dentist?filter[where][userd]=d"+indice;
 		this.dentist = this.http.get(url_api);
 		return (this.dentist);
 
@@ -164,7 +164,7 @@ getDentistByUserd2(userd: string){
 	}
 getPatientByUserd2(userd: string){
 		let indice = userd;
-		const url_api =  "http://192.168.43.103:3032/api/patient?filter[where][userd]=p"+indice;
+		const url_api =  "https://db.masterdent24.org:3032/api/patient?filter[where][userd]=p"+indice;
 		this.patient = this.http.get(url_api);
 		return (this.patient);
 
@@ -174,7 +174,7 @@ getPatientByUserd2(userd: string){
 	}
 		getProfileById(id:string){
 		let indice = id;
-		const url_api=`http://192.168.43.103:3032/api/dentist/${indice}`;
+		const url_api=`https://db.masterdent24.org:3032/api/dentist/${indice}`;
 		this.dentist = this.http.get(url_api);
 		return (this.dentist);
 	}
