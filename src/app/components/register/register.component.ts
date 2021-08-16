@@ -123,9 +123,6 @@ onRegister(){
           this.msgError = res.error.error.details.messages.email;
           this.onIsError();
         });
-    
-
-      
       this.patientSubmit.usertype='patient';
       this.patientSubmit.status='new';
       setTimeout(() => {

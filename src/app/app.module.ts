@@ -59,6 +59,7 @@ import { SuccesspatientregisterComponent } from './components/successpatientregi
 import { ProfileComponent } from './components/profile/profile.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     SuccessregisterComponent,
     SuccesspatientregisterComponent,
     ProfileComponent,
+    MessageComponent,
     // FruitbannerboxComponent,
   ],
   imports: [

@@ -14,7 +14,8 @@ import {
 	DashboardComponent,
 	SuccessregisterComponent,
 	SuccesspatientregisterComponent,
-	RegisterdoctorComponent
+	RegisterdoctorComponent,
+	MessageComponent
 	// FruitbannerboxComponent
 	}from "./components/index.paginas";
 
@@ -32,6 +33,7 @@ const app_routes: Routes = [
 	{path:'account',component:AccountComponent, canActivate:[AuthGuard]},
 	{path:'dentists',component:DentistsComponent},
 	{path:'patients',component:PatientsComponent},
+	{path:'message',component:MessageComponent},
 	{path:'profile/:id',component:ProfileComponent},
 	{path:'dashboard',component:DashboardComponent},
 	{path:'successregister',component:SuccessregisterComponent},

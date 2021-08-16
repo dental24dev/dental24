@@ -13,5 +13,6 @@ export { DashboardComponent } from "./dashboard/dashboard.component";
 export { SuccessregisterComponent } from "./successregister/successregister.component";
 export { SuccesspatientregisterComponent } from "./successpatientregister/successpatientregister.component";
 export { RegisterdoctorComponent } from "./registerdoctor/registerdoctor.component";
+export { MessageComponent } from "./message/message.component";
 
 // export { FruitbannerboxComponent } from "./fruitbannerbox/fruitbannerbox.component";

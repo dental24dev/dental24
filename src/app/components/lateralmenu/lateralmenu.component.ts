@@ -115,20 +115,21 @@ export class LateralmenuComponent implements OnInit {
 
       if(this._uw.usertype=='dentist'){
         this.dataApi.getDentistByUserd2(this._uw.userW.id).subscribe((res:any) => {    
-        this.userActive=(res[0]);        
+        this.userActive=(res[0]);          
         });
    
 
     }
     if(this._uw.usertype=='patient'){
         this.dataApi.getPatientByUserd2(this._uw.userW.id).subscribe((res:any) => {    
-        this.userActive=(res[0]);        
+        this.userActive=(res[0]);            
         });
 
     }
     setTimeout(() => {
       this.isError = false;
      console.log("Usuario activo: " +this.userActive.name +" ; "+this.userActive.userd);
+    this._uw.userActiveId=this.userActive.userd;
     }, 5000);
 
 

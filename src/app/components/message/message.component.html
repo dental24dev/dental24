@@ -1,0 +1,204 @@
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row" >
+				<div class="col-xl-12" >
+					<div class="chat-window">
+
+						<!-- Chat Left -->
+						<div class="chat-cont-left">
+							<div class="chat-header">
+								<span>Mensajeria</span>
+								<!-- <a href="javascript:void(0)" class="chat-compose">
+									<i class="material-icons">control_point</i>
+								</a> -->
+							</div>
+						<!-- 	<form class="chat-search">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<i class="fas fa-search"></i>
+									</div>
+									<input type="text" class="form-control" placeholder="Search">
+								</div>
+							</form> -->
+							<div class="chat-users-list" [hidden]="_uw.usertype=='dentist'">
+								<div class="chat-scroll">
+									<a href="javascript:void(0);" class="media" *ngFor="let conversation of conversationArray ;let i = index"  (click)="loadMessages(i)" >
+										<div class="media-img-wrap">
+											<div class="avatar avatar-away">
+												<img src="{{conversation.image}}" alt="Avatar" class="avatar-img rounded-circle">
+											</div>
+										</div>
+										<div class="media-body">
+											<div >
+												<div class="user-name">{{conversation.dentist}}</div>
+												<div class="user-last-chat"></div>
+											</div>
+											<div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div class="chat-users-list" [hidden]="_uw.usertype=='patient'">
+								<div class="chat-scroll">
+									<a href="javascript:void(0);" class="media" *ngFor="let conversation of conversationArray ;let i = index"  (click)="loadMessages2(i)" >
+										<div class="media-img-wrap">
+											<div class="avatar avatar-away">
+												<img src="{{conversation.image}}" alt="Avatar" class="avatar-img rounded-circle">
+											</div>
+										</div>
+										<div class="media-body">
+											<div >
+												<div class="user-name">{{conversation.patient}}</div>
+												<div class="user-last-chat"></div>
+											</div>
+											<div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- /Chat Left -->
+
+						<!-- Chat Right -->
+						<div class="chat-cont-right">
+							<div class="chat-header">
+								<a id="back_user_list" href="javascript:void(0)" class="back-user-list">
+									<i class="material-icons">chevron_left</i>
+								</a>
+								<div class="media">
+									<div class="media-img-wrap" [hidden]="!selected">
+										<div class="avatar avatar-online">
+											<img src="{{conversationImage}}" alt="User Image" class="avatar-img rounded-circle">
+										</div>
+									</div>
+									<div class="media-body">
+										<div class="user-name">{{conversationUsername}}</div>
+										<div class="user-status"></div>
+									</div>
+								</div>
+								<div class="chat-options">
+									<a href="javascript:void(0)" data-toggle="modal" data-target="#voice_call">
+										<i class="material-icons">local_phone</i>
+									</a>
+									<a href="javascript:void(0)" data-toggle="modal" data-target="#video_call">
+										<i class="material-icons">videocam</i>
+									</a>
+									<a href="javascript:void(0)">
+										<i class="material-icons">more_vert</i>
+									</a>
+								</div>
+							</div>
+							<div class="chat-body" [hidden]="_uw.usertype=='dentist'">
+								<div class="chat-scroll">
+									<ul class="list-unstyled">
+										<div *ngFor="let message of conversationDetail">
+											
+										
+										<li class="media sent" [hidden]="message.dir=='dp'">
+											<div class="media-body">
+												<div class="msg-box">
+													<div>
+														<p>{{message.message}}</p>
+														<ul class="chat-msg-info">
+															<li>
+																<div class="chat-time">
+																	<span>8:30 AM</span>
+																</div>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li class="media received" [hidden]="message.dir=='pd'">
+											<div class="media-body">
+												<div class="msg-box">
+													<div>
+														<p>{{message.message}}</p>
+														<ul class="chat-msg-info">
+															<li>
+																<div class="chat-time">
+																	<span>8:30 AM</span>
+																</div>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+										</div>
+									</ul>
+								</div>
+							</div>
+							<div class="chat-body" [hidden]="_uw.usertype=='patient'">
+								<div class="chat-scroll">
+									<ul class="list-unstyled">
+										<div *ngFor="let message of conversationDetail">
+											
+										
+										<li class="media sent" [hidden]="message.dir=='pd'">
+											<div class="media-body">
+												<div class="msg-box">
+													<div>
+														<p>{{message.message}}</p>
+														<ul class="chat-msg-info">
+															<li>
+																<div class="chat-time">
+																	<span>8:30 AM</span>
+																</div>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li class="media received" [hidden]="message.dir=='dp'">
+											<div class="media-body">
+												<div class="msg-box">
+													<div>
+														<p>{{message.message}}</p>
+														<ul class="chat-msg-info">
+															<li>
+																<div class="chat-time">
+																	<span>8:30 AM</span>
+																</div>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+										</div>
+									</ul>
+								</div>
+							</div>
+							<div class="chat-footer">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="btn-file btn">
+											<i class="fa fa-paperclip"></i>
+											<input type="file">
+										</div>
+									</div>
+									<input type="text" class="input-msg-send form-control" placeholder="Escribir mensaje">
+									<div class="input-group-append">
+										<button type="button" class="btn msg-send-btn"><i class="fab fa-telegram-plane"></i></button>
+									</div>
+									<div class="input-group-append">
+										<a href="javascript:void(0)" data-toggle="modal" data-target="#replay"><button type="button" class="btn msg-send-btn"><i class="fa fa-robot"></i></button></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Chat Right -->
+
+					</div>
+				</div>
+			</div>
+
+	
+			<!-- /Row -->
+		</div>
+	</div>

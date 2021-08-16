@@ -72,9 +72,12 @@ export class UserWService {
 	tixsDiscount:any={};
 	tixsNew:any={};
 	total:number=0;
-	totalBooks:number;	totalSpecs:number;
+	totalBooks:number;	
+	totalSpecs:number;
+	totalMessages:number;
 	totalDentists:number;
 	totalDiscount:number=0;
+	totalWriters:number=0;
 	totalNew:number=0;
 	totalProducts:number=0;
 	totalTixs:number;
@@ -83,6 +86,7 @@ export class UserWService {
 	typeGlobal:boolean=false;
 	typeSize:boolean=false;
 	user:any={};
+	userActiveId:string;
 	userd:string;
 	usersPending:boolean;
 	userW:any={};
