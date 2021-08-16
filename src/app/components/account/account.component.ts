@@ -261,7 +261,7 @@ export class AccountComponent implements OnInit {
     if(this._uw.usertype=='dentist'){
         this.dataApi.getDentistByUserd2(this._uw.userW.id).subscribe((res:any) => {    
         this.dentistSubmit=(res[0]); 
-      //  this._uw.images=this.dentistSubmit.images;  
+      this._uw.images=this.dentistSubmit.images;  
         this.getAllSpecs();        
       });
       this.ngFormUpdateDentistData = this.formBuilder.group({
