@@ -23,9 +23,9 @@
 							<span>Enviar Mensaje</span>
 												<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px;" >
 							<div class="clinic-details">
-								<p class="doc-location"><i class="fas fa-map-marker-alt" style="width: 20px;"> </i> {{dentist.address}} <i class="fas fa-check" ></i>Especialista verificado</p>
+								<p class="doc-location"><i class="fas fa-map-marker-alt" style="width: 20px;"> {{dentist.address}} </p>
 							</div>
-							<img src="assets/assetsdental/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality"  style="width: 20px;">
+							<img src="assets/assetsdental/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality"  style="width: 20px;"></i> <i class="fas fa-check" ></i>Especialista verificado
 							<div class="clinic-services" *ngIf="dentist.specs[0]!=undefined">
 								<span  *ngFor="let spec of dentist.specs">
 									<div  *ngFor="let sp of _uw.specs">
