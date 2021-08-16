@@ -11,18 +11,21 @@
 						<div class="doc-info-cont">
 							<h4 class="doc-name">{{dentist.name}}</h4>
 							<p class="doc-speciality">{{dentist.about}}</p>
-							<p class="doc-department"><img src="assets/assetsdental/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">Dentist</p>
-							<div class="rating">
+							<!-- <p class="doc-department">Dentist</p> -->
+							<!-- <div class="rating">
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star"></i>
 								<span class="d-inline-block average-rating">(35)</span>
-							</div>
+							</div> -->
+							<span>Enviar Mensaje</span>
+												<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px;" >
 							<div class="clinic-details">
-								<p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{dentist.address}} <a >Get Directions</a></p>
+								<p class="doc-location"><i class="fas fa-map-marker-alt" style="width: 20px;"> Especialista verificado</i> <i class="fas fa-check" ></i>{{dentist.address}} </p>
 							</div>
+							<img src="assets/assetsdental/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">
 							<div class="clinic-services" *ngIf="dentist.specs[0]!=undefined">
 								<span  *ngFor="let spec of dentist.specs">
 									<div  *ngFor="let sp of _uw.specs">
@@ -38,7 +41,7 @@
 					<div class="clini-infos">
 					<ul>
 						<li><i class="fas fa-map-marker-alt"></i> {{dentist.address}} </li>
-						<li><i class="far fa-money-bill-alt"></i> $100 per hour </li>
+						<li><i class="far fa-money-bill-alt"></i> {{dentist.ta}}€ /hora </li>
 						</ul>
 				</div>
 					<div class="clinic-booking">
@@ -54,7 +57,7 @@
 				<nav class="user-tabs mb-4">
 					<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
 						<li class="nav-item">
-						<a class="nav-link active" href="#doc_overview" data-toggle="tab">Datos personales y profesionales</a>
+						<a class="nav-link active" href="#doc_overview" data-toggle="tab">Datos profesionales</a>
 						</li>
 						<li class="nav-item">
 						<a class="nav-link" href="#doc_locations" data-toggle="tab">Lugares de trabajo</a>
