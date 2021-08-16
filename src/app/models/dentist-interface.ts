@@ -14,6 +14,7 @@ export interface DentistInterface{
 	dentistId?:string;
 	dentistIdPre?:number;
 	viewLevel?:number;
+	ta?:number;
 	selected?:string;
 	address?:string;
 	usertype?:string;
