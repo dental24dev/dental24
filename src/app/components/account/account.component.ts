@@ -246,7 +246,7 @@ export class AccountComponent implements OnInit {
     this.uploader.removeFileFromList(this.myFiles[0].fileName);
   }
   ngOnInit() {
-
+    this._uw.images=[];
     this.dropdownList = []; 
     this.dropdownSettings = {
       singleSelection: false,
@@ -261,7 +261,7 @@ export class AccountComponent implements OnInit {
     if(this._uw.usertype=='dentist'){
         this.dataApi.getDentistByUserd2(this._uw.userW.id).subscribe((res:any) => {    
         this.dentistSubmit=(res[0]); 
-        this._uw.images=this.dentistSubmit.images;  
+      //  this._uw.images=this.dentistSubmit.images;  
         this.getAllSpecs();        
       });
       this.ngFormUpdateDentistData = this.formBuilder.group({

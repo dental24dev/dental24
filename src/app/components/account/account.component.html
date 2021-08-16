@@ -221,7 +221,7 @@
 						</div>
 						<div class="card">
 							<div class="card-body">
-								<h4 class="card-title">Información de la Clínica</h4>
+								<h4 class="card-title">Información Profesional</h4>
 								<div class="row form-row">
 									<div class="col-md-12">
 										<div class="form-group ">
@@ -239,28 +239,7 @@
 										</ng-multiselect-dropdown>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group ">
-											<label>Nombre de la Clínica</label>
-											<input type="text" class="form-control floating" id="clinicName" formControlName="clinicName" placeholder="Nombre de la clinica" [(ngModel)]="dentistSubmit.clinicName" [ngClass]="{'is-invalid': dentistSubmitted && fval.clinicName.errors }"required>
-											<div *ngIf="dentistSubmitted && fval.clinicName.errors" class="invalid-feedback">
-												<div *ngIf="fval.clinicName.errors.required">
-												Por favor proporcione un nombre de clínica válido
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group ">
-											<label>Domicilio de la Clínica</label>
-											<input type="text" class="form-control floating" id="address" formControlName="address" placeholder="Direccion de clinica" [(ngModel)]="dentistSubmit.address" [ngClass]="{'is-invalid': dentistSubmitted && fval.address.errors }"required>
-											<div *ngIf="dentistSubmitted && fval.address.errors" class="invalid-feedback">
-												<div *ngIf="fval.address.errors.required">
-												Por favor proporcione la direccion de la clinica
-												</div>
-											</div>
-										</div>
-									</div>
+								
 								</div>
 							</div>
 						</div>
@@ -268,22 +247,7 @@
 							<div class="card-body">
 								<h4 class="card-title">Información de la Clínica</h4>
 								<div class="row form-row">
-									<div class="col-md-12">
-										<div class="form-group ">
-											<label>Especialidades
-											<span [hidden]="loaded">Loading...</span></label>
-											<ng-multiselect-dropdown
-										  [placeholder]="'Especialidades'"
-										  [settings]="dropdownSettings"
-										  [data]="dropdownList"
-										  [(ngModel)]="selectedItems"
-										  (onSelect)="onItemSelect($event)"(onDeSelect)="onItemDeSelect($event)"
-										  (onSelectAll)="onSelectAll($event)"
-										  [ngModelOptions]="{standalone: true}"
-										>
-										</ng-multiselect-dropdown>
-										</div>
-									</div>
+							
 									<div class="col-md-6">
 										<div class="form-group ">
 											<label>Nombre de la Clínica</label>

@@ -2923,7 +2923,8 @@ html.menu-opened body {
     width: 150px;
 }
 .doctor-img img {
-	border-radius: 5px;
+	width:269px;
+	border-radius: 50%;
 }
 .doc-department {
     color: #075F8D;
