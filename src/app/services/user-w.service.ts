@@ -24,6 +24,7 @@ export class UserWService {
 		comision:number=1;
 		paypal:boolean=false;
 		zelle:boolean=false;
+		sendingMessage:boolean=false;
 	categorySelected:string;	
 	dentist:any={};
 	dentistSubmitted:boolean=false;
@@ -82,6 +83,7 @@ export class UserWService {
 	totalProducts:number=0;
 	totalTixs:number;
 	type:string;
+	dentistIdMessage:string;
 	usertype:string;
 	typeGlobal:boolean=false;
 	typeSize:boolean=false;

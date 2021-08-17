@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { DentistInterface } from '../../models/dentist-interface'; 
 import { RequestInterface } from '../../models/request-interface'; 
 import { SpecInterface } from '../../models/spec-interface'; 
+
+import { ActivatedRoute, Params} from '@angular/router';
+import { isError } from "util";
 @Component({
   selector: 'app-dentists',
   templateUrl: './dentists.component.html',
@@ -18,17 +21,19 @@ export class DentistsComponent implements OnInit {
     public _uw:UserWService,
     private dataApi: DataApiService,
     public router: Router,
+    private location: Location,
     ) { }
  loadAPI = null;  
  gender = "all";  
  genders:any={};
 public dentist:DentistInterface;
-public dentists:DentistInterface;
+//public dentists:DentistInterface;
 public request:RequestInterface;
 public requests:RequestInterface;
-public dentistsf:DentistInterface;
+  public dentistsf:any[]=[]; 
+   public dentists:any[]=[];
 public spec:SpecInterface;
-public specs:SpecInterface;
+  public specs:any[]=[];
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";
   url2= "assets/assetsdental/js/slick.js";
@@ -46,7 +51,11 @@ getAllDentists(){
         }
      });  
     }
+sendMessage(id){
+  this._uw.sendingMessage=true;
 
+ this.router.navigate(['../profile/'+id]);
+}
 setSelectedAll(){
   this.dentistsf=this.dentists;
   for(let i=0; i < this._uw.totalSpecs ; i++ ){
@@ -94,7 +103,7 @@ this.filter(i,this.specs[i].filterStatus);
 
 }
 filter(index,bandera){ 
-  this.dentistsf={};
+  this.dentistsf=[];
   this.dentistsf=this.dentists;
   for(let j=0; j < this._uw.totalDentists ; j++ ){
     this.dentistsf[j].viewLevel=0;
@@ -186,6 +195,8 @@ getAllSpecialties(){
     document.getElementsByTagName("head")[0].appendChild(node);
   }
   ngOnInit() {
+    this.dentistsf=[];
+    this.specs=[];
     this.genders.male=false;
     this.genders.female=false;
          if (this._uw.loaded==true){

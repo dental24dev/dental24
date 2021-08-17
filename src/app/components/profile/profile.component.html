@@ -1,11 +1,11 @@
 <div class="content">
 	<div class="container">
 
-		<div class="card" *ngIf="dentist.images[0]!=undefined">
+		<div class="card" *ngIf="dentist!=undefined">
 			<div class="card-body">
 				<div class="doctor-widget">
 					<div class="doc-info-left">
-						<div class="doctor-img">
+						<div class="doctor-img"  *ngIf="dentist.images[0]!=undefined">
 							<img src="{{dentist.images[0]}}" class="img-fluid" alt="User Image">
 						</div>
 						<div class="doc-info-cont">
@@ -20,8 +20,8 @@
 								<i class="fas fa-star"></i>
 								<span class="d-inline-block average-rating">(35)</span>
 							</div> -->
-							<span>Enviar Mensaje</span>
-							<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px;" >
+							<span [hidden]="_uw.sendingMessage">Enviar Mensaje</span>
+							<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px;" [hidden]="_uw.sendingMessage">
 							<div class="clinic-details">
 								<p class="doc-location">
 									<i class="fas fa-map-marker-alt" > </i> {{dentist.address}}</p>
@@ -36,7 +36,7 @@
 							</div>
 							
 							
-							<div class="clinic-services" *ngIf="dentist.specs[0]!=undefined">
+							<div class="clinic-services" *ngIf="dentist!=undefined">
 								<span  *ngFor="let spec of dentist.specs">
 									<div  *ngFor="let sp of _uw.specs">
 										<div [hidden]="sp.idspec!=spec">	
@@ -62,7 +62,7 @@
 			</div>
 		</div>
 
-		<div class="card">
+		<div class="card" [hidden]="_uw.sendingMessage">
 			<div class="card-body pt-0">
 				<nav class="user-tabs mb-4">
 					<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
@@ -183,14 +183,7 @@
 					<div class="clinic-content">
 					<h4 class="clinic-name"><a >{{place.place}}</a></h4>
 				<!-- 	<p class="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p> -->
-		<!-- 			<div class="rating">
-					<i class="fas fa-star filled"></i>
-					<i class="fas fa-star filled"></i>
-					<i class="fas fa-star filled"></i>
-					<i class="fas fa-star filled"></i>
-					<i class="fas fa-star"></i>
-					<span class="d-inline-block average-rating">(4)</span>
-					</div> -->
+		
 					<div class="clinic-details mb-0">
 					<p class="clinic-direction"> <i class="fas fa-map-marker-alt"></i>{{place.location}}<br></p>
 
@@ -223,6 +216,95 @@
 
 
 		
+				</div>
+			</div>
+		</div>
+		<div class="" [hidden]="!_uw.sendingMessage">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-md-12 col-lg-6 login-right">
+					<div class="login-header">
+						<h3>Registro Requerido</h3>
+					</div>
+
+					<!-- Register Form -->
+					<form [formGroup]="ngFormSignup" (ngSubmit) ="onRegister()">
+							<div class="form-group">
+							<!-- <input type="email" class="form-control floating"> -->
+				
+
+								<textarea class="form-control floating" id="message" formControlName="message" placeholder="Su mensaje" [(ngModel)]="user.message" [ngClass]="{'is-invalid': userted && fval.message.errors }"required rows="5"></textarea>
+			
+
+
+							<div *ngIf="submitted && fval.message.errors" class="invalid-feedback">
+								<div *ngIf="fval.message.errors.required">El mensaje es requerido</div>
+							
+							</div>
+							<label class="focus-label">e-mail</label>
+						</div>
+						<div class="text-left">
+							<a class="forgot-link" >Ingresa tu nombre y tu e-mail</a>
+						</div>
+					
+						<div class="form-group form-focus">
+						<!-- 	<input type="text" class="form-control floating"> -->
+
+							<input type="text" class="form-control floating" id="name" formControlName="name" placeholder="Full Name" [(ngModel)]="user.name" [ngClass]="{'is-invalid': submitted && fval.name.errors }"required>
+
+							<div *ngIf="submitted && fval.name.errors" class="invalid-feedback">
+								<div *ngIf="fval.name.errors.required">
+								Full Name is required and must be a valid name
+								</div>
+							 
+							</div>
+							<label class="focus-label">Nombre</label>
+						</div>
+
+						<div class="form-group form-focus">
+							<!-- <input type="email" class="form-control floating"> -->
+								<input type="email" class="form-control floating" id="email" placeholder="Email" formControlName="email" [(ngModel)]="user.email" required [ngClass]="{ 'is-invalid': submitted && fval.email.errors }">
+							<div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+								<div *ngIf="fval.email.errors.required">Email is required</div>
+								<div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+							</div>
+							<label class="focus-label">e-mail</label>
+						</div>
+
+
+						<div class="form-group form-focus">
+							<!-- <input type="email" class="form-control floating"> -->
+							<input type="password" class="form-control" id="password" formControlName="password" placeholder="*******" [(ngModel)]="user.password" [ngClass]="{ 'is-invalid': submitted && fval.password.errors}" required>
+							<div *ngIf="submitted && fval.password.errors"class="invalid-feedback">
+								<div ngClass="fval.password.errors.required">
+								Password is required.
+								</div>
+							<div *ngIf="fval.password.errors.minlength">Password must be at least 6 characters</div>
+							</div>
+							<label class="focus-label">Contraseña</label>
+						</div>
+
+						<div class="form-group form-focus">
+							<input type="checkbox"> <a class="forgot-link" >He leído y acepto la Política de Privacidad</a>
+						</div>
+						<div style="text-align: center;"  [hidden]="!waiting">
+							
+						<img src="assets/assetsdental/img/tenor.gif"	 style="max-height: 32px;max-width: 32px; text-align: center;	">
+						<p></p>
+						</div>
+						<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" disabled="disabled" [hidden]="!waiting">Enviar</button>
+						<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" [hidden]="waiting" >Enviar</button>
+						<div class="login-or">
+							<span class="or-line"></span>
+							<span class="span-or">o</span>
+						</div>
+						<div class="text-left">
+							<a class="forgot-link" routerLink="/login">Ya tienes una cuenta?</a>
+						</div>
+						
+						
+					</form>
+					<!-- /Register Form -->
+
 				</div>
 			</div>
 		</div>

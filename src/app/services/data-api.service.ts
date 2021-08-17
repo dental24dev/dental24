@@ -103,6 +103,12 @@ export class DataApiService {
 		return this.http
 		.post<SaleInterface>(url_api, sale)
 		.pipe(map(data => data));
+	}
+	saveMessage(message :MessageInterface){
+		const url_api=' https://db.masterdent24.org:3032/api/messages';
+		return this.http
+		.post<MessageInterface>(url_api, message)
+		.pipe(map(data => data));
 	}	
 	savePatient(patient :PatientInterface){
 		const url_api=' https://db.masterdent24.org:3032/api/patient';

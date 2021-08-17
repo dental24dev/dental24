@@ -127,7 +127,7 @@ onRegister(){
       this.patientSubmit.status='new';
       setTimeout(() => {
       this.isError = false;
-      this.saveDentist(this.patientSubmit);
+      this.savePatient(this.patientSubmit);
     }, 5000);
    
 
@@ -137,7 +137,7 @@ onRegister(){
   }
 
 
-public saveDentist(dentist){
+public savePatient(patient){
      return this.dataApi.savePatient(this.patientSubmit)
         .subscribe(
              patientSubmit => this.router.navigate(['/successpatientregister'])

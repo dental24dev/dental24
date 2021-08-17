@@ -5,6 +5,7 @@ export interface UserInterface{
 	password?:string;
 	type?:string;
 	status?:string;
+	message?:string;
 	
 	usertype?:string;
 }

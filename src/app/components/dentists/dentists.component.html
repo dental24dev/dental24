@@ -1,41 +1,11 @@
-<!-- Breadcrumb -->
-		<!-- 	<div class="breadcrumb-bar">
-				<div class="container-fluid">
-					<div class="row align-items-center">
-						<div class="col-md-8 col-12" *ngIf="_uw.dentistsf[0]!==undefined">
-							<nav aria-label="breadcrumb" class="page-breadcrumb">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a routerLink="/dashboard">Inicio</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Buscar</li>
-								</ol>
-							</nav>
-							<h2 class="breadcrumb-title">{{_uw.totalDentists}} Dentistas encontrados</h2>
-						</div>
-						<div class="col-md-4 col-12 d-md-block d-none">
-							<div class="sort-by">
-								<span class="sort-title">Ordenar por</span>
-								<span class="sortby-fliter">
-									<select class="select">
-										<option>Ordenar por</option>
-										<option class="sorting">Ranking</option>
-										<option class="sorting">Popularidad</option>
-										<option class="sorting">Últimos</option>
-										<option class="sorting">Todos</option>
-									</select>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
-			<!-- /Breadcrumb -->
+
 
 			<!-- Page Content -->
 			<div class="content">
 				<div class="container-fluid">
 
 					<div class="row">
-						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar" *ngIf="specs[0]!==undefined">
+						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar" *ngIf="specs[0]!=='undefined'">
 
 							<!-- Search Filter -->
 							<div class="card search-filter">
@@ -117,22 +87,10 @@
 											<div class="doc-info-cont">
 												<h4 class="doc-name"><a >Dr. {{dentist.name}}</a></h4>
 												<p class="doc-speciality"> {{dentist.about}}</p>
-												<!-- <h5 class="doc-department"><img src="assets/assetsdental/img/doctors/doctor.png" class="img-fluid" alt="Speciality">Dentist</h5> -->
-										<!-- 		<div class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star"></i>
-													<span class="d-inline-block average-rating">(17)</span>
-												</div> -->
-
+										
 												<span>Enviar Mensaje</span>
-												<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px;" >
-											<!-- 	<div class="clinic-details">
-													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{dentist.address}}</p>
-												
-												</div> -->
+												<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px; cursor: pointer;" (click)="sendMessage(dentist.id)">
+											
 										<div class="clinic-details" *ngIf="dentist.specs[0]!==undefined" >
 													<p class="doc-speciality" style="color: green;">
 														<i class="fas fa-check" ></i>
@@ -155,8 +113,7 @@
 										<div class="doc-info-right">
 											<div class="clini-infos">
 												<ul>
-												<!-- 	<li><i class="far fa-thumbs-up"></i> 98%</li>
-													<li><i class="far fa-comment"></i> 17 Respuestas</li> -->
+											
 													<li><i class="fas fa-map-marker-alt"></i>{{dentist.address}}</li>
 													<li><i class="far fa-money-bill-alt"></i>{{dentist.ta}}€ / hora 
 														 </li>
@@ -173,9 +130,6 @@
 							<!-- /Doctor Widget -->
 
 
-							<!-- <div class="load-more text-center">
-								<a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
-							</div> -->
 						</div>
 					</div>
 
