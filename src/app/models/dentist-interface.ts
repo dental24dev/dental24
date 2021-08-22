@@ -22,6 +22,7 @@ export interface DentistInterface{
 	userd?:string;
 	about?:string;
 	collegeN?:string;
+	gender?:string;
 	specs?:Array<string>;
 	images?:Array<string>;
 	aca?:Array<any>;

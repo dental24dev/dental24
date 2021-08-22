@@ -47,6 +47,7 @@ dropdownList = [];
   ngFormNewDentistData: FormGroup;
   dentistSubmitted = false;
   loaded = false;
+  gender = "";
   submitted = false;
   public isError = false;
   public images:any[]=[];
@@ -62,7 +63,9 @@ dropdownList = [];
     username:"",
     clinicName:"",
     images:[],
+    ta:0,
     name:"",
+    gender:"",
     password:"",
     phone:"",
     status:"",
@@ -78,6 +81,8 @@ dropdownList = [];
     address:"",
     collegeN:"",
     clinicName:"",
+    ta:0,
+    gender:"",
     images:[],
     name:"",
     password:"",
@@ -91,6 +96,9 @@ dropdownList = [];
     usertype:""
   };
  
+   setGender(gender):void{
+        this.gender=gender;     
+    }
 
   public loadScript() {
     let node = document.createElement("script");
@@ -179,6 +187,7 @@ dropdownList = [];
       this.dentistSubmit.surname=this.dentist.surname;
       this.dentistSubmit.usertype='dentist';
       this.dentistSubmit.status='new';
+      this.dentistSubmit.gender=this.gender;
       this.dentistSubmit.images[0]="https://db.masterdent24.org/dental24ImgApi/server/local-storage/tixsImages/profile.png";
       this._uw.newdentistrequest.email="frutmeteam@protonmail.com";
       this._uw.newdentistrequest.subject="Nueva solicitud de registro para dentista";
@@ -216,6 +225,7 @@ dropdownList = [];
       clinicName:['',[Validators.required]], 
       address:['',[Validators.required]], 
       phone:['',[Validators.required]], 
+      ta:['',[Validators.required]], 
       surname:['',[Validators.required]],
       collegeN:['',[Validators.required]]
          });

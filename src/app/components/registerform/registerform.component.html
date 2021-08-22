@@ -5,7 +5,7 @@
 				<div class="col-md-12 col-lg-12 col-xl-12">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Información Básica</h4>
+							<h4 class="card-title">Información Personal</h4>
 							<div class="row form-row">						
 								<div class="col-md-6">
 									<div class="form-group ">
@@ -29,6 +29,7 @@
 										</div>
 									</div>
 								</div>
+								
 								<div class="col-md-6">
 									<div class="form-group ">
 										<label>Apellidos</label>
@@ -50,7 +51,23 @@
 											</div>										 
 										</div>
 									</div>									
-								</div>							
+								</div>	
+								<div class="col-md-6">
+									<div class="form-group mb-0">
+										<label>Genero</label>
+										<div id="pricing_select">
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="genderF" name="rating_option" class="custom-control-input" value="female" (click)="setGender('female')">
+												<label class="custom-control-label" for="genderF">Femenino</label>
+											</div>
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="genderM" name="rating_option" value="male" class="custom-control-input" (click)="setGender('male')">
+												<label class="custom-control-label" for="genderM">Masculino</label>
+											</div>
+										</div>
+
+									</div>
+								</div>						
 							</div>
 						</div>
 					</div>
@@ -69,10 +86,21 @@
 										</div>
 									</div>
 								</div>
+								<div class="col-md-3">
+									<div class="form-group ">
+										<label>Honorarios (€ por hora)</label>
+										<input type="number" class="form-control floating" id="ta" formControlName="ta" placeholder="Honorarios / h " [(ngModel)]="dentistSubmit.ta" [ngClass]="{'is-invalid': dentistSubmitted && fval.ta.errors }"required>
+										<div *ngIf="dentistSubmitted && fval.ta.errors" class="invalid-feedback">
+											<div *ngIf="fval.ta.errors.required">
+											Por favor proporcione el monto de sus honorarios
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="col-md-12">
 									<div class="form-group " *ngIf="_uw.totalSpecs>=0">
 									<label>Especialidades
-<span [hidden]="loaded">Loading...</span>
+										<span [hidden]="loaded">Loading...</span>
 									</label> 
 
 										<ng-multiselect-dropdown
