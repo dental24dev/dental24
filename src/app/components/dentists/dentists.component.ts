@@ -56,6 +56,7 @@ sendMessage(id){
 
  this.router.navigate(['../profile/'+id]);
 }
+newAppointment(){}
 setSelectedAll(){
   this.dentistsf=this.dentists;
   for(let i=0; i < this._uw.totalSpecs ; i++ ){
