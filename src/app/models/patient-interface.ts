@@ -11,7 +11,12 @@ export interface PatientInterface{
 	username?:string;
 	userd?:string;
 	password?:string;
+	bloodType?:string;
 	images?:Array<string>;
+	city?:string;
+	province?:string;
+	country?:string;
+	postalCode?:string;
 }
 
 

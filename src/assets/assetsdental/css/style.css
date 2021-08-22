@@ -6591,7 +6591,8 @@ html.menu-opened body {
 		content: "\f078";
 	}
 	.main-nav .has-submenu.active > a {
-		color: #075F8D;
+		color: #03a9f4;
+		/*color: #075F8D;*/
 	}
 	.main-nav .has-submenu.active .submenu li.active > a {
 		color: #075F8D;

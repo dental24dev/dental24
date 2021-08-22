@@ -82,6 +82,11 @@ export class AccountComponent implements OnInit {
     name:"",
     username:"",
     address:"",
+    city:"",
+    country:"",
+    bloodType:"",
+    province:"",
+    postalCode:"",
     images:[],
     surname:"",
     phone:""
@@ -354,6 +359,11 @@ addAwaF(){
         name: ['', [Validators.required]] ,
         address:['',[Validators.required]], 
         phone:['',[Validators.required]], 
+        city:['',[Validators.required]], 
+        province:['',[]], 
+        country:['',[Validators.required]], 
+        bloodType:['',[Validators.required]], 
+        postalCode:['',[]], 
         surname:['',[Validators.required]]
         });
       } 
