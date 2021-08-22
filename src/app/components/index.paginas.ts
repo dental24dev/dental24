@@ -14,5 +14,6 @@ export { SuccessregisterComponent } from "./successregister/successregister.comp
 export { SuccesspatientregisterComponent } from "./successpatientregister/successpatientregister.component";
 export { RegisterdoctorComponent } from "./registerdoctor/registerdoctor.component";
 export { MessageComponent } from "./message/message.component";
+export { NewappointmentComponent } from "./newappointment/newappointment.component";
 
 // export { FruitbannerboxComponent } from "./fruitbannerbox/fruitbannerbox.component";

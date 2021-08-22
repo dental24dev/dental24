@@ -195,6 +195,7 @@ getAllSpecialties(){
     document.getElementsByTagName("head")[0].appendChild(node);
   }
   ngOnInit() {
+    this._uw.sendingMessage=false;
     this.dentistsf=[];
     this.specs=[];
     this.genders.male=false;

@@ -15,7 +15,7 @@ export class UserWService {
 	bookToCancel:any={};
 	botas:boolean=false;
 	buttonDisabled:boolean=false;
-	
+	appointment:any={};
 	car:any[]=[];
 	dentistsf:any[]=[];
 	card:any={};

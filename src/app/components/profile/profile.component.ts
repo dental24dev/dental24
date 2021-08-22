@@ -177,6 +177,10 @@ public dentists:DentistInterface;
         this.waiting=false;
   }
 
+  public sendingMessage(){
+    this._uw.sendingMessage=true;
+  }
+
 
   ngOnInit() {
     this.dentist={};

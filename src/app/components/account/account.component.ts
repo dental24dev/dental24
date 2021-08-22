@@ -34,10 +34,25 @@ export class AccountComponent implements OnInit {
     ) { }
   loadAPI = null;  
   loaded = false;
+  addEdu = false;
+  addLab = false;
+  addAwa = false;
   dentistSubmitted = false;
   uploading = false;
   buttonDisabled = false;
   patientSubmitted = false;
+  aca:any = {};
+  newAcaTittle="";
+  newAcaInst ="";
+  newAcaDate="";
+  newLabPlace="";
+  newLabYears="";
+  newLabTittle="";
+  newAwaDate="";
+  newAwaDescription="";
+  newAwaAward="";
+
+
   selectedItems = [];
   dropdownList = [];
   dropdownSettings = {};
@@ -58,7 +73,10 @@ export class AccountComponent implements OnInit {
     userd:"",
     phone:"",
     clinicName:"",
-    specs:[]
+    specs:[],
+    aca:[],
+    lab:[],
+    awa:[]
   };   
   public patientSubmit : PatientInterface ={
     name:"",
@@ -124,6 +142,50 @@ export class AccountComponent implements OnInit {
     document.getElementsByTagName("head")[0].appendChild(node);
   }
   
+addAca(){
+  let Tittle = this.newAcaTittle;
+  let Inst = this.newAcaInst;
+  let Datei =this.newAcaDate;
+  this.dentistSubmit.aca.push({tittle:Tittle,inst:Inst,date:Datei});
+  this.addEdu=false;
+  this.newAcaTittle="";
+  this.newAcaInst ="";
+  this.newAcaDate="";
+
+}
+addExp(){
+  let Place = this.newLabPlace;
+  let Years = this.newLabYears;
+  let Tittle =this.newLabTittle;
+  this.dentistSubmit.lab.push({place:Place,years:Years,tittle:Tittle});
+  this.addLab=false;
+  this.newLabPlace="";
+  this.newLabYears ="";
+  this.newLabTittle="";
+}
+addAward(){
+  let Description = this.newAwaDescription;
+  let Award = this.newAwaAward;
+  let Datei =this.newAwaDate;
+  this.dentistSubmit.awa.push({description:Description,award:Award,date:Datei});
+  this.addAwa=false;
+  this.newAwaDate="";
+  this.newAwaAward ="";
+  this.newAwaDescription="";
+}
+  
+saveAca(){
+}
+
+addEduF(){
+  this.addEdu=true;
+} 
+addLabF(){
+  this.addLab=true;
+}
+addAwaF(){
+  this.addAwa=true;
+}
   public getAllSpecs(){
     this.dataApi.getAllSpecialties().subscribe((res:any) => {
       if (res[0] === undefined){
@@ -271,6 +333,15 @@ export class AccountComponent implements OnInit {
           address:['',[Validators.required]], 
           phone:['',[Validators.required]], 
           surname:['',[Validators.required]], 
+          newAcaInst:['',[]], 
+          newAcaTittle:['',[]], 
+          newAcaDate:['',[]], 
+          newLabPlace:['',[]], 
+          newLabYears:['',[]], 
+          newLabTittle:['',[]], 
+          newAwaDate:['',[]], 
+          newAwaDescription:['',[]], 
+          newAwaAward:['',[]], 
           about:['',[Validators.required]]
       });
     }

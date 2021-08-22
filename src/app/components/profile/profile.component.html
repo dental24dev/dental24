@@ -21,7 +21,7 @@
 								<span class="d-inline-block average-rating">(35)</span>
 							</div> -->
 							<span [hidden]="_uw.sendingMessage">Enviar Mensaje</span>
-							<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px;" [hidden]="_uw.sendingMessage">
+							<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px; cursor: pointer;" [hidden]="_uw.sendingMessage" (click)=sendingMessage()>
 							<div class="clinic-details">
 								<p class="doc-location">
 									<i class="fas fa-map-marker-alt" > </i> {{dentist.address}}</p>
@@ -55,7 +55,7 @@
 						</ul>
 				</div>
 					<div class="clinic-booking">
-						<a class="apt-btn" >Agendar cita</a>
+						<a class="apt-btn" routerLink="../newappointment">Agendar cita</a>
 					</div>
 					</div>
 				</div>
@@ -228,22 +228,9 @@
 
 					<!-- Register Form -->
 					<form [formGroup]="ngFormSignup" (ngSubmit) ="onRegister()">
-							<div class="form-group">
-							<!-- <input type="email" class="form-control floating"> -->
-				
-
-								<textarea class="form-control floating" id="message" formControlName="message" placeholder="Su mensaje" [(ngModel)]="user.message" [ngClass]="{'is-invalid': submitted && fval.message.errors }"required rows="5"></textarea>
-			
-
-
-							<div *ngIf="submitted && fval.message.errors" class="invalid-feedback">
-								<div *ngIf="fval.message.errors.required">El mensaje es requerido</div>
 							
-							</div>
-							<label class="focus-label">e-mail</label>
-						</div>
 						<div class="text-left">
-							<a class="forgot-link" >Ingresa tu nombre y tu e-mail</a>
+							<a class="forgot-link" >Ingresa tu nombre , tu e-mail, tu mensaje y define una contraseña para tu cuenta</a>
 						</div>
 					
 						<div class="form-group form-focus">
@@ -269,7 +256,20 @@
 							</div>
 							<label class="focus-label">e-mail</label>
 						</div>
+						<div class="form-group">
+							<!-- <input type="email" class="form-control floating"> -->
+				
 
+								<textarea class="form-control floating" id="message" formControlName="message" placeholder="Tu mensaje" [(ngModel)]="user.message" [ngClass]="{'is-invalid': submitted && fval.message.errors }"required rows="5"></textarea>
+			
+
+
+							<div *ngIf="submitted && fval.message.errors" class="invalid-feedback">
+								<div *ngIf="fval.message.errors.required">El mensaje es requerido</div>
+							
+							</div>
+						
+						</div>
 
 						<div class="form-group form-focus">
 							<!-- <input type="email" class="form-control floating"> -->

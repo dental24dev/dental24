@@ -24,10 +24,10 @@ export interface DentistInterface{
 	collegeN?:string;
 	specs?:Array<string>;
 	images?:Array<string>;
-	aca?:Array<string>;
-	awa?:Array<string>;
-	lab?:Array<string>;
-	workPlaces?:Array<string>;
+	aca?:Array<any>;
+	awa?:Array<any>;
+	lab?:Array<any>;
+	workPlaces?:Array<any>;
 }
 
 

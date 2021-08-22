@@ -60,7 +60,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MessageComponent } from './components/message/message.component';
+import { NewappointmentComponent } from './components/newappointment/newappointment.component';
 
+import { XunkCalendarModule } from '../xunk-calendar/xunk-calendar.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +83,7 @@ import { MessageComponent } from './components/message/message.component';
     SuccesspatientregisterComponent,
     ProfileComponent,
     MessageComponent,
+    NewappointmentComponent,
     // FruitbannerboxComponent,
   ],
   imports: [
@@ -101,6 +104,7 @@ import { MessageComponent } from './components/message/message.component';
     ArchwizardModule,
     CarouselModule,
     FilePickerModule,
+    XunkCalendarModule,
     MatRadioModule,
   ],
   exports: [

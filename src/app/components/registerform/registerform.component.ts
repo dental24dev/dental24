@@ -68,6 +68,10 @@ dropdownList = [];
     status:"",
     specialty:"",
     specs:[],
+    aca:[],
+    lab:[],
+    awa:[],
+    workPlaces:[],
     surname:"",
     userd:""
   }; public dentist : DentistInterface ={

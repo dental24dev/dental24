@@ -127,7 +127,7 @@
 				<form  [formGroup]="ngFormUpdateDentistData"  >		
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Información Profesional</h4>
+							<h4 class="card-title">Información Personal</h4>
 								<div class="row form-row">
 									<div class="col-md-12">
 										<div class="form-group">
@@ -273,7 +273,163 @@
 								</div>
 							</div>
 						</div>
+
+
+						<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Educación</h4>
+									<div class="experience-box">
+										<ul class="experience-list">
+											<li *ngFor="let aca of dentistSubmit.aca">
+												<div class="experience-user">
+													<div class="before-circle"></div>
+												</div>
+												<div class="experience-content">
+													<div class="timeline-content">
+													<a class="name">{{aca.inst}}</a>
+													<div>{{aca.tittle}}</div>
+													<span class="time">{{aca.date}}</span>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+
+									<div class="education-info" [hidden]="!addEdu">
+										<div class="row form-row education-cont">
+											<div class="col-12 col-md-10 col-lg-11">
+												<div class="row form-row">
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Titulación</label>
+															<input type="text" class="form-control floating" id="newAcaTittle" formControlName="newAcaTittle" placeholder="Titulo" [(ngModel)]="newAcaTittle">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Institución</label>
+															<input type="text" class="form-control floating" id="newAcaInst" formControlName="newAcaInst" placeholder="Institucion"[(ngModel)]="newAcaInst">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Año de finalización</label>
+															<input type="text" class="form-control floating" id="newAcaDate" formControlName="newAcaDate" placeholder="Año de finalización" [(ngModel)]="newAcaDate">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more" >
+										<a href="javascript:void(0);" class="add-education" [hidden]="!addEdu"  (click)="addAca()"><i class="fa fa-check"></i> Guardar</a>		
+										<a (click)="addEduF()" class="add-education" style="cursor: pointer;" [hidden]="addEdu"  ><i class="fa fa-plus-circle"></i> Añadir más</a>
+									</div>
+								</div>
+							</div>
 						<!-- /Clinic Info -->
+							<!-- Experience -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Experiencia</h4>
+									<div class="experience-box">
+										<ul class="experience-list">
+											<li *ngFor="let lab of dentistSubmit.lab">
+												<div class="experience-user">
+												<div class="before-circle"></div>
+												</div>
+												<div class="experience-content">
+												<div class="timeline-content">
+												<a class="name">{{lab.tittle}}</a>
+												<span class="time">{{lab.place}} {{lab.years}}</span>
+												</div>
+												</div>
+											</li>									
+										</ul>
+									</div>
+									<div class="experience-info" [hidden]="!addLab">
+										<div class="row form-row experience-cont">
+											<div class="col-12 col-md-10 col-lg-11">
+												<div class="row form-row">
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Nombre de la Clínica</label>
+															<input type="text" class="form-control floating" id="newLabPlace" formControlName="newLabPlace" placeholder="Lugar" [(ngModel)]="newLabPlace">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Periodo </label>
+															<input type="text" class="form-control floating" id="newLabYears" formControlName="newLabYears" placeholder="Periodo" [(ngModel)]="newLabYears">
+														</div>
+													</div>
+													
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Cargo</label>
+															<input type="text" class="form-control floating" id="newLabTittle" formControlName="newLabTittle" placeholder="Cargo" [(ngModel)]="newLabTittle">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more" >
+										<a href="javascript:void(0);" class="add-education" [hidden]="!addLab"  (click)="addExp()"><i class="fa fa-check"></i> Guardar</a>		
+										<a (click)="addLabF()" class="add-education" style="cursor: pointer;" [hidden]="addLab"  ><i class="fa fa-plus-circle"></i> Añadir más</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Experience -->
+
+							<!-- Awards -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Reconocimientos</h4>
+									<div class="experience-box">
+										<ul class="experience-list">
+											<li *ngFor="let awa of dentistSubmit.awa">
+												<div class="experience-user">
+												<div class="before-circle"></div>
+												</div>
+												<div class="experience-content">
+												<div class="timeline-content">
+												<p class="exp-year">{{awa.date}}</p>
+												<h4 class="exp-title">{{awa.award}}</h4>
+												<p>{{awa.description}}</p>
+												</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="awards-info" [hidden]="!addAwa">
+										<div class="row form-row awards-cont">
+											<div class="col-12 col-md-6 col-lg-4">
+												<div class="form-group">
+													<label>Reconocimiento</label>
+													<input type="text" class="form-control floating" id="newAwaAward" formControlName="newAwaAward" placeholder="Premio" [(ngModel)]="newAwaAward">
+												</div>
+											</div>
+											<div class="col-12 col-md-6 col-lg-4">
+												<div class="form-group">
+													<label>Descripcion</label>
+													<input type="text" class="form-control floating" id="newAwaDescription" formControlName="newAwaDescription" placeholder="Descripcion" [(ngModel)]="newAwaDescription">
+												</div>
+											</div>
+											<div class="col-12 col-md-6 col-lg-4">
+												<div class="form-group">
+													<label>Año</label>
+													<input type="text" class="form-control floating" id="newAwaDate" formControlName="newAwaDate" placeholder="Año" [(ngModel)]="newAwaDate">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more" >
+										<a href="javascript:void(0);" class="add-education" [hidden]="!addAwa"  (click)="addAward()"><i class="fa fa-check"></i> Guardar</a>		
+										<a (click)="addAwaF()" class="add-education" style="cursor: pointer;" [hidden]="addAwa"  ><i class="fa fa-plus-circle"></i> Añadir más</a>
+									</div>
+								</div>
+							</div>
 
 
 						<div class="submit-section submit-btn-bottom">

@@ -27,13 +27,12 @@
                     <a routerLink="dentists"><i class="fas fa-search"></i> Nuestros dentistas </a>
                   
                 </li>
-            </ul>
-            <ul class="main-nav blue-font" [hidden]="!router.url.includes('/message')">
-                <li class="has-submenu active">
+                <li class="has-submenu active" [hidden]="!router.url.includes('/message')">
                     <a routerLink="dashboard"> My MasterDent</a>
                   
                 </li>
             </ul>
+          
             <ul class="main-nav blue-font" [hidden]="!router.url.includes('/dashboarding')">
                 <li class="has-submenu active">
                     <a href="index-8.html">Home <i class="fas fa-chevron-down"></i></a>
