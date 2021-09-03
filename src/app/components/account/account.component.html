@@ -101,7 +101,7 @@
 										<label>Tipo de sangre</label>
 									<div class="form-group ">
 										<select    id="bloodType" formControlName="bloodType" [(ngModel)]="patientSubmit.bloodType"
-										[ngClass]="{ 'is-invalid': submitted && fval.bloodType.errors }"
+										[ngClass]="{ 'is-invalid': patientSubmitted && fval.bloodType.errors }"
 										required  class="form-control select" >
 											<option>A-</option>
 											<option>A+</option>
