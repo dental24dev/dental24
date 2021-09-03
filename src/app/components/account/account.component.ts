@@ -38,6 +38,7 @@ export class AccountComponent implements OnInit {
   addLab = false;
   addAwa = false;
   dentistSubmitted = false;
+  submitted = false;
   uploading = false;
   buttonDisabled = false;
   patientSubmitted = false;
