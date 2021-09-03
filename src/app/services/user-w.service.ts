@@ -27,6 +27,7 @@ export class UserWService {
 		sendingMessage:boolean=false;
 	categorySelected:string;	
 	dentist:any={};
+	dentistToApp:any={};
 	dentistSubmitted:boolean=false;
 	editingTrek:boolean=false;
 	errorFormAffiliate:boolean;

@@ -78,6 +78,7 @@ export class DashboardComponent implements OnInit {
     document.getElementsByTagName("head")[0].appendChild(node);
   }
   ngOnInit() {
+    
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();

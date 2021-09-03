@@ -5,15 +5,46 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-4 col-lg-4">
+						<div class="doc-info-left"  >
+							<div class="doctor-img">
+								<a >
+									<img src="{{_uw.dentistToApp.images[0]}}" class="img-fluid" alt="User Image">
+								</a>
+							</div>
+							<div class="doc-info-cont">
+								<h4 class="doc-name"><a >Dr. {{_uw.dentistToApp.name}}</a></h4>
+								<p class="doc-speciality"> {{_uw.dentistToApp.about}}</p>
 						
+								<!-- <span>Enviar Mensaje</span>
+								<img src="assets/assetsdental/img/sendMessage.jpg" style="width: 42px; cursor: pointer;" (click)="sendMessage(_uw.dentistToApp.id)"> -->
+							
+								<div class="clinic-details" *ngIf="_uw.dentistToApp.specs[0]!==undefined" >
+									<p class="doc-speciality" style="color: green;">
+										<i class="fas fa-check" ></i>
+									Especialista verificado</p>
+								</div>
+								<div class="clinic-services" *ngIf="_uw.dentistToApp.specs[0]!==undefined">
+
+									<span  *ngFor="let spec of _uw.dentistToApp.specs">
+										<div  *ngFor="let sp of specs">
+											<div [hidden]="sp.idspec!=spec">	
+											{{sp.name}}
+											</div>	
+										</div>	
+
+									</span>
+									
+								</div>
+							</div>
+						</div>
 
 					</div>	
-					<div class="col-md-4 col-lg-4">
+					<div class="col-md-4 col-lg-4" style="padding-bottom: 20px;">
 						<xunk-calendar [selectedDate]="selDate"></xunk-calendar>
 					</div>	
 					<div class="col-md-4 col-lg-4">
 						
-						  <div class="">
+						  <div class="" style="padding-left: 5%;">
 
                                <h3>Hora <span style="font-weight: 100; margin-left: 20px;"> </span></h3>
                             <div class="dropdown" >
@@ -26,6 +57,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="clinic-booking" [hidden]="!_uw.isLogged">
+						<a class="apt-btn" style="cursor: pointer;">Agendar</a>
+					</div>
 					</div>
 				</div>			
 			</div>

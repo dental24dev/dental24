@@ -4,6 +4,7 @@ import { DataApiService } from '../../services/data-api.service';
 import { XunkCalendarModule } from '../../../xunk-calendar/xunk-calendar.module';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { SpecInterface } from '../../models/spec-interface'; 
 @Component({
   selector: 'app-newappointment',
   templateUrl: './newappointment.component.html',
@@ -19,7 +20,7 @@ export class NewappointmentComponent implements  AfterViewInit {
 	succeeded:boolean=false;
 	hourSeted:boolean=false;
 	msg:string="";
-
+  public specs:any[]=[];
   public selDate = { date:1, month:1, year:1 };
   constructor(
 
@@ -44,12 +45,32 @@ export class NewappointmentComponent implements  AfterViewInit {
     '7:00 PM'
     ];
 
+getAllSpecialties(){
+        this.dataApi.getAllSpecialties().subscribe((res:any) => {
+      if (res[0] === undefined){
+       }else{
+        this.specs=res;  
+        this._uw.specs=res;
+           this._uw.totalSpecs = res.length;          
+        }
+     });  
+    }
+
+ 
   ngOnInit() {
   	this.selDate = XunkCalendarModule.getToday();  
-  }
+    if(this._uw.isLogged!=true){
+           this.router.navigate(['/login']);
+    }else{
+
+      this.getAllSpecialties();
+      }
+    }
+  
     ngAfterViewInit() {
-  	  
-  }
+  	   
+    }
+  
  onChange({error}){
 if (error){
 	this.ngZone.run(()=>this.cardError=error.message);

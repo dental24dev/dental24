@@ -114,6 +114,10 @@ public dentists:DentistInterface;
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
+  goNewAppointment(dentist){
+    this._uw.dentistToApp=this.dentist;
+    this.router.navigate(['/newappointment'])
+  }
   onRegister(){
     if (this.ngFormSignup.valid){
       this.waiting=true;

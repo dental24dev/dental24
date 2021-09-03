@@ -54,8 +54,8 @@
 						<li><i class="far fa-money-bill-alt"></i> {{dentist.ta}}€ /hora </li>
 						</ul>
 				</div>
-					<div class="clinic-booking">
-						<a class="apt-btn" routerLink="../newappointment">Agendar cita</a>
+					<div class="clinic-booking" [hidden]="!_uw.isLogged">
+						<a class="apt-btn" (click)="goNewAppointment(dentist)" style="cursor: pointer;">Agendar cita</a>
 					</div>
 					</div>
 				</div>
