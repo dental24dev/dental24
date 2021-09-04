@@ -14,6 +14,7 @@ import {
 	DashboardComponent,
 	SuccessregisterComponent,
 	SuccesspatientregisterComponent,
+	SuccessappointmentComponent,
 	RegisterdoctorComponent,
 	NewappointmentComponent,
 	AppointmentsComponent,
@@ -41,6 +42,7 @@ const app_routes: Routes = [
 	{path:'newappointment',component:NewappointmentComponent},
 	{path:'appointments',component:AppointmentsComponent},
 	{path:'successregister',component:SuccessregisterComponent},
+	{path:'successappointment',component:SuccessappointmentComponent},
 	{path:'successpatientregister',component:SuccesspatientregisterComponent},
 	{path:'registerdoctor',component:RegisterdoctorComponent},
 	{path:'**',pathMatch:'full',redirectTo:''}

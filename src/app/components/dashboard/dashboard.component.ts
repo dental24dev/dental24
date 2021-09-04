@@ -103,7 +103,6 @@ getDentistAppointments(id:string){
     }
 
   ngOnInit() {
-    
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
         this.loadScript();
@@ -115,7 +114,7 @@ getDentistAppointments(id:string){
         // this.loadScript3();
         });
       }
-      if(this._uw.usertype=="patient"){
+    if(this._uw.usertype=="patient"){
       this.getPatientAppointments(this._uw.userActiveId);
     }
     if(this._uw.usertype=="dentist"){

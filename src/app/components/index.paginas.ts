@@ -11,6 +11,7 @@ export { PatientsComponent } from "./patients/patients.component";
 export { ProfileComponent } from "./profile/profile.component";
 export { DashboardComponent } from "./dashboard/dashboard.component";
 export { SuccessregisterComponent } from "./successregister/successregister.component";
+export { SuccessappointmentComponent } from "./successappointment/successappointment.component";
 export { SuccesspatientregisterComponent } from "./successpatientregister/successpatientregister.component";
 export { RegisterdoctorComponent } from "./registerdoctor/registerdoctor.component";
 export { MessageComponent } from "./message/message.component";

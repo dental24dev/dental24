@@ -18,6 +18,7 @@ export class NewappointmentComponent implements  AfterViewInit {
 	cardError:string;
 	ccInfo:boolean=false;
 	sent:boolean=false;
+  sending:boolean=false;
 	succeeded:boolean=false;
 	hourSeted:boolean=false;
 	msg:string="";
@@ -91,6 +92,7 @@ if (error){
   }
 async onClick(){
     let response:any;
+    this.sending=true;
     this._uw.appointment.date=this.selDate.date+" /"+(this.selDate.month+1)+" /"+this.selDate.year;
     this._uw.appointment.iddentist= this._uw.appointmentDentist;
     this._uw.appointment.idpatient= this._uw.appointmentPatient;
@@ -100,7 +102,10 @@ async onClick(){
 
     this._uw.appointment.type="virtual";
     this._uw.appointment.amount=this._uw.dentistToApp.ta;
-    this.dataApi.saveAppointment(this._uw.appointment).subscribe();
+    this.dataApi.saveAppointment(this._uw.appointment).subscribe(
+
+             appointment => this.router.navigate(['/successappointment'])
+      );
 //    const {token, error} = await stripe.createToken(this.card);
   }
 setHour(parameter){

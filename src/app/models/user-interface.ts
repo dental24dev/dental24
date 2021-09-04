@@ -6,6 +6,5 @@ export interface UserInterface{
 	type?:string;
 	status?:string;
 	message?:string;
-	
 	usertype?:string;
 }
