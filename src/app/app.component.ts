@@ -6,7 +6,6 @@ import { ProductInfoService } from "./services/product-info.service";
 import { UserWService } from "./services/user-w.service";
 import { SwUpdate } from '@angular/service-worker';
 
-//import $ from "jquery";
 declare var $: any;
 @Component({
   selector: 'app-root',
@@ -24,30 +23,18 @@ export class AppComponent implements OnInit {
 
  }
  loadAPI = null;  
-   // url = "assets/assetsfruit/js/scripts.js";
     ngOnInit() {
-
       if (this.swUpdate.isEnabled) {
             this.swUpdate.available.subscribe(() => {
-                if(confirm("Frutme tiene nuevas mejoras. desea cargar esta nueva versión?")) {
+                if(confirm("Masterdent24 tiene nuevas mejoras. desea cargar esta nueva versión?")) {
                     window.location.reload();
                 }
             });
         }    
-
-
   	 if (this._uw.loaded==true){
           this.loadAPI = new Promise(resolve => {
           });
         }
         this._uw.loaded=true;
-  }
- // public loadScript() {
- //      let node = document.createElement("script");
- //      node.src = this.url;
- //      node.type = "text/javascript";
- //      node.async = true;
- //      node.charset = "utf-8";
- //      document.getElementsByTagName("head")[0].appendChild(node);
- //    }
-}
+    }
+ }

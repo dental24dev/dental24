@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       private authService: AuthService, 
       public router: Router,
     ) { }
-
+ message = "";  
   public user : UserInterface ={
     name:"",
     email:"",
@@ -134,10 +134,7 @@ export class LoginComponent implements OnInit {
          error => {
                 if(error.status==401){
                 this.isError = true;
-                console.log("Datos erroneos"+error.status);
-        
-             this._uw.loginError=true;
-             //   console.log("datos erroneos");
+                this.message="Usuario o contraseña inválidos";
               }//
          this.onIsError();
          }

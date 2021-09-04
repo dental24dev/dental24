@@ -5294,11 +5294,11 @@ html.menu-opened body {
 -----------------------*/
 
 .modal-open .main-wrapper {
-    -webkit-filter: blur(1px);
+/*    -webkit-filter: blur(1px);
     -moz-filter: blur(1px);
     -o-filter: blur(1px);
     -ms-filter: blur(1px);
-    filter: blur(1px);
+    filter: blur(1px);*/
 }
 .call-main-row {
 	bottom: 0;
@@ -5673,8 +5673,8 @@ html.menu-opened body {
 .call-box .call-wrapper .call-items .call-item.call-start {
 	padding: 20px;
 	margin: 30px 20px 0;
-	background: #55ce63;
-	border: 1px solid #55ce63;
+	background: #075f8d;
+	border: 1px solid #075f8d;
 	color: #fff;
 	line-height: 0;
 	border-radius: 100%;
@@ -5740,6 +5740,7 @@ html.menu-opened body {
 .call-modal .modal-content {
     border: 0;
     border-radius: 10px;
+    z-index: 999999 !important;
 }
 .call-box .call-wrapper .call-user h4 {
 	font-size: 24px;

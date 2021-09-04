@@ -39,9 +39,10 @@ public isError = false;
 
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";
-  url2= "assets/assetsdental/js/slick.js";
-  url3 = "assets/assetsdental/plugins/swiper/js/swiper.min.js";
-  url4 = "assets/assetsdental/js/script.js";
+  url2 = "assets/assetsdental/js/bootstrap.min.js";
+  url3= "assets/assetsdental/js/slick.js";
+  url4 = "assets/assetsdental/plugins/swiper/js/swiper.min.js";
+  url5 = "assets/assetsdental/js/script.js";
 
  public loadScript() {
     let node = document.createElement("script");
@@ -84,6 +85,14 @@ public isError = false;
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
+   public loadScript5() {
+    let node = document.createElement("script");
+    node.src = this.url5;
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
+  }
 
   ngOnInit() {
      if (this._uw.loaded==true){
@@ -93,7 +102,7 @@ public isError = false;
         this.loadScript2();
         this.loadScript3();
         this.loadScript4();
-        // this.loadScript3();
+        this.loadScript5();
         });
       }
     this._uw.loaded=true;
