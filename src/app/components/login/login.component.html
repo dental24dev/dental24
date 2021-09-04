@@ -27,15 +27,24 @@
 											</div>
 
 										</div>
+											
+										
 									<label class="focus-label">Contraseña</label>
 								</div>
 								<!-- <div class="form-group form-focus">
 									<input type="checkbox"> <a class="forgot-link" href="privacy-policy.php">He leído y acepto la Política de Privacidad</a>
 								</div> -->
 								<div class="text-right">
+								<div [hidden]="!isError">
+									<div style="color: red;text-align: left;">
+									La autenticación ha fallado, por favor vuelva  intentarlo
+									</div>
+
+								</div>
 									<a class="forgot-link" href="">Has olvidado tu contraseña ?</a>
 								</div>
 								<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Iniciar Session</button>
+								
 								<div class="login-or">
 									<span class="or-line"></span>
 									<span class="span-or">o</span>

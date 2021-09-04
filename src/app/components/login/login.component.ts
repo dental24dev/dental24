@@ -86,9 +86,11 @@ export class LoginComponent implements OnInit {
   return this.ngFormLogin.controls;
   }
     onIsError(): void {
+       
     this.isError = true;
     setTimeout(() => {
-      this.isError = false;
+    this.isError = true;
+      //this.isError = false;
     }, 4000);
   }
      onCheckUser(): void {
@@ -114,6 +116,7 @@ export class LoginComponent implements OnInit {
       .subscribe( 
         data => {
           //console.log(data);
+
               this.authService.setUser(data.user);
               const token = data.id;
               this.authService.setToken(token);
@@ -122,13 +125,23 @@ export class LoginComponent implements OnInit {
               this._uw.name=data.name;
               this._uw.usertype=data.user.usertype;
               this._uw.userW=data.user;
-              console.log("id empeado para busqueda: "+data.user.id);
               this._uw.isLogged=true;
               this._uw.appointmentPatient= "p"+this._uw.appointmentPatient;
               this.router.navigate(['/dashboard']);
               this.isError = false;
+           
         },
-         error => this.onIsError()
+         error => {
+                if(error.status==401){
+                this.isError = true;
+                console.log("Datos erroneos"+error.status);
+        
+             this._uw.loginError=true;
+             //   console.log("datos erroneos");
+              }//
+         this.onIsError();
+         }
+
         ); 
   }   
   ngOnInit() {

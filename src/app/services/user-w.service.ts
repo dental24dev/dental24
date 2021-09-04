@@ -50,6 +50,7 @@ export class UserWService {
 	images:any[]=[];
 	info:any={};
 	isLogged:boolean=false;
+	loginError:boolean=false;
 	loaded:boolean=false;
 	method:string;
 	moccs:boolean=false;

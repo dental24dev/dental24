@@ -1,18 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders }  from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse }  from '@angular/common/http';
+import {  throwError } from 'rxjs';
 import { Observable }  from 'rxjs/internal/Observable';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 //import { isNullOrUnderfined } from 'util';
 import { isNullOrUndefined } from "util";
 // import { AuthService } from './auth.service
 import { UserInterface } from '../models/user-interface';
+import { UserWService } from "./user-w.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+  	private http: HttpClient,
+ 	public _uw:UserWService
+
+  	) { }
+ handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+
+ 			 if(error.status==401){
+ 			 	
+             // this._uw.loginError=true;
+             //   console.log("datos erroneos");
+              }// console.log("fallo:" +errorMessage);
+      
+
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    //window.alert(errorMessage);
+    return throwError(error);
+  }
 
 	headers : HttpHeaders = new HttpHeaders({
 		"Content-Type":"application/json"
@@ -29,7 +55,7 @@ export class AuthService {
 		const url_api ='https://db.masterdent24.org:3032/api/Users/login?include=user';
 		return this.http
 		.post<UserInterface>(url_api,{email,password},{headers:this.headers})
-		.pipe(map(data => data));
+		.pipe(map(data => data,error => error),catchError(this.handleError));
 	}
 
   	setUser(user:UserInterface):void{
