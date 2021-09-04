@@ -40,7 +40,7 @@
                   
                 </li>
                 <li class="has-submenu active"  [hidden]="!_uw.isLogged || !router.url.includes('/message') && !router.url.includes('/dashboard') && !router.url.includes('/dentists') && !router.url.includes('/appointments') && !router.url.includes('/account')  && !router.url.includes('/newappointment') ">
-                    <a (click)="onlogoutUser()" > Cerrar session</a>
+                    <a (click)="onlogoutUser()" style="cursor: pointer;"> Cerrar session</a>
                   
                 </li>
                 <!--  <li class="nav-item"  [hidden]="_uw.isLogged  ||  !router.url.includes('/dentists') ">
