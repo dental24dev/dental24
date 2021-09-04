@@ -75,6 +75,7 @@ export class UserWService {
 	tixsNew:any={};
 	total:number=0;
 	totalBooks:number;	
+	totalAppointments:number;	
 	totalSpecs:number;
 	totalMessages:number;
 	totalDentists:number;
@@ -98,6 +99,8 @@ export class UserWService {
 	validationToDelete:any={};
 	zapatos:boolean=false;
 	patient:any={};
+	appointmentPatient:string;
+	appointmentDentist:string;
 	// book:any[]=[];
   constructor() { }
 }

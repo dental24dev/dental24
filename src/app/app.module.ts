@@ -63,6 +63,7 @@ import { MessageComponent } from './components/message/message.component';
 import { NewappointmentComponent } from './components/newappointment/newappointment.component';
 
 import { XunkCalendarModule } from '../xunk-calendar/xunk-calendar.module';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +85,7 @@ import { XunkCalendarModule } from '../xunk-calendar/xunk-calendar.module';
     ProfileComponent,
     MessageComponent,
     NewappointmentComponent,
+    AppointmentsComponent,
     // FruitbannerboxComponent,
   ],
   imports: [

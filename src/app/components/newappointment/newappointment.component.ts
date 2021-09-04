@@ -5,6 +5,7 @@ import { XunkCalendarModule } from '../../../xunk-calendar/xunk-calendar.module'
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { SpecInterface } from '../../models/spec-interface'; 
+import { AppointmentInterface } from '../../models/appointment-interface'; 
 @Component({
   selector: 'app-newappointment',
   templateUrl: './newappointment.component.html',
@@ -22,6 +23,13 @@ export class NewappointmentComponent implements  AfterViewInit {
 	msg:string="";
   public specs:any[]=[];
   public selDate = { date:1, month:1, year:1 };
+   public appointmentSubmit : AppointmentInterface ={
+    iddentist:"",
+    idpatient:"",
+    date:"",
+    time:"",
+    status:""    
+  };
   constructor(
 
 	private ngZone: NgZone,
@@ -58,6 +66,7 @@ getAllSpecialties(){
 
  
   ngOnInit() {
+
   	this.selDate = XunkCalendarModule.getToday();  
     if(this._uw.isLogged!=true){
            this.router.navigate(['/login']);
@@ -80,7 +89,20 @@ if (error){
 	this.ngZone.run(()=>this.cardError=null);
 	}
   }
+async onClick(){
+    let response:any;
+    this._uw.appointment.date=this.selDate.date+" /"+(this.selDate.month+1)+" /"+this.selDate.year;
+    this._uw.appointment.iddentist= this._uw.appointmentDentist;
+    this._uw.appointment.idpatient= this._uw.appointmentPatient;
+    this._uw.appointment.status="new";
+    this._uw.appointment.image=this._uw.dentistToApp.images[0];
+    this._uw.appointment.dentist=this._uw.dentistToApp.name;
 
+    this._uw.appointment.type="virtual";
+    this._uw.appointment.amount=this._uw.dentistToApp.ta;
+    this.dataApi.saveAppointment(this._uw.appointment).subscribe();
+//    const {token, error} = await stripe.createToken(this.card);
+  }
 setHour(parameter){
 	this._uw.appointment.time=parameter;
 	this.hourSeted=true;

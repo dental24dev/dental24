@@ -180,54 +180,104 @@
 			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='patient'"> 
 				<div class="card">
 					<div class="card-body pt-0">
-						<nav class="user-tabs mb-4">
-							<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
-								<li class="nav-item">
-								<a class="nav-link active" href="#pat_appointments" data-toggle="tab">Citas</a>
-								</li>
 
-								
-							</ul>
+						<nav class="user-tabs mb-4">
+						<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+						<li class="nav-item">
+						<a class="nav-link active" href="#pat_appointments" data-toggle="tab">Citas</a>
+						</li>
+
+						<li class="nav-item">
+						<a class="nav-link" href="#pat_billing" data-toggle="tab">Facturación</a>
+						</li>
+						</ul>
 						</nav>
-						<div class="card card-table mb-0">
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-hover table-center mb-0">
-										<thead>
-											<tr>
-												<th>Dentista</th>
-												<th>Fecha</th>
-												<th>Hora</th>
-												<th>Monto</th>
-												<th>Estado</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr *ngFor="let appointment of appointments">
-												<td>
-													<h2 class="table-avatar">
-													<a class="avatar avatar-sm mr-2">
-													<img class="avatar-img rounded-circle" src="{{appointment.image}}" alt="User Image">
-													</a>
-													<a >{{appointment.dentist}} <span>Dental</span></a>
-													</h2>
-												</td>
-												<td><span class="d-block text-info">{{appointment.date}}</span></td>		
-												<td><span class="d-block text-info">{{appointment.time}}</span></td>		
-												<td>{{appointment.amount}}<span class="d-block text-info"></span></td>
-												<td><span class="badge badge-pill bg-success-light">{{appointment.status}}</span></td>
-											</tr>
-											<tr>
-											</tr>
-										</tbody>
-									</table>
+
+
+						<div class="tab-content pt-0">
+
+							<div id="pat_appointments" class="tab-pane fade show active">
+								<div class="card card-table mb-0">
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-hover table-center mb-0">
+												<thead>
+													<tr>
+														<th>Dentista</th>
+														<th>Fecha</th>
+														<th>Hora</th>
+														<th>Monto</th>
+														<th>Estado</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let appointment of appointments">
+														<td>
+															<h2 class="table-avatar">
+															<a class="avatar avatar-sm mr-2">
+															<img class="avatar-img rounded-circle" src="{{appointment.image}}" alt="User Image">
+															</a>
+															<a >{{appointment.dentist}} <span>Dental</span></a>
+															</h2>
+														</td>
+														<td><span class="d-block text-info">{{appointment.date}}</span></td>		
+														<td><span class="d-block text-info">{{appointment.time}}</span></td>		
+														<td>{{appointment.amount}}<span class="d-block text-info"></span></td>
+														<td><span class="badge badge-pill bg-success-light">{{appointment.status}}</span></td>
+													</tr>
+													<tr>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
 
-					</div>
+							<div id="pat_billing" class="tab-pane fade">
+									<h3>Sin facturas</h3>
+								<!-- <div class="card card-table mb-0">
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-hover table-center mb-0">
+												<thead>
+												<tr>
+												<th>Invoice No</th>
+												<th>Doctor</th>
+												<th>Amount</th>
+												<th>Paid On</th>
+												<th></th>
+												</tr>
+												</thead>
+												<tbody>
+
+
+												<tr>
+												<td>
+												<a href="invoice-view.html">#INV-0001</a>
+												</td>
+												<td>
+												<h2 class="table-avatar">
+												<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+												<img class="avatar-img rounded-circle" src="assets/assetsdental/img/doctors/doctor-thumb-10.jpg" alt="User Image">
+												</a>
+												<a href="doctor-profile.html">Dr. Olga Barlow <span>#0010</span></a>
+												</h2>
+												</td>
+												<td>$550</td>
+												<td>5 Nov 2019</td>
+
+												</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div> -->
+							</div>
+						</div>
 					</div>
 				</div>
+			</div>
 		</div>
 	</div>
 </div>

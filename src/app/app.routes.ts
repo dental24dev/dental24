@@ -16,6 +16,7 @@ import {
 	SuccesspatientregisterComponent,
 	RegisterdoctorComponent,
 	NewappointmentComponent,
+	AppointmentsComponent,
 	MessageComponent
 	// FruitbannerboxComponent
 	}from "./components/index.paginas";
@@ -38,6 +39,7 @@ const app_routes: Routes = [
 	{path:'profile/:id',component:ProfileComponent},
 	{path:'dashboard',component:DashboardComponent},
 	{path:'newappointment',component:NewappointmentComponent},
+	{path:'appointments',component:AppointmentsComponent},
 	{path:'successregister',component:SuccessregisterComponent},
 	{path:'successpatientregister',component:SuccesspatientregisterComponent},
 	{path:'registerdoctor',component:RegisterdoctorComponent},

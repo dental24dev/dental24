@@ -115,7 +115,8 @@ public dentists:DentistInterface;
     document.getElementsByTagName("head")[0].appendChild(node);
   }
   goNewAppointment(dentist){
-    this._uw.dentistToApp=this.dentist;
+    this._uw.dentistToApp=dentist;
+    this._uw.appointmentDentist=dentist.userd;
     this.router.navigate(['/newappointment'])
   }
   onRegister(){
@@ -211,8 +212,11 @@ public dentists:DentistInterface;
   }
 
     getProfile(id: string){
-    this.dataApi.getProfileById(id).subscribe(dentist => (this.dentist = dentist));
 
+    this.dataApi.getProfileById(id).subscribe(dentist => (this.dentist = dentist));
+   //   this.isError = false;
+    // console.log("dato gardado en appointmentDentist" +this.dentist.userd);
+    // this._uw.appointmentDentist=this.dentist.userd;
    
   }
     get fval() {

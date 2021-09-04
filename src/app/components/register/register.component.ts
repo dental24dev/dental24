@@ -115,7 +115,7 @@ onRegister(){
           this.authService.setUser(user);
           const token = user.id;
           this.patientSubmit.userd='p'+token;
-          this._uw.userd=token;  
+          this._uw.userd=this.patientSubmit.userd;  
           this.authService.setToken(token);
           //this.router.navigate(['/dashboard']);
         },
