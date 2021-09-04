@@ -17,6 +17,7 @@ export class NewappointmentComponent implements  AfterViewInit {
 	card:any;
 	cardError:string;
 	ccInfo:boolean=false;
+  steep3:boolean=false;
 	sent:boolean=false;
   sending:boolean=false;
 	succeeded:boolean=false;
@@ -53,7 +54,9 @@ export class NewappointmentComponent implements  AfterViewInit {
     '6:00 PM',
     '7:00 PM'
     ];
-
+goThree(){
+  this.steep3=true;
+}
 getAllSpecialties(){
         this.dataApi.getAllSpecialties().subscribe((res:any) => {
       if (res[0] === undefined){
@@ -67,8 +70,9 @@ getAllSpecialties(){
 
  
   ngOnInit() {
-
+this._uw.appointment.type="virtual";
   	this.selDate = XunkCalendarModule.getToday();  
+this._uw.appointment.date="";
     if(this._uw.isLogged!=true){
            this.router.navigate(['/login']);
     }else{
@@ -84,9 +88,10 @@ getAllSpecialties(){
  onChange({error}){
 if (error){
 	this.ngZone.run(()=>this.cardError=error.message);
-	
+  
 	}
 	else {
+	  this._uw.appointment.date=this.selDate.date+" /"+(this.selDate.month+1)+" /"+this.selDate.year;
 	this.ngZone.run(()=>this.cardError=null);
 	}
   }
