@@ -17,5 +17,3 @@ export { RegisterdoctorComponent } from "./registerdoctor/registerdoctor.compone
 export { MessageComponent } from "./message/message.component";
 export { NewappointmentComponent } from "./newappointment/newappointment.component";
 export { AppointmentsComponent } from "./appointments/appointments.component";
-
-// export { FruitbannerboxComponent } from "./fruitbannerbox/fruitbannerbox.component";

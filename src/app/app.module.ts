@@ -40,7 +40,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { FilePickerModule } from  '../assets/file-picker/src/public_api';
 //COMPONENTS
 import { TestappComponent } from './components/testapp/testapp.component';
-// import { FruitbannerboxComponent } from './components/fruitbannerbox/fruitbannerbox.component';
 import { Component, Inject} from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -57,11 +56,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SuccessregisterComponent } from './components/successregister/successregister.component';
 import { SuccesspatientregisterComponent } from './components/successpatientregister/successpatientregister.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MessageComponent } from './components/message/message.component';
 import { NewappointmentComponent } from './components/newappointment/newappointment.component';
-
 import { XunkCalendarModule } from '../xunk-calendar/xunk-calendar.module';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { SuccessappointmentComponent } from './components/successappointment/successappointment.component';
@@ -88,7 +85,6 @@ import { SuccessappointmentComponent } from './components/successappointment/suc
     NewappointmentComponent,
     AppointmentsComponent,
     SuccessappointmentComponent,
-    // FruitbannerboxComponent,
   ],
   imports: [
     BrowserModule,
