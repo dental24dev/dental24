@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
         password:"",
         status:"",
       };
+       message = "";  
     ngFormSignup: FormGroup;
     submitted = false;
     public isError = false;
@@ -100,6 +101,7 @@ export class RegisterComponent implements OnInit {
 
 onRegister(){
     if (this.ngFormSignup.valid){
+      this.isError = false;
       this.waiting=true;
       this.user.usertype='patient';
       this.user.status='new';
@@ -110,25 +112,33 @@ onRegister(){
 
       this.authService
         .registerUser(this.user.name, this.user.email, this.user.password, this.user.usertype, this.user.status)
-        .subscribe(user => {
+        .subscribe(
+          user => {
           this._uw.patient=user;
           this.authService.setUser(user);
           const token = user.id;
           this.patientSubmit.userd='p'+token;
           this._uw.userd=this.patientSubmit.userd;  
           this.authService.setToken(token);
-          //this.router.navigate(['/dashboard']);
-        },
-        res => {
-          this.msgError = res.error.error.details.messages.email;
-          this.onIsError();
-        });
+          }, 
+          error => {
+                if(error.status==422){
+                this.isError = true;
+                this.message="La dirección de correo ya se encuentra registrada";
+              }
+          }
+        );
       this.patientSubmit.usertype='patient';
       this.patientSubmit.status='new';
-      setTimeout(() => {
-      this.isError = false;
-      this.savePatient(this.patientSubmit);
-    }, 5000);
+      if (!this.isError){  
+          setTimeout(() => {
+          this.isError = false;
+          this.savePatient(this.patientSubmit);
+        }, 5000);
+      }
+      else{
+        this.waiting=false;
+      }
    
 
     } else {

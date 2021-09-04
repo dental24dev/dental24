@@ -68,6 +68,12 @@
 												<span class="or-line"></span>
 												<span class="span-or">o</span>
 											</div>
+											<div [hidden]="!isError">
+												<div style="color: red;text-align: left;">
+												{{message}}
+												</div>
+
+											</div>
 											<div class="text-left">
 												<a class="forgot-link" routerLink="/login">Ya tienes una cuenta?</a>
 											</div>

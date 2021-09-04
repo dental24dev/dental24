@@ -53,14 +53,14 @@ export interface XunkDate {
     /** Constants */
     public readonly monthNames =
       [
-        'January', 'February', 'March', 'April',
-        'May', 'June', 'July', 'August',
-        'September', 'October', 'November', 'December'
+        'Enero', 'Febrero', 'Marzo', 'Abril',
+        'Mayo', 'Junio', 'Julio', 'Agosto',
+        'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
       ];
     public readonly dayNames =
       [
-        'Sunday', 'Monday', 'Tuesday', 'Wednesday',
-        'Thrusday', 'Friday', 'Saturday'
+        'Domingo', 'Lunes', 'Martes', 'Miercoles',
+        'Jueves', 'Sabado', 'Domingo'
       ];
 
     /* Get RGB from CSS color */

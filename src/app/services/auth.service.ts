@@ -48,7 +48,7 @@ export class AuthService {
 		const url_api ='https://db.masterdent24.org:3032/api/Users/';
 		return this.http
 		.post<UserInterface>(url_api,{name,email,password,usertype,status},{headers:this.headers})
-		.pipe(map(data => data));
+		.pipe(map(data => data,error => error),catchError(this.handleError));
 	}
 
 	loginUser(email:string, password:string):Observable<any>{

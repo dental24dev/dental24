@@ -47,19 +47,18 @@
                                 <button class="dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="  position: relative; display: inline-block;   font-size: 14px;  line-height: 24px;  font-weight: 600;  color: #0a267a;  text-transform: uppercase;  background: #ffffff;  padding: 16px 34px;  border-radius: 5px;  transition: all 500ms ease;  border: 0px solid #0a267a;  ">
                                  <i class="flaticon-check-mark"  ></i>
                                         {{this._uw.appointment.time}}
-                                 </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" *ngFor="let item  of serviceHours;let i = index" (click)="setHour(item)"  style="cursor: pointer !important;">{{item}}</a>
-                                    </div>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" *ngFor="let item  of serviceHours;let i = index" (click)="setHour(item)"  style="cursor: pointer !important;">{{item}}</a>
                                 </div>
                             </div>
-                            <div class="clinic-booking" [hidden]="!_uw.isLogged  || sending">
-						<a class="apt-btn" style="cursor: pointer;" (click)="goThree()">Agendar</a>
-					</div>
-					<div style="text-align: center;"  [hidden]="!sending">
-							
-						<img src="assets/assetsdental/img/tenor.gif"	 style="max-height: 32px;max-width: 32px; text-align: center;	">
-						<p></p>
+                        </div>
+	                    <div class="clinic-booking" [hidden]="!_uw.isLogged  || sending">
+							<a class="apt-btn" style="cursor: pointer;" (click)="goThree()">Agendar</a>
+						</div>
+						<div style="text-align: center;"  [hidden]="!sending">	
+							<img src="assets/assetsdental/img/tenor.gif"	 style="max-height: 32px;max-width: 32px; text-align: center;	">
+							<p></p>
 						</div>
 					</div>
 				</div>	

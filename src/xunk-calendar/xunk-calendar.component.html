@@ -5,7 +5,7 @@
         <!-- Previous month button -->
         <th>
             <button mat-icon-button (click)="changeMonth(-1)">
-                <mat-icon class="ti-angle-left"></mat-icon>
+                <mat-icon class="ti-angle-left">chevron_left</mat-icon>
             </button>
         </th>
 
@@ -15,20 +15,20 @@
         <!-- Next month button -->
         <th>
             <button mat-icon-button (click)="changeMonth(1)">
-                <mat-icon class="ti-angle-right" ></mat-icon>
+                <mat-icon class="ti-angle-right" >chevron_right</mat-icon>
             </button>
         </th>
     </tr>
 
     <!-- Weekday headers -->
     <tr class="weekday">
+        <th>L</th>
         <th>M</th>
-        <th>T</th>
-        <th>W</th>
-        <th>T</th>
-        <th>F</th>
+        <th>M</th>
+        <th>J</th>
+        <th>V</th>
         <th>S</th>
-        <th>S</th>
+        <th>D</th>
     </tr>
 
     <!-- The real calendar -->
