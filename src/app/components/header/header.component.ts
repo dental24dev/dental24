@@ -4,7 +4,7 @@ import { DataApiService } from '../../services/data-api.service';
 //import { ScrollTopService }  from '../../services/scroll-top.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,13 +13,29 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(
+    private authService: AuthService,
  // public scrollTopService:ScrollTopService,
    public _uw:UserWService,
   private dataApi: DataApiService,
     public router: Router,
     private location: Location
     ) { }
-   loadAPI = null;  
+public isError = false;
+  loadAPI = null;  
+
+   onCheckUser(): void {
+    if (this.authService.getCurrentUser() === null) {
+      this._uw.isLogged=false;
+    } else {
+      this._uw.isLogged=true;
+    }
+  }
+
+  onlogoutUser():void{
+    this.authService.logoutUser();
+    this._uw.isLogged=false;
+    this.router.navigate(['/login']);
+  }
 
   url = "assets/assetsdental/js/jquery.min.js";
   url1 = "assets/assetsdental/js/popper.min.js";

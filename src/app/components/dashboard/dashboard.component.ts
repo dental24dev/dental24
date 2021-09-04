@@ -84,7 +84,6 @@ export class DashboardComponent implements OnInit {
   getPatientAppointments(id:string){
         this.dataApi.getPatientAppointments(id).subscribe((res:any) => {
       if (res[0] === undefined){
-        console.log("hey");
        }else{
         this.appointments=res;  
            this._uw.totalAppointments = res.length;          
@@ -94,7 +93,6 @@ export class DashboardComponent implements OnInit {
 getDentistAppointments(id:string){
         this.dataApi.getDentistAppointments(id).subscribe((res:any) => {
       if (res[0] === undefined){
-        console.log("hey");
        }else{
         this.appointments=res;  
            this._uw.totalAppointments = res.length;          
@@ -111,14 +109,12 @@ getDentistAppointments(id:string){
         this.loadScript3();
         this.loadScript4();
         this.loadScript5();
-        // this.loadScript3();
         });
       }
     if(this._uw.usertype=="patient"){
       this.getPatientAppointments(this._uw.userActiveId);
     }
     if(this._uw.usertype=="dentist"){
-    //  console.log("activeId"+this._uw.userActiveId)
       this.getDentistAppointments(this._uw.userActiveId);
     }
     this._uw.loaded=true;

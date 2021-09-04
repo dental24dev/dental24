@@ -122,6 +122,7 @@ export class LoginComponent implements OnInit {
               this._uw.name=data.name;
               this._uw.usertype=data.user.usertype;
               this._uw.userW=data.user;
+              console.log("id empeado para busqueda: "+data.user.id);
               this._uw.isLogged=true;
               this._uw.appointmentPatient= "p"+this._uw.appointmentPatient;
               this.router.navigate(['/dashboard']);

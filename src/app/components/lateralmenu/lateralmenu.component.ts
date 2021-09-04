@@ -36,17 +36,14 @@ export class LateralmenuComponent implements OnInit {
   }
    onCheckUser(): void {
     if (this.authService.getCurrentUser() === null) {
-      //this.isLogged = false;
       this._uw.isLogged=false;
     } else {
-      //this.isLogged = true;
       this._uw.isLogged=true;
     }
   }
 
   onlogoutUser():void{
     this.authService.logoutUser();
-    //this.isLogged = false;
     this._uw.isLogged=false;
     this.router.navigate(['/login']);
   }
@@ -128,13 +125,10 @@ export class LateralmenuComponent implements OnInit {
     }
     setTimeout(() => {
       this.isError = false;
-     console.log("Usuario activo: " +this.userActive.name +" ; "+this.userActive.userd);
+     //console.log("Usuario activo: " +this.userActive.name +" ; "+this.userActive.userd);
     this._uw.userActiveId=this.userActive.userd;
+
     }, 5000);
-
-
-
-
 
          if (this._uw.loaded==true){
       this.loadAPI = new Promise(resolve => {
@@ -144,7 +138,6 @@ export class LateralmenuComponent implements OnInit {
         this.loadScript3();
         this.loadScript4();
         this.loadScript5();
-        // this.loadScript3();
         });
       }
     this._uw.loaded=true;

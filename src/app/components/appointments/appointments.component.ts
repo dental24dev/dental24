@@ -29,7 +29,6 @@ public scrollTopService:ScrollTopService,
 getPatientAppointments(id:string){
         this.dataApi.getPatientAppointments(id).subscribe((res:any) => {
       if (res[0] === undefined){
-        console.log("hey");
        }else{
         this.appointments=res;  
            this._uw.totalAppointments = res.length;          
@@ -39,7 +38,6 @@ getPatientAppointments(id:string){
 getDentistAppointments(id:string){
         this.dataApi.getDentistAppointments(id).subscribe((res:any) => {
       if (res[0] === undefined){
-        console.log("hey");
        }else{
         this.appointments=res;  
            this._uw.totalAppointments = res.length;          
@@ -51,7 +49,6 @@ getDentistAppointments(id:string){
   		this.getPatientAppointments(this._uw.userActiveId);
   	}
   	if(this._uw.usertype=="dentist"){
-  	//	console.log("activeId"+this._uw.userActiveId)
   		this.getDentistAppointments(this._uw.userActiveId);
   	}
   }

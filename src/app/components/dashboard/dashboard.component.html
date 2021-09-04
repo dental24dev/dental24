@@ -5,178 +5,56 @@
 				<app-lateralmenu ></app-lateralmenu>
 			</div>
 			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='dentist'">
-				<div class="row">
-					<div class="col-md-12">
-						<h4 class="mb-4">Listado de citas</h4>
-						<div class="appointment-tab">
-							<ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+				<div class="card">
+					<div class="card-body pt-0">
+						<nav class="user-tabs mb-4">
+							<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
 								<li class="nav-item">
-									<a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Próxima</a>
+								<a class="nav-link active" href="#pat_appointments" data-toggle="tab">Citas</a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#today-appointments" data-toggle="tab">Hoy</a>
-								</li>
+
+								
 							</ul>
-							<div class="tab-content">
-								<div class="tab-pane show active" id="upcoming-appointments">
-									<div class="card card-table mb-0">
-										<div class="card-body">
-											<div class="table-responsive">
-												<table class="table table-hover table-center mb-0">
-													<thead>
-														<tr>
-															<th>Nombre del Paciente</th>
-															<th>Día de Cita</th>
-															<th>Motivo</th>
-															<th>Tipo</th>
-															<th class="text-center">Honorarios</th>
-															
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>
-																<h2 class="table-avatar">
-																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile.png" alt="User Image"></a>
-																	<a href="patient-profile.php">Juan Quintana Padial <span>#PT0016</span></a>
-																</h2>
-															</td>
-															<td>06 de mayo de 2020 <span class="d-block text-info">10.00 AM</span></td>
-															<td>General</td>
-															<td>Nuevo paciente</td>
-															<td class="text-center">150€</td>
-															
-														</tr>
-														<tr>
-															<td>
-																<h2 class="table-avatar">
-																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile1.png" alt="User Image"></a>
-																	<a href="patient-profile.php">Nuria Robles <span>#PT0017</span></a>
-																</h2>
-															</td>
-															<td>06 de mayo de 2020 <span class="d-block text-info">12.00 AM</span></td>
-															<td>General</td>
-															<td>Paciente habitual</td>
-															<td class="text-center">170€</td>
-															
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
+						</nav>
+						<div class="card card-table mb-0">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover table-center mb-0">
+										<thead>
+											<tr>
+												<th>Dentista</th>
+												<th>Fecha</th>
+												<th>Hora</th>
+												<th>Monto</th>
+												<th>Estado</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let appointment of appointments">
+												<td>
+													<h2 class="table-avatar">
+													<a class="avatar avatar-sm mr-2">
+													<img class="avatar-img rounded-circle" src="{{appointment.image}}" alt="User Image">
+													</a>
+													<a >{{appointment.dentist}} <span>Dental</span></a>
+													</h2>
+												</td>
+												<td><span class="d-block text-info">{{appointment.date}}</span></td>		
+												<td><span class="d-block text-info">{{appointment.time}}</span></td>		
+												<td>{{appointment.amount}}<span class="d-block text-info"></span></td>
+												<td><span class="badge badge-pill bg-success-light">{{appointment.status}}</span></td>
+											</tr>
+											<tr>
+											</tr>
+										</tbody>
+									</table>
 								</div>
-								<!-- /Upcoming Appointment Tab -->
-
-								<!-- Today Appointment Tab -->
-								<div class="tab-pane" id="today-appointments">
-									<div class="card card-table mb-0">
-										<div class="card-body">
-											<div class="table-responsive">
-												<table class="table table-hover table-center mb-0">
-													<thead>
-														<tr>
-															<th>Nombre del Paciente</th>
-															<th>Día de Cita</th>
-															<th>Motivo</th>
-															<th>Tipo</th>
-															<th class="text-center">Honorarios</th>
-															
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>
-																<h2 class="table-avatar">
-																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile.png" alt="User Image"></a>
-																	<a href="patient-profile.php">Damian Robles <span>#PT0018</span></a>
-																</h2>
-															</td>
-															<td>07 de mayo de 2020 <span class="d-block text-info">10.00 AM</span></td>
-															<td>General</td>
-															<td>Paciente habitual</td>
-															<td class="text-center">150€</td>
-															
-														</tr>
-														<tr>
-															<td>
-																<h2 class="table-avatar">
-																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile1.png" alt="User Image"></a>
-																	<a href="patient-profile.php">María Yuste <span>#PT0019</span></a>
-																</h2>
-															</td>
-															<td>07 de mayo de 2020 <span class="d-block text-info">12.00 AM</span></td>
-															<td>General</td>
-															<td>Paciente habitual</td>
-															<td class="text-center">170€</td>
-															
-														</tr>
-														<tr>
-															<td>
-																<h2 class="table-avatar">
-																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile.png" alt="User Image"></a>
-																	<a href="patient-profile.php">José Ibañez <span>#PT0020</span></a>
-																</h2>
-															</td>
-															<td>07 de mayo de 2020 <span class="d-block text-info">10.00 AM</span></td>
-															<td>General</td>
-															<td>Nuevo paciente</td>
-															<td class="text-center">150€</td>
-															
-														</tr>
-														<tr>
-															<td>
-																<h2 class="table-avatar">
-																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile1.png" alt="User Image"></a>
-																	<a href="patient-profile.php">Dolores Fortun <span>#PT0021</span></a>
-																</h2>
-															</td>
-															<td>07 de mayo de 2020 <span class="d-block text-info">12.00 AM</span></td>
-															<td>General</td>
-															<td>Antiguo paciente</td>
-															<td class="text-center">200€</td>
-															
-														</tr>
-														<tr>
-															<td>
-																<h2 class="table-avatar">
-																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile.png" alt="User Image"></a>
-																	<a href="patient-profile.php">Sebastián Recio <span>#PT0022</span></a>
-																</h2>
-															</td>
-															<td>07 de mayo de 2020 <span class="d-block text-info">10.00 AM</span></td>
-															<td>General</td>
-															<td>Nuevo paciente</td>
-															<td class="text-center">150€</td>
-															
-														</tr>
-														<tr>
-															<td>
-																<h2 class="table-avatar">
-																	<a href="patient-profile.php" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/assetsdental/img/patients/profile1.png" alt="User Image"></a>
-																	<a href="patient-profile.php">Nuria Robles <span>#PT0023</span></a>
-																</h2>
-															</td>
-															<td>07 de mayo de 2020 <span class="d-block text-info">12.00 AM</span></td>
-															<td>General</td>
-															<td>Antiguo paciente</td>
-															<td class="text-center">170€</td>
-															
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /Today Appointment Tab -->
-
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
-
 			<div class="col-md-7 col-lg-8 col-xl-9" *ngIf=" _uw.usertype=='patient'"> 
 				<div class="card">
 					<div class="card-body pt-0">
@@ -226,8 +104,9 @@
 						</div>
 
 					</div>
-					</div>
 				</div>
+			</div>
 		</div>
+
 	</div>
 </div>
