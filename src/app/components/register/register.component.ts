@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
        message = "";  
     ngFormSignup: FormGroup;
     submitted = false;
+    politics = false;
     public isError = false;
     public waiting = false;
     public msgError = '';
@@ -56,7 +57,9 @@ export class RegisterComponent implements OnInit {
   url2= "assets/assetsdental/js/slick.js";
   url3 = "assets/assetsdental/plugins/swiper/js/swiper.min.js";
   url4 = "assets/assetsdental/js/script.js";
-
+setPolitics(){
+  if (this.politics==true){this.politics=false}else{this.politics=true}
+}
  public loadScript() {
     let node = document.createElement("script");
     node.src = this.url;
@@ -108,8 +111,6 @@ onRegister(){
       this.patientSubmit.name=this.user.name;
       this.patientSubmit.username=this.user.email;
       this.patientSubmit.images[0]="https://db.masterdent24.org/dental24ImgApi/server/local-storage/tixsImages/profile.png";
-
-
       this.authService
         .registerUser(this.user.name, this.user.email, this.user.password, this.user.usertype, this.user.status)
         .subscribe(
@@ -130,18 +131,19 @@ onRegister(){
         );
       this.patientSubmit.usertype='patient';
       this.patientSubmit.status='new';
-      if (!this.isError){  
-          setTimeout(() => {
-          this.isError = false;
+      setTimeout(() => {
+        if (this.isError==false){  
+          console.log("dato" +this.isError);
           this.savePatient(this.patientSubmit);
-        }, 5000);
-      }
-      else{
-        this.waiting=false;
-      }
-   
+       //   this.isError = false;
+          }
+        else{
+          this.waiting=false;
+        } 
+      }, 5000);
 
-    } else {
+    } 
+    else {
       this.onIsError();
     }
   }
